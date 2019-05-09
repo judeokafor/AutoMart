@@ -1,0 +1,23 @@
+@import url('./variables.css');
+@import url('./responsive.css');
+@import url('./button.css');
+@import url('./util.css');
+@import url('./styles.css');
+
+body {
+	background-color: var(--pure-white);
+	color: var(--base-purple);
+	font-weight: 400;
+	font-family: 'Open Sans', sans-serif;
+	font-size: calc(0.75em + 1vmin);
+}
+.container {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.responsive-image {
+	vertical-align: middle;
+	border-style: none;
+	max-width: 100%;
+}

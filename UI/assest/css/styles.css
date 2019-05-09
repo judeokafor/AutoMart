@@ -1,0 +1,38 @@
+.h-100vh {
+	height: 100vh;
+}
+.h-10vh {
+	height: 10vh;
+}
+.h-80vh {
+	height: 80vh;
+}
+.h-80 {
+	height: 80%;
+}
+.row {
+	display: flex;
+	padding: auto 5px;
+}
+.font-weight-bold {
+	font-weight: 700;
+}
+.font-weight-light {
+	font-weight: 300;
+}
+.text-light-purple {
+	color: var(--light-purple);
+}
+.text-dark-grey {
+	color: var(--dark-grey);
+}
+.text-large {
+	font-size: 2.2rem;
+}
+.text-medium {
+	font-size: 1.2rem;
+}
+a {
+	text-decoration: none;
+	color: var(--mild-purple);
+}
