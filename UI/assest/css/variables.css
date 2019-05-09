@@ -13,4 +13,12 @@
 	--pure-white: #fff;
 
 	--abstract-orange: #FFC27C;
+
+	--base-red: #E53935;
+	--deep-red: #C62828;
+
+}
+
+.bg-light-grey {
+	background-color: var(--grey-one);
 }
