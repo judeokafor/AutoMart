@@ -12,8 +12,8 @@
 }
 /* flexbox styles */
 .row {
-	display: flex;
-	flex-wrap: wrap;
+	display: flex !important;
+	flex-wrap: wrap !important;
 }
 .d-flex {
 	display: flex !important;
