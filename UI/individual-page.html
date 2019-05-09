@@ -35,41 +35,28 @@
                         <div class="w-70 mx-auto card bg-light-grey">
                             <div class=" p-3 row">
                                 <div class="col-12 col-md-6">
-                                    <div class="container">
-                                        <div class="carousel">
-                                            <input type="radio" id="carousel-1" name="carousel[]" checked>
-                                            <input type="radio" id="carousel-2" name="carousel[]">
-                                            <input type="radio" id="carousel-3" name="carousel[]">
-                                            <input type="radio" id="carousel-4" name="carousel[]">
-                                            <input type="radio" id="carousel-5" name="carousel[]">
-                                            <ul class="carousel__items">
-                                                <li class="carousel__item"><img
-                                                        src="./assest/images/automobile-cars-headlights-120049.jpg"
-                                                        alt=""></li>
-                                                <li class="carousel__item"><img
-                                                        src="./assest/images/asphalt-auto-automobile-244206.jpg" alt="">
-                                                </li>
-                                            </ul>
-                                            <div class="carousel__prev">
-                                                <label for="carousel-1"></label>
-                                                <label for="carousel-2"></label>
-                                                <label for="carousel-3"></label>
-                                                <label for="carousel-4"></label>
-                                                <label for="carousel-5"></label>
+                                    <div class="slider">
+                                        <a href="#slide-1">1</a>
+                                        <a href="#slide-2">2</a>
+                                        <a href="#slide-3">3</a>
+                                        <a href="#slide-4">4</a>
+                                        <div class="slides">
+                                            <div id="slide-1">
+                                                <img class="responsive-image"
+                                                    src="./assest/images/asphalt-auto-automobile-244206.jpg" alt="">
                                             </div>
-                                            <div class="carousel__next">
-                                                <label for="carousel-1"></label>
-                                                <label for="carousel-2"></label>
-                                                <label for="carousel-3"></label>
-                                                <label for="carousel-4"></label>
-                                                <label for="carousel-5"></label>
+                                            <div id="slide-2">
+                                                <img class="responsive-image"
+                                                    src="./assest/images/automobile-cars-headlights-120049.jpg" alt="">
                                             </div>
-                                            <div class="carousel__nav">
-                                                <label for="carousel-1"></label>
-                                                <label for="carousel-2"></label>
-                                                <label for="carousel-3"></label>
-                                                <label for="carousel-4"></label>
-                                                <label for="carousel-5"></label>
+                                            <div id="slide-3">
+                                                <img class="responsive-image"
+                                                    src="./assest/images/architecture-audi-automotive-1545743.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div id="slide-4">
+                                                <img class="responsive-image"
+                                                    src="./assest/images/action-automobile-automotive-50704.jpg" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -107,11 +94,13 @@
                                             </button>
                                         </div>
                                         <div class="bottom-right">
-                                            <p> Suspect something ? <span><a href="#" class="text-red">flag as
-                                                        fraud</a></span></p>
+                                            <a href="#" class="text-red">
+                                                Suspicious
+                                                <i class="material-icons text-red">
+                                                    warning
+                                                </i> ?
+                                            </a>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +119,7 @@
         </div>
     </div>
 
-    <script src="./assest/js/app.js"></script>
+    <script src="./assest/js/individual-page.js"></script>
 </body>
 
 </html>

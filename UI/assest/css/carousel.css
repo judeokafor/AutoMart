@@ -1,211 +1,110 @@
-/**
- * @author: Dang Van Thanh
- * @github: https://github.com/dangvanthanh/carousel.css
- * @description: A Simple Carousel Pure CSS Using CSs
- */
-.carousel>input[type="radio"]:nth-child(1):checked~.carousel__prev>label:nth-child(5),
-.carousel>input[type="radio"]:nth-child(1):checked~.carousel__next>label:nth-child(2),
-.carousel>input[type="radio"]:nth-child(2):checked~.carousel__prev>label:nth-child(1),
-.carousel>input[type="radio"]:nth-child(2):checked~.carousel__next>label:nth-child(3),
-.carousel>input[type="radio"]:nth-child(3):checked~.carousel__prev>label:nth-child(2),
-.carousel>input[type="radio"]:nth-child(3):checked~.carousel__next>label:nth-child(4),
-.carousel>input[type="radio"]:nth-child(4):checked~.carousel__prev>label:nth-child(3),
-.carousel>input[type="radio"]:nth-child(4):checked~.carousel__next>label:nth-child(5),
-.carousel>input[type="radio"]:nth-child(5):checked~.carousel__prev>label:nth-child(4),
-.carousel>input[type="radio"]:nth-child(5):checked~.carousel__next>label:nth-child(1) {
-    opacity: 1 !important;
-    z-index: 3;
-}
-
-*,
-*:before,
-*:after {
+* {
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
 }
 
-
-.container {
-    width: 100%;
-    height: auto;
-    /* min-width: 900px; */
-    margin: 10px auto;
-}
-
-.carousel {
-    width: 100%;
-    position: relative;
+.slider {
+    width: 400px;
+    text-align: center;
     overflow: hidden;
 }
 
-.carousel>input[type="radio"] {
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    top: 0;
+.slides {
+    display: flex;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-points-x: repeat(400px);
+    scroll-snap-type: mandatory;
 }
 
-.carousel>input[type="radio"]:checked~.carousel__items .carousel__item,
-.carousel>input[type="radio"]:checked~.carousel__prev>label,
-.carousel>input[type="radio"]:checked~.carousel__next>label {
-    opacity: 0;
+.slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.carousel>input[type="radio"]:nth-child(1):checked~.carousel__items .carousel__item:nth-child(1) {
-    opacity: 1;
+.slides::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
 }
 
-.carousel>input[type="radio"]:nth-child(1):checked~.carousel__nav>label:nth-child(1) {
-    background: #ccc;
-    cursor: default;
-    pointer-events: none;
+.slides::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.carousel>input[type="radio"]:nth-child(2):checked~.carousel__items .carousel__item:nth-child(2) {
-    opacity: 1;
-}
-
-.carousel>input[type="radio"]:nth-child(2):checked~.carousel__nav>label:nth-child(2) {
-    background: #ccc;
-    cursor: default;
-    pointer-events: none;
-}
-
-.carousel>input[type="radio"]:nth-child(3):checked~.carousel__items .carousel__item:nth-child(3) {
-    opacity: 1;
-}
-
-.carousel>input[type="radio"]:nth-child(3):checked~.carousel__nav>label:nth-child(3) {
-    background: #ccc;
-    cursor: default;
-    pointer-events: none;
-}
-
-.carousel>input[type="radio"]:nth-child(4):checked~.carousel__items .carousel__item:nth-child(4) {
-    opacity: 1;
-}
-
-.carousel>input[type="radio"]:nth-child(4):checked~.carousel__nav>label:nth-child(4) {
-    background: #ccc;
-    cursor: default;
-    pointer-events: none;
-}
-
-.carousel>input[type="radio"]:nth-child(5):checked~.carousel__items .carousel__item:nth-child(5) {
-    opacity: 1;
-}
-
-.carousel>input[type="radio"]:nth-child(5):checked~.carousel__nav>label:nth-child(5) {
-    background: #ccc;
-    cursor: default;
-    pointer-events: none;
-}
-
-.carousel__items {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    width: 100%;
-    height: 600px;
+.slides>div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 400px;
+    height: 400px;
+    margin-right: 50px;
+    border-radius: 10px;
+    background: #eee;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
     position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
 }
 
-.carousel__item {
+.slides>div:target {
+    transform: scale(0.8);
+}
+
+.author-info {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.author-info a {
+    color: white;
+}
+
+img {
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    transition: opacity 2s;
-    -webkit-transition: opacity 2s;
 }
 
-.carousel__item img {
-    width: 100%;
-    vertical-align: middle;
-}
-
-.carousel__prev>label,
-.carousel__next>label {
-    border: 1px solid #fff;
+.slider>a {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: white;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    cursor: pointer;
-    display: block;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transition: all .3s ease;
-    -webkit-transition: all .3s ease;
-    opacity: 0;
-    z-index: 2;
+    margin: 0 0 0.5rem 0;
+    position: relative;
 }
 
-.carousel__prev>label:hover,
-.carousel__prev>label:focus,
-.carousel__next>label:hover,
-.carousel__next>label:focus {
-    opacity: .5 !important;
+.slider>a:active {
+    top: 1px;
 }
 
-.carousel__prev>label:before,
-.carousel__prev>label:after,
-.carousel__next>label:before,
-.carousel__next>label:after {
-    content: "";
-    position: absolute;
-    width: inherit;
-    height: inherit;
+.slider>a:focus {
+    background: #000;
 }
 
-.carousel__prev>label:before,
-.carousel__next>label:before {
-    background: linear-gradient(to top, #fff 0%, #fff 10%, rgba(51, 51, 51, 0) 10%), linear-gradient(to left, #fff 0%, #fff 10%, rgba(51, 51, 51, 0) 10%);
-    width: 60%;
-    height: 60%;
-    top: 20%;
-}
-
-.carousel__prev>label {
-    left: 2%;
-}
-
-.carousel__prev>label:before {
-    left: 35%;
-    top: 20%;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-}
-
-.carousel__next>label {
-    right: 2%;
-}
-
-.carousel__next>label:before {
-    left: 10%;
-    transform: rotate(315deg);
-    -webkit-transform: rotate(315deg);
-}
-
-.carousel__nav {
-    position: absolute;
-    bottom: 3%;
-    left: 0;
-    text-align: center;
-    width: 100%;
-    z-index: 3;
-}
-
-.carousel__nav>label {
-    border: 1px solid #fff;
-    display: inline-block;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 0 .125%;
-    width: 20px;
-    height: 20px;
+/* Don't need button navigation */
+@supports (scroll-snap-type: mandatory) {
+    .slider>a {
+        display: none;
+    }
 }
