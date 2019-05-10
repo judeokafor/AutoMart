@@ -34,3 +34,28 @@
 	color: var(--base-purple);
 	border: 1px solid var(--deep-purple);
 }
+.btn-group button {
+	background-color: var(--mild-purple);
+	border: 1px solid var(--deep-purple);
+	color: white;
+	padding: 10px 24px;
+	cursor: pointer;
+	float: left;
+}
+
+.btn-group:after {
+	content: '';
+	clear: both;
+	display: table;
+}
+
+.btn-group button:not(:last-child) {
+	border-right: none;
+}
+
+.btn-group button:hover {
+	background-color: #9575cd;
+}
+.btn-group button:active {
+	background-color: var(--abstract-orange);
+}
