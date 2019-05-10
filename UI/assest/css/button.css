@@ -34,11 +34,12 @@
 	color: var(--base-purple);
 	border: 1px solid var(--deep-purple);
 }
+
 .btn-group button {
-	background-color: var(--mild-purple);
-	border: 1px solid var(--deep-purple);
-	color: white;
-	padding: 10px 24px;
+	background-color: var(--grey-one);
+	color: var(--dark-grey);
+	border: 1px solid var(--dark-grey);
+	padding: 10px 20px;
 	cursor: pointer;
 	float: left;
 }
@@ -54,8 +55,11 @@
 }
 
 .btn-group button:hover {
-	background-color: #9575cd;
+	background-color: var(--faint-purple);
+	color: var(--base-purple);
+	border: 1px solid var(--deep-purple);
 }
+
 .btn-group button:active {
-	background-color: var(--abstract-orange);
+	background-color: #B39DDB;
 }
