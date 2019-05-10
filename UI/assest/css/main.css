@@ -4,11 +4,21 @@
 @import url('./util.css');
 @import url('./styles.css');
 
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
 body {
 	background-color: var(--pure-white);
 	color: var(--base-purple);
 	font-weight: 400;
-	font-family: 'Open Sans', sans-serif;
+	/* font-family: 'Open Sans', sans-serif; */
+	font-family: 'Roboto', sans-serif;
+
+	/* font-family: 'Raleway', sans-serif; */
+	/* font-family: 'Noto Sans', sans-serif; */
 	font-size: calc(0.75em + 1vmin);
 }
 
@@ -28,4 +38,20 @@ body {
 	position: absolute;
 	bottom: 5px;
 	right: 5px;
+}
+
+.fixed-top-right {
+	position: absolute;
+	top: 0px;
+	right: 10px;
+}
+
+.car-title {
+	font-size: 2rem;
+	font-weight: 300;
+}
+
+.font-weight-normal {
+	font-weight: 400;
+	font-size: 1rem;
 }

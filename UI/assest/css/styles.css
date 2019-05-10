@@ -23,6 +23,11 @@
 	font-weight: 700;
 }
 
+.font-small {
+	font-size: 10px;
+	font-weight: 300;
+}
+
 .font-weight-light {
 	font-weight: 300;
 }
@@ -49,6 +54,14 @@
 
 .text-medium {
 	font-size: 1.2rem;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.montserrat {
+	font-family: 'Montserrat', sans-serif;
 }
 
 a {
