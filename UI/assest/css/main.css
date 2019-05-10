@@ -101,3 +101,17 @@ select.filter:focus {
 	background-color: var(--grey-one);
 	outline: none;
 }
+
+.overlay-advert {
+	background: #B39DDB;
+	background: -webkit-linear-gradient(to left, #9575CD, #7E57C2);
+	background: linear-gradient(to left, #9575CD, #7E57C2);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #ffffff;
+	position: relative;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+	border-radius: 10px 0 0 10px;
+}
