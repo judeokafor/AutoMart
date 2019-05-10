@@ -17,6 +17,18 @@
 	border: 1px solid var(--deep-purple);
 }
 
+.btn-danger {
+	background-color: var(--base-red);
+	color: #fff;
+	border: 1px solid var(--deep-red);
+}
+
+.btn-orange {
+	background-color: var(--abstract-orange);
+	color: #fff;
+	border: 1px solid var(--abstract-orange);
+}
+
 .btn-purple-reverse {
 	background-color: var(--pure-white);
 	color: var(--base-purple);
