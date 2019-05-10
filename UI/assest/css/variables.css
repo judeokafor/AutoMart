@@ -7,6 +7,7 @@
 	--deep-purple: #311b92;
 	--mild-purple: #7e57c2;
 	--light-purple: #d1c4e9;
+	--faint-purple: #E8EAF6;
 
 	--grey-one: #fafafa;
 	--dark-grey: #757575;
@@ -15,6 +16,8 @@
 
 	--abstract-orange: #FFC27C;
 
+	--base-blue: #5CC8F2;
+
 	--base-red: #E53935;
 	--deep-red: #C62828;
 
@@ -22,4 +25,25 @@
 
 .bg-light-grey {
 	background-color: var(--grey-one);
+}
+
+/* Color Theme Swatches in Hex */
+.ore-colors-1-hex {
+	color: #151450;
+}
+
+.ore-colors-2-hex {
+	color: #FFC27C;
+}
+
+.ore-colors-3-hex {
+	color: #6078BF;
+}
+
+.ore-colors-4-hex {
+	color: #5CC8F2;
+}
+
+.ore-colors-5-hex {
+	color: #1F2988;
 }
