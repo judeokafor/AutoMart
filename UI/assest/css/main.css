@@ -10,6 +10,7 @@ body {
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
 	font-size: calc(0.75em + 1vmin);
+	box-sizing: border-box;
 }
 
 .container {
@@ -17,9 +18,19 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+.container-fluid {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 .responsive-image {
 	vertical-align: middle;
-	max-width: 100%;
+	width: 100%;
 	height: auto;
+}
+.sidebar {
+	background-color: var(--pure-white);
+	/* min-height: 80vh; */
+	border: 1px solid var(--light-purple);
 }
