@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>AutoMart</title>
+		<link rel="stylesheet" href="./assest/css/carousel.css" />
 		<link rel="stylesheet" href="./assest/css/main.css" />
 	</head>
 
@@ -28,11 +29,13 @@
 								<div class="my-auto w-50">
 									<div class="d-flex justify-content-between">
 										<div>
-											<a href="#" class="text-dark-grey">Featued Cars</a>
+											<a href="#" class="text-dark-grey">Featured Cars</a>
 										</div>
 										<div>
-											<a href="#" class="btn btn-purple-reverse mr-2">Log in</a>
-											<a href="#" class="btn btn-purple">Sign up</a>
+											<a href="#" class="btn btn-purple-reverse mr-2 login"
+												>Log in</a
+											>
+											<a href="#" class="btn btn-purple signup">Sign up</a>
 										</div>
 									</div>
 								</div>
@@ -48,12 +51,12 @@
 									</h3>
 									<div class="row">
 										<div class="col-md-6">
-											<div class="make">
-												<small for="" class="text-abstract-orange">Make</small>
+											<div class="make my-1">
+												<small class="text-abstract-orange">Make</small>
 												<div class="search_categories">
 													<div class="select">
 														<select class="select-css">
-															<option disabled>Select Make</option>
+															<option selected disabled>Select Make</option>
 															<option>Mercedez Benz</option>
 															<option>Toyota</option>
 															<option>Peuogot</option>
@@ -64,12 +67,12 @@
 											</div>
 										</div>
 										<div class="col-md-6">
-											<div class="model">
-												<small for="" class="text-abstract-orange">Model</small>
+											<div class="model my-1">
+												<small class="text-abstract-orange">Model</small>
 												<div class="search_categories">
 													<div class="select">
 														<select class="select-css">
-															<option disabled>Select Model</option>
+															<option selected disabled>Select Model</option>
 															<option>C300</option>
 															<option>E320</option>
 															<option>C230 Formatic</option>
@@ -80,10 +83,10 @@
 											</div>
 										</div>
 										<div class="col-md-6">
-											<div class="row">
+											<div class="row my-1">
 												<div class="col-6">
 													<div class="condition">
-														<small for="" class="text-abstract-orange"
+														<small class="text-abstract-orange"
 															>Condition</small
 														>
 														<div class="search_categories">
@@ -97,15 +100,13 @@
 													</div>
 												</div>
 												<div class="col-6">
-													<div class="Location">
-														<small for="" class="text-abstract-orange"
-															>Location</small
-														>
+													<div class="Location my-1">
+														<small class="text-abstract-orange">Location</small>
 														<div class="search_categories">
 															<div class="select">
 																<select class="select-css">
 																	<option>Abuja</option>
-																	<option>Lagos</option>
+																	<option selected>Lagos</option>
 																	<option>Kano</option>
 																	<option>Ibadan</option>
 																</select>
@@ -116,14 +117,14 @@
 											</div>
 										</div>
 										<div class="col-md-6">
-											<div class="body type">
-												<small for="" class="text-abstract-orange"
-													>Body Type</small
-												>
+											<div class="body type my-1">
+												<small class="text-abstract-orange">Body Type</small>
 												<div class="search_categories">
 													<div class="select">
 														<select class="select-css">
-															<option disabled>Select Body type</option>
+															<option disabled selected
+																>Select Body type</option
+															>
 															<option>Van</option>
 															<option>Trucks</option>
 															<option>Sedan</option>
@@ -133,14 +134,60 @@
 												</div>
 											</div>
 										</div>
+
 										<div class="col-12">
-											<div class="row">
+											<div class="row my-1">
 												<div class="col-6">
-													<small>Min Price</small>
-													<input type="number" class="" />
+													<div id="year_from">
+														<small for="" class="text-abstract-orange"
+															>From</small
+														>
+														<div class="search_categories">
+															<div class="select">
+																<select class="select-css">
+																	<option disabled selected>Year</option>
+																	<option>2019</option>
+																	<option>2018</option>
+																	<option>2017</option>
+																	<option>2016</option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-6">
+													<div id="year_to" class="my-1">
+														<small class="text-abstract-orange">To</small>
+														<div class="search_categories">
+															<div class="select">
+																<select class="select-css">
+																	<option disabled selected>Year</option>
+																	<option>2019</option>
+																	<option>2018</option>
+																	<option>2017</option>
+																	<option>2016</option>
+																</select>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
+										<div class="col-12">
+											<div class="row my-1">
+												<div class="col-6">
+													<small class="text-abstract-orange">Min Price</small>
+													<input type="number" class="w-100" />
+												</div>
+												<div class="col-6">
+													<small class="text-abstract-orange">Max Price</small>
+													<input type="number" class="w-100" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="my-4">
+										<button class="btn btn-purple d-block w-100">Search</button>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
