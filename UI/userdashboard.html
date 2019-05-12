@@ -1,201 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="./assest/css/carousel.css" />
+		<link rel="stylesheet" href="./assest/css/main.css" />
+		<title>Userdashboard</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<link rel="stylesheet" href="./assest/css/carousel.css">
-	<link rel="stylesheet" href="./assest/css/main.css" />
-	<title>Userdashboard</title>
-</head>
-
-<body>
-	<div class="w-80 mx-auto">
-		<div class="h-100vh">
-			<div class="d-flex flex-column justify-content-between">
-				<nav class="h-10vh">
-					<header>
-						<div class="d-flex justify-content-between py-1">
-							<div class="my-auto">
-								<h1>
-									<a href="/index.html" class="font-weight-bold">AutoMart</a>
-								</h1>
-							</div>
-							<div class="my-auto">
-								<div>
-									<a href="#" class="text-dark-grey">Gallery</a>
-								</div>
+	<body>
+		<div class="w-80 mx-auto">
+			<div class="h-100vh">
+				<div class="d-flex flex-column justify-content-between">
+					<nav class="h-10vh">
+						<div class="d-flex justify-content-start">
+							<div class="logo">
+								<img
+									src="./assest/images/svg/logo.png"
+									alt="logo"
+									width="100%"
+									height="100%"
+									class="responsive-image"
+								/>
 							</div>
 						</div>
-					</header>
-				</nav>
-				<section class="h-80vh">
-					<div class="d-flex">
-						<div class="w-25">
-							<div class="sidebar w-100 h-100">
+					</nav>
+					<section class="h-80vh mt-5">
+						<div class="d-flex">
+							<div class="w-25">
+								<div class="sidebar w-100 h-100">
+									<div class="container-fluid">
+										<div class="d-flex justify-content-around my-2">
+											<span class="font-weight-bold">Filter</span>
+											<img
+												src="./assest/images/svg/filter.svg"
+												alt=""
+												width="20px"
+												height="20px"
+											/>
+										</div>
+										<div class="my-1">
+											<small class="text-abstract-orange">Availability</small>
+											<div class="btn-group w-100">
+												<button class="w-50 bl-t-b">Sold</button>
+												<button class="w-50 br-t-b">Unsold</button>
+											</div>
+										</div>
+
+										<div class="my-1">
+											<small class="text-abstract-orange">Condition</small>
+											<div class="btn-group w-100">
+												<button class="w-50 bl-t-b">New</button>
+												<button class="w-50 br-t-b">Used</button>
+											</div>
+										</div>
+										<div class="make my-1">
+											<small class="text-abstract-orange">Make</small>
+											<div class="search_categories">
+												<div class="select">
+													<select class="select-css">
+														<option selected disabled>Select Make</option>
+														<option>Mercedez Benz</option>
+														<option>Toyota</option>
+														<option>Peuogot</option>
+														<option>Land Rover</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="model my-1">
+											<small class="text-abstract-orange">Model</small>
+											<div class="search_categories">
+												<div class="select">
+													<select class="select-css">
+														<option selected disabled>Select Model</option>
+														<option>C300</option>
+														<option>E320</option>
+														<option>C230 Formatic</option>
+														<option>E250</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="Location my-1">
+											<small class="text-abstract-orange">Location</small>
+											<div class="search_categories">
+												<div class="select">
+													<select class="select-css">
+														<option selected disabled>Select State</option>
+														<option>Abuja</option>
+														<option>Lagos</option>
+														<option>Kano</option>
+														<option>Ibadan</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="body type my-1">
+											<small class="text-abstract-orange">Body Type</small>
+											<div class="search_categories">
+												<div class="select">
+													<select class="select-css">
+														<option disabled selected>Select Body type</option>
+														<option>Van</option>
+														<option>Trucks</option>
+														<option>Sedan</option>
+														<option>Four Wheel Drive</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="d-flex">
+											<div id="year_from" class="my-1 w-50 mr-1">
+												<small for="" class="text-abstract-orange">From</small>
+												<div class="search_categories">
+													<div class="select">
+														<select class="select-css">
+															<option disabled selected>Year</option>
+															<option>2019</option>
+															<option>2018</option>
+															<option>2017</option>
+															<option>2016</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div id="year_to" class="my-1 w-50">
+												<small for="" class="text-abstract-orange">To</small>
+												<div class="search_categories">
+													<div class="select">
+														<select class="select-css">
+															<option disabled selected>Year</option>
+															<option>2019</option>
+															<option>2018</option>
+															<option>2017</option>
+															<option>2016</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="d-flex my-1">
+											<div class="w-50 mr-2">
+												<small class="text-abstract-orange">Min Price</small>
+												<input type="number" class="w-100" />
+											</div>
+											<div class="w-50">
+												<small class="text-abstract-orange">Max Price</small>
+												<input type="number" class="w-100" />
+											</div>
+										</div>
+										<div class="my-3">
+											<button class="btn btn-purple d-block w-100">
+												Search
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="w-75">
 								<div class="container-fluid">
-									<div class="my-2">
-										<p>Search</p>
-										<form action="">
-											<input class="w-100" type="text" placeholder="Search..." />
-										</form>
-									</div>
-									<div class="my-2">
-										<p>Availabilty</p>
-										<div class="btn-group w-100">
-											<!-- <button>Sold</button> -->
-											<button class="w-50">All Unsold</button>
-										</div>
-									</div>
-
-									<div class="my-2">
-										<p>State</p>
-										<div class="btn-group w-100">
-											<button class="w-50">New</button>
-											<button class="w-50">Used</button>
-										</div>
-									</div>
-									<div class="my-2">
-										<p>Manufacturer</p>
-										<!-- <select class="filter">
-											<option value="">
-												Mercedez
-											</option>
-											<option value="">
-												Toyota
-											</option>
-											<option value="">
-												Nissan
-											</option>
-											<option value="">
-												Peugot
-											</option>
-										</select> -->
-										<div class="select">
-											<!-- You can toggle select (disabled) -->
-											<input type="radio" name="option">
-											<i class="toggle icon icon-arrow-down material-icons">
-												keyboard_arrow_down
-											</i>
-											<i class="toggle icon icon-arrow-up material-icons">
-												keyboard_arrow_up
-											</i>
-											<span class="placeholder">Choose...</span>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Mercedez</span>
-											</label>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Toyota</span>
-											</label>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Nissan</span>
-											</label>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Peugot</span>
-											</label>
-										</div>
-									</div>
-									<div class="my-2">
-										<p>Body Type</p>
-										<!-- <select class="filter">
-											<option value="">
-												Sedan
-											</option>
-											<option value="">
-												Four Wheel Drive
-											</option>
-											<option value="">
-												Van
-											</option>
-											<option value="">
-												Truck
-											</option>
-											<option value="">
-												Trailer
-											</option>
-										</select> -->
-										<div class="select">
-											<!-- You can toggle select (disabled) -->
-											<input type="radio" name="option">
-											<i class="toggle icon icon-arrow-down material-icons">
-												keyboard_arrow_down
-											</i>
-											<i class="toggle icon icon-arrow-up material-icons">
-												keyboard_arrow_up
-											</i>
-											<span class="placeholder">Choose...</span>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Sedan</span>
-											</label>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Four Wheel Drive</span>
-											</label>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Van</span>
-											</label>
-											<label class="option">
-												<input type="radio" name="option">
-												<span class="title"></i>Truck</span>
-											</label>
-										</div>
-									</div>
-									<div class="my-5">
-										<p>By Amount</p>
-										<form>
-											<div class="d-flex justify-content-between">
-												<input class="w-50" type="number" placeholder="minimum value..." />
-												<span class="text-abstract-orange mx-2">to</span>
-												<input class="w-50" type="number" placeholder="maximum value..." />
+									<div class="row">
+										<div class="col-12 col-sm-6 col-md-4">
+											<div class="card-product">
+												<img
+													src="./assest/images/automobile-cars-headlights-120049.jpg"
+													alt="car image"
+													class="responsive-image clickable"
+													width="100%"
+													height="150px"
+												/>
+												<div class="p-2">
+													<h5 class="m-0 text-left clickable">
+														Mercedez C300 C-Class
+													</h5>
+													<p class="price my-1 clickable">#10000</p>
+													<div class="text-left">
+														<img
+															class="responsive-img"
+															src="./assest/images/svg/placeholder.svg"
+															alt=""
+															width="20px"
+															height="20px"
+														/>
+														<small class="text-deep-purple">Abuja</small>
+													</div>
+													<div class="d-flex justify-content-between">
+														<div class="">
+															<img
+																class="responsive-image"
+																src="./assest/images/svg/sold.svg"
+																alt=""
+																width="30px"
+																height="30px"
+															/>
+														</div>
+														<small>
+															<a href="#">See more</a>
+														</small>
+													</div>
+												</div>
 											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="w-75">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-12 col-sm-6 col-md-4 m-1">
-										<div class="card-product">
-											<img src="./assest/images/automobile-cars-headlights-120049.jpg"
-												alt="car image" class="responsive-image" width="100%" />
-											<div class="p-2">
-												<h4 class="m-0">Mercedez C300 C-Class</h4>
-												<p class="price my-1">$10000</p>
-												<p class="mb-1">
-													Highly maintainable. Fuel economy perfect. In good
-													condition. Owner wants to sell because he is moving
-													abroad
-												</p>
-												<p><span>View Details</span></p>
+										</div>
+										<div class="col-12 col-sm-6 col-md-4">
+											<div class="card-product">
+												<img
+													src="./assest/images/asphalt-auto-automobile-244206.jpg"
+													alt="car image"
+													class="responsive-image"
+													width="100%"
+													height="150px"
+												/>
+												<div class="p-2">
+													<h5 class="m-0 text-left">Mercedez C300 C-Class</h5>
+													<p class="price my-1">#10000</p>
+													<div class="text-left">
+														<img
+															class="responsive-img"
+															src="./assest/images/svg/placeholder.svg"
+															alt=""
+															width="20px"
+															height="20px"
+														/>
+														<small class="text-deep-purple">Abuja</small>
+													</div>
+													<div class="d-flex justify-content-between">
+														<div class="">
+															<img
+																class="responsive-image"
+																src="./assest/images/svg/checked.svg"
+																alt=""
+																width="30px"
+																height="30px"
+															/>
+														</div>
+														<small>
+															<a href="#">See more</a>
+														</small>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-sm-6 col-md-4">
+											<div class="card-product">
+												<img
+													src="./assest/images/architecture-audi-automotive-1545743.jpg"
+													alt="car image"
+													class="responsive-image"
+													width="100%"
+													height="150px"
+												/>
+												<div class="p-2">
+													<h5 class="m-0 text-left">Mercedez C300 C-Class</h5>
+													<p class="price my-1">#10000</p>
+													<div class="text-left">
+														<img
+															class="responsive-img"
+															src="./assest/images/svg/placeholder.svg"
+															alt=""
+															width="20px"
+															height="20px"
+														/>
+														<small class="text-deep-purple">Lagos</small>
+													</div>
+													<div class="d-flex justify-content-between">
+														<div class="">
+															<img
+																class="responsive-image"
+																src="./assest/images/svg/sold.svg"
+																alt=""
+																width="30px"
+																height="30px"
+															/>
+														</div>
+														<small>
+															<a href="#">See more</a>
+														</small>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-				<footer class="h-10vh">
-					<div class="d-flex justify-content-center">
-						<p>
-							Okafor Jude Chukwuebuka
-							<i class="material-icons">copyright</i> 2019
-						</p>
-					</div>
-				</footer>
+					</section>
+					<footer class="h-10vh">
+						<div class="d-flex justify-content-center">
+							<p>
+								Okafor Jude Chukwuebuka
+								<i class="material-icons">copyright</i> 2019
+							</p>
+						</div>
+					</footer>
+				</div>
 			</div>
 		</div>
-	</div>
-	<script src="./assest/js/app.js"></script>
-</body>
-
+		<script src="./assest/js/app.js"></script>
+	</body>
 </html>
