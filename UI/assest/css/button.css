@@ -42,8 +42,14 @@
 	padding: 10px 20px;
 	cursor: pointer;
 	float: left;
+	outline: none;
 }
-
+.bl-t-b {
+	border-radius: 0.5rem 0 0 0.5rem;
+}
+.br-t-b {
+	border-radius: 0 0.5rem 0.5rem 0;
+}
 .btn-group:after {
 	content: '';
 	clear: both;
@@ -61,5 +67,5 @@
 }
 
 .btn-group button:active {
-	background-color: #B39DDB;
+	background-color: #b39ddb;
 }
