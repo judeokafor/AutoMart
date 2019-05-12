@@ -151,6 +151,12 @@ input[type='file'] {
 	-ms-flex-pack: center;
 	justify-content: center;
 }
+@media only screen and (max-width: 1024px) {
+	.slider {
+		width: 400px;
+		height: 400px;
+	}
+}
 
 .slider__nav {
 	width: 12px;
