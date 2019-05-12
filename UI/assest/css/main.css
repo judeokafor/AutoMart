@@ -57,7 +57,10 @@ body {
 	font-size: 2rem;
 	font-weight: 300;
 }
-
+.location {
+	font-size: 10px;
+	color: var(--deep-purple) !important;
+}
 
 .sidebar {
 	border: 1px solid var(--faint-purple);
@@ -103,9 +106,9 @@ select.filter:focus {
 }
 
 .overlay-advert {
-	background: #B39DDB;
-	background: -webkit-linear-gradient(to left, #9575CD, #7E57C2);
-	background: linear-gradient(to left, #9575CD, #7E57C2);
+	background: #b39ddb;
+	background: -webkit-linear-gradient(to left, #9575cd, #7e57c2);
+	background: linear-gradient(to left, #9575cd, #7e57c2);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
