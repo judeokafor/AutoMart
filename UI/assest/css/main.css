@@ -49,17 +49,21 @@ body {
 
 .fixed-top-right {
 	position: absolute;
-	top: 0px;
+	top: 5px;
 	right: 10px;
 }
 
 .car-title {
-	font-size: 2rem;
-	font-weight: 300;
+	font-size: 1.4rem;
+	font-weight: 400;
 }
 .location {
 	font-size: 10px;
 	color: var(--deep-purple) !important;
+}
+.paragraph {
+	line-height: 1.2;
+	word-spacing: 1;
 }
 
 .sidebar {

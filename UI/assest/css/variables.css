@@ -3,27 +3,24 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
-
-	--faint-purple: #E8EAF6;
+	--faint-purple: #e8eaf6;
 	--light-purple: #d1c4e9;
-	--soft-purple: #9575CD;
+	--soft-purple: #9575cd;
 	--mild-purple: #7e57c2;
 	--base-purple: #512da8;
 	--deep-purple: #311b92;
-
 
 	--grey-one: #fafafa;
 	--dark-grey: #757575;
 
 	--pure-white: #fff;
 
-	--abstract-orange: #FFC27C;
-	--abstract-orange-shadow: rgb(252, 202, 145);
-	--base-blue: #5CC8F2;
+	--abstract-orange: rgb(243, 164, 73);
+	--abstract-orange-shadow: rgb(255, 195, 126);
+	--base-blue: #5cc8f2;
 
-	--base-red: #E53935;
-	--deep-red: #C62828;
-
+	--base-red: #e53935;
+	--deep-red: #c62828;
 }
 
 .bg-light-grey {
@@ -40,17 +37,17 @@
 }
 
 .ore-colors-2-hex {
-	color: #FFC27C;
+	color: #ffc27c;
 }
 
 .ore-colors-3-hex {
-	color: #6078BF;
+	color: #6078bf;
 }
 
 .ore-colors-4-hex {
-	color: #5CC8F2;
+	color: #5cc8f2;
 }
 
 .ore-colors-5-hex {
-	color: #1F2988;
+	color: #1f2988;
 }
