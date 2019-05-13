@@ -23,6 +23,12 @@
 	border: 1px solid var(--deep-red);
 }
 
+.btn-danger-reverse {
+	background-color: rgb(247, 221, 221);
+	color: var(--base-red);
+	border: 1px solid var(--deep-red);
+}
+
 .btn-orange {
 	background-color: var(--abstract-orange);
 	color: #fff;
@@ -44,12 +50,15 @@
 	float: left;
 	outline: none;
 }
+
 .bl-t-b {
 	border-radius: 0.5rem 0 0 0.5rem;
 }
+
 .br-t-b {
 	border-radius: 0 0.5rem 0.5rem 0;
 }
+
 .btn-group:after {
 	content: '';
 	clear: both;

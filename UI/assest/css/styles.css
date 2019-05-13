@@ -39,15 +39,21 @@
 .text-light-purple {
 	color: var(--light-purple) !important;
 }
+
 .text-deep-purple {
 	color: var(--deep-purple) !important;
 }
+
 .text-abstract-orange {
 	color: var(--abstract-orange);
 }
 
 .text-dark-grey {
 	color: var(--dark-grey);
+}
+
+.text-grey-one {
+	color: var(--grey-one);
 }
 
 .text-red {
@@ -61,9 +67,11 @@
 .text-medium {
 	font-size: 1.2rem;
 }
+
 .text-left {
 	text-align: left;
 }
+
 .text-right {
 	text-align: right;
 }
@@ -96,10 +104,12 @@ a {
 	font-size: 1.1rem;
 	text-align: left;
 }
+
 .logo {
 	width: 80px;
 	height: 80px;
 }
+
 .card-product small a {
 	color: var(--abstract-orange);
 	font-size: 12px;
@@ -118,13 +128,16 @@ a {
 	transition: 0.3s;
 	border-radius: 10px;
 }
+
 .align-image {
 	vertical-align: text-bottom;
 }
+
 /* On mouse-over, add a deeper shadow */
 .card:hover {
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+
 .select-css {
 	display: block;
 	font-size: 1rem;
@@ -149,12 +162,15 @@ a {
 	background-position: right 0.7em top 50%, 0 0;
 	background-size: 0.65em auto, 100%;
 }
+
 .select-css::-ms-expand {
 	display: none;
 }
+
 .select-css:hover {
 	border-color: var(--light-purple);
 }
+
 .select-css:focus {
 	border-color: var(--abstract-orange-shadow);
 	box-shadow: 0 0 1px 1px var(--abstract-orange);
@@ -162,6 +178,7 @@ a {
 	color: var(--base-purple);
 	outline: none;
 }
+
 .select-css option {
 	font-weight: normal;
 }
