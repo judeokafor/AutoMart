@@ -119,7 +119,7 @@ input[type='file'] {
 .inputfile-4:focus + label figure,
 .inputfile-4.has-focus + label figure,
 .inputfile-4 + label:hover figure {
-	background-color: var(--abstract-orange-shadow);
+	/* background-color: var(--abstract-orange-shadow); */
 	box-shadow: 0 4px 8px 0 var(--base-purple);
 }
 

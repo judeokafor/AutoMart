@@ -22,7 +22,6 @@ body {
 	font-size: calc(0.75em + 1vmin);
 	box-sizing: border-box;
 }
-
 .container {
 	width: 80%;
 	margin-left: auto;
@@ -46,7 +45,9 @@ body {
 	bottom: 5px;
 	right: 5px;
 }
-
+.logo {
+	margin-top: -1rem;
+}
 .fixed-top-right {
 	position: absolute;
 	top: 5px;
@@ -68,10 +69,16 @@ body {
 	font-size: 10px;
 	color: var(--deep-purple) !important;
 }
-
+.active {
+	background-color: var(--light-purple) !important;
+	color: var(--base-purple);
+}
 .paragraph {
 	line-height: 1.2;
 	word-spacing: 1;
+}
+.rounded-image {
+	border-radius: 50%;
 }
 
 .sidebar {
