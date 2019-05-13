@@ -212,10 +212,6 @@ input[type='file'] {
 	-ms-flex-flow: row nowrap;
 	flex-flow: row nowrap;
 }
-/* .min-width {
-	min-width: 300px;
-	min-height: 300px;
-} */
 
 .slider__contents {
 	/* height: 100%; */

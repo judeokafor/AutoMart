@@ -56,6 +56,13 @@ body {
 	font-size: 1.4rem;
 	font-weight: 400;
 }
+
+.card-header {
+	font-size: 1.3rem;
+	font-weight: 300;
+	border-radius: 10px 10px 0 0;
+}
+
 .location {
 	font-size: 10px;
 	color: var(--deep-purple) !important;
@@ -89,6 +96,26 @@ input.w-50 {
 
 input.w-100:focus,
 input.w-50:focus {
+	border: none;
+	border-bottom: 2px solid var(--base-blue);
+	padding: 10px 5px;
+	background-color: var(--grey-one);
+	outline: none;
+	box-sizing: border-box;
+}
+
+textarea.w-100 {
+	border: none;
+	border-bottom: 2px solid var(--deep-purple);
+	padding: 10px 5px;
+	background-color: var(--grey-one);
+	outline: none;
+	box-sizing: border-box;
+	width: 100%;
+	height: 150px;
+}
+
+textarea.w-100:focus {
 	border: none;
 	border-bottom: 2px solid var(--base-blue);
 	padding: 10px 5px;
