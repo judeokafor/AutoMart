@@ -45,7 +45,9 @@ body {
 	bottom: 5px;
 	right: 5px;
 }
-
+.logo {
+	margin-top: -1rem;
+}
 .fixed-top-right {
 	position: absolute;
 	top: 5px;
