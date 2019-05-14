@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assest/css/modal.css">
+    <link rel="stylesheet" href="./assest/css/carousel.css" />
+    <link rel="stylesheet" href="./assest/css/main.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <div class="modal" id="modal">
+        <div class="close-button clickable" id="close-button">
+            <img src="./assest/images/svg/x-button.svg" alt="" class="responsive-image" width="25px" height="25px">
+        </div>
+        <div class="modal-guts">
+            <div class="">
+                <div class="p-2">
+                    <div class="d-flex justify-content-between">
+                        <p class="font-weight-bold">
+                            Purchase Order
+                        </p>
+                        <small class="text-abstract-orange">Order-id: 123-456-789-0</small>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <img src="./assest/images/asphalt-auto-automobile-244206.jpg" alt="" width="100%"
+                                height="300px">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div>
+                                <div class="d-flex justify-content-center mb-1">
+                                    <strong>
+                                        Mercedez c300
+                                    </strong>
+                                </div>
+
+                                <div class="d-flex justify-content-between"><small
+                                        class="text-abstract-orange">Year</small> <strong>2015 </strong> </div>
+                                <div class="d-flex justify-content-between"><small
+                                        class="text-abstract-orange">Amount</small> <strong>57000km</strong> </div>
+                                <div class="d-flex justify-content-between"> <small
+                                        class="text-abstract-orange">Condition:</small><strong>Used</strong> </div>
+                                <div class="d-flex justify-content-between"><small
+                                        class="text-abstract-orange">Transmission:</small>
+                                    <strong>Automatic</strong> </div>
+
+                            </div>
+
+                            <div id="amount" class="my-1">
+                                <small class="text-abstract-orange">Amount</small>
+                                <input type="text" class="w-100" value="#3500000" readonly />
+                            </div>
+
+                            <div class="d-flex justify-content-end mt-3">
+                                <button class="btn btn-green">
+                                    Place Order
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./assest/js/modal.js"></script>
+</body>
+
+</html>
