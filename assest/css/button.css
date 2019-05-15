@@ -4,6 +4,7 @@
 	text-align: center;
 	white-space: nowrap;
 	vertical-align: middle;
+	font-size: 1rem;
 	padding: 0.4rem 0.8rem !important;
 	border-radius: 1rem;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
@@ -17,6 +18,7 @@
 	color: #fff;
 	border: 1px solid var(--deep-purple);
 }
+
 .btn-purple:hover {
 	background-color: var(--pure-white);
 	color: var(--base-purple);
@@ -52,6 +54,7 @@
 	color: var(--base-purple);
 	border: 1px solid var(--deep-purple);
 }
+
 .btn-purple-reverse:hover {
 	background-color: var(--base-purple);
 	color: #fff;
