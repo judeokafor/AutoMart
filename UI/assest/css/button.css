@@ -40,6 +40,12 @@
 	border: 1px solid var(--abstract-orange);
 }
 
+.btn-green {
+	background-color: var(--base-green);
+	color: #fff;
+	border: 1px solid var(--base-green);
+}
+
 .btn-purple-reverse {
 	background-color: var(--pure-white);
 	color: var(--base-purple);
