@@ -1,0 +1,51 @@
+{
+  "name": "automart",
+  "version": "1.0.0",
+  "description": "Auto Mart is an online marketplace for automobiles",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judeokafor/AutoMart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/judeokafor/AutoMart/issues"
+  },
+  "homepage": "https://github.com/judeokafor/AutoMart#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "@babel/polyfill": "^7.2.5",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "dotenv": "^6.2.0",
+    "joi": "^14.3.0",
+    "mocha": "^5.2.0",
+    "multer": "^1.4.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-istanbul": "^5.1.0",
+    "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.11.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.18.9",
+    "nyc": "^13.1.0"
+  }
+}
