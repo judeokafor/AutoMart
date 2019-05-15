@@ -1,13 +1,12 @@
 /* Style the tab */
 .tab {
 	overflow: hidden;
-	background-color: #f1f1f1;
+	background-color: inherit;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
 	background-color: inherit;
-	float: left;
 	border: none;
 	outline: none;
 	cursor: pointer;
@@ -33,6 +32,17 @@
 	border-top: none; */
 }
 
+.usertab button.tablinks {
+	background-color: inherit;
+}
+
+.usertab button.tablinks.active {
+	font-size: 1.3rem;
+	margin: 10px;
+	padding: 0.5rem;
+	background-color: inherit !important;
+	border-bottom: 1px solid var(--deep-purple)
+}
 
 .select-css {
 	display: block;

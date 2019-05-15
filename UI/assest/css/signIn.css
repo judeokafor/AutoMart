@@ -73,8 +73,9 @@ input {
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	position: relative;
 	overflow: hidden;
-	width: 80%;
-	min-height: 80%;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -111,6 +112,7 @@ input {
 }
 
 @keyframes show {
+
 	0%,
 	49.99% {
 		opacity: 0;
