@@ -59,6 +59,9 @@
 .text-red {
 	color: var(--base-red);
 }
+.text-white {
+	color: #fff;
+}
 
 .text-large {
 	font-size: 1.7rem;

@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="./assest/css/carousel.css" />
 		<link rel="stylesheet" href="./assest/css/main.css" />
 	</head>
-
 	<body>
 		<div class="container">
 			<div class="h-100vh">
@@ -17,30 +16,32 @@
 						<header>
 							<div class="d-flex justify-content-between">
 								<div class="my-auto">
-									<div>
+									<a class="logo" href="index.html">
 										<img
 											src="./assest/images/svg/logo.png"
 											alt="logo"
 											width="100px"
 											height="100px"
 										/>
-									</div>
+									</a>
 								</div>
 								<div class="my-auto w-50">
 									<div class="d-flex justify-content-between">
 										<div>
-											<a href="#" class="text-dark-grey">Featured Cars</a>
+											<a href="#featuredcars" class="text-dark-grey"
+												>Featured Cars</a
+											>
 										</div>
 										<div>
-											<button
-												href="#"
+											<a
+												href="signIn.html"
 												class="btn btn-purple-reverse mr-2 login"
 											>
 												Log in
-											</button>
-											<button href="#" class="btn btn-purple signup">
+											</a>
+											<a href="signIn.html" class="btn btn-purple signup">
 												Sign up
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>
@@ -61,7 +62,7 @@
 												<div class="search_categories">
 													<div class="select">
 														<select class="select-css">
-															<option selected disabled>Select Make</option>
+															<option selected disabled>Choose Make</option>
 															<option>Mercedez Benz</option>
 															<option>Toyota</option>
 															<option>Peuogot</option>
@@ -77,7 +78,7 @@
 												<div class="search_categories">
 													<div class="select">
 														<select class="select-css">
-															<option selected disabled>Select Model</option>
+															<option selected disabled>Choose Model</option>
 															<option>C300</option>
 															<option>E320</option>
 															<option>C230 Formatic</option>
@@ -97,6 +98,7 @@
 														<div class="search_categories">
 															<div class="select">
 																<select class="select-css">
+																	<option selected disabled>Choose</option>
 																	<option>Used</option>
 																	<option>New</option>
 																</select>
@@ -110,8 +112,11 @@
 														<div class="search_categories">
 															<div class="select">
 																<select class="select-css">
+																	<option selected disabled
+																		>Choose state</option
+																	>
 																	<option>Abuja</option>
-																	<option selected>Lagos</option>
+																	<option>Lagos</option>
 																	<option>Kano</option>
 																	<option>Ibadan</option>
 																</select>
@@ -128,7 +133,7 @@
 													<div class="select">
 														<select class="select-css">
 															<option disabled selected
-																>Select Body type</option
+																>Choose Body type</option
 															>
 															<option>Van</option>
 															<option>Trucks</option>
@@ -192,7 +197,12 @@
 										</div>
 									</div>
 									<div class="my-4">
-										<button class="btn btn-purple d-block w-100">Search</button>
+										<a
+											href="./view-specific-car.html"
+											class="btn btn-purple d-block w-100"
+										>
+											Search
+										</a>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
