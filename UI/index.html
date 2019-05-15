@@ -8,34 +8,40 @@
 		<link rel="stylesheet" href="./assest/css/carousel.css" />
 		<link rel="stylesheet" href="./assest/css/main.css" />
 	</head>
-
 	<body>
 		<div class="container">
 			<div class="h-100vh">
 				<div class="d-flex flex-column justify-content-between">
 					<nav class="h-10vh">
 						<header>
-							<div class="d-flex justify-content-between py-1">
+							<div class="d-flex justify-content-between">
 								<div class="my-auto">
-									<div>
+									<a class="logo" href="index.html">
 										<img
 											src="./assest/images/svg/logo.png"
 											alt="logo"
 											width="100px"
 											height="100px"
 										/>
-									</div>
+									</a>
 								</div>
 								<div class="my-auto w-50">
-									<div class="d-flex justify-content-between">
-										<div>
-											<a href="#" class="text-dark-grey">Featured Cars</a>
+									<div class="d-flex justify-content-end">
+										<div class="mr-2">
+											<a href="#featuredcars" class="text-dark-grey"
+												>Featured Cars</a
+											>
 										</div>
 										<div>
-											<a href="#" class="btn btn-purple-reverse mr-2 login"
-												>Log in</a
+											<a
+												href="signIn.html"
+												class="btn btn-purple-reverse mr-2 login"
 											>
-											<a href="#" class="btn btn-purple signup">Sign up</a>
+												Log in
+											</a>
+											<a href="signIn.html" class="btn btn-purple signup">
+												Sign up
+											</a>
 										</div>
 									</div>
 								</div>
@@ -43,9 +49,9 @@
 						</header>
 					</nav>
 					<section class="h-80vh">
-						<div class="mt-5">
+						<div class="">
 							<div class="row">
-								<div class="col-12 col-md-6">
+								<div class="col-12 col-md-7">
 									<h3 class="">
 										Find your car...
 									</h3>
@@ -56,7 +62,7 @@
 												<div class="search_categories">
 													<div class="select">
 														<select class="select-css">
-															<option selected disabled>Select Make</option>
+															<option selected disabled>Choose Make</option>
 															<option>Mercedez Benz</option>
 															<option>Toyota</option>
 															<option>Peuogot</option>
@@ -72,7 +78,7 @@
 												<div class="search_categories">
 													<div class="select">
 														<select class="select-css">
-															<option selected disabled>Select Model</option>
+															<option selected disabled>Choose Model</option>
 															<option>C300</option>
 															<option>E320</option>
 															<option>C230 Formatic</option>
@@ -92,6 +98,7 @@
 														<div class="search_categories">
 															<div class="select">
 																<select class="select-css">
+																	<option selected disabled>Choose</option>
 																	<option>Used</option>
 																	<option>New</option>
 																</select>
@@ -105,8 +112,11 @@
 														<div class="search_categories">
 															<div class="select">
 																<select class="select-css">
+																	<option selected disabled
+																		>Choose state</option
+																	>
 																	<option>Abuja</option>
-																	<option selected>Lagos</option>
+																	<option>Lagos</option>
 																	<option>Kano</option>
 																	<option>Ibadan</option>
 																</select>
@@ -123,7 +133,7 @@
 													<div class="select">
 														<select class="select-css">
 															<option disabled selected
-																>Select Body type</option
+																>Choose Body type</option
 															>
 															<option>Van</option>
 															<option>Trucks</option>
@@ -137,7 +147,7 @@
 
 										<div class="col-12">
 											<div class="row my-1">
-												<div class="col-6">
+												<div class="col-md-6">
 													<div id="year_from">
 														<small for="" class="text-abstract-orange"
 															>From</small
@@ -155,7 +165,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-6">
+												<div class="col-md-6">
 													<div id="year_to" class="my-1">
 														<small class="text-abstract-orange">To</small>
 														<div class="search_categories">
@@ -187,15 +197,154 @@
 										</div>
 									</div>
 									<div class="my-4">
-										<button class="btn btn-purple d-block w-100">Search</button>
+										<a
+											href="./view-specific-car.html"
+											class="btn btn-purple d-block w-100"
+										>
+											Search
+										</a>
 									</div>
 								</div>
-								<div class="col-12 col-md-6">
+								<div class="col-12 col-md-5 my-auto">
 									<img
 										src="./assest/images/asphalt-auto-automobile-244206.jpg"
 										alt=""
-										class="responsive-image "
+										class="responsive-image"
 									/>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div id="featuredcars" class="d-flex justify-content-center">
+							<h3>
+								Featured Cars
+							</h3>
+						</div>
+						<div class="">
+							<div class="row">
+								<div class="col-12 col-sm-6 col-md-4">
+									<div class="card-product">
+										<a href="./view-specific-car.html">
+											<img
+												src="./assest/images/architecture-audi-automotive-1545743.jpg"
+												alt="car image"
+												class="responsive-image"
+												width="100%"
+												height="150px"
+											/>
+										</a>
+										<div class="p-2">
+											<h5 class="m-0 text-left">Audi E2 Evolution</h5>
+											<p class="price my-1">#1000000</p>
+											<div class="d-flex justify-content-between">
+												<div class="">
+													<img
+														class="responsive-img"
+														src="./assest/images/svg/placeholder.svg"
+														alt=""
+														width="20px"
+														height="20px"
+													/>
+													<small class="text-deep-purple">Lagos</small>
+												</div>
+												<div class="">
+													<img
+														class="responsive-image"
+														src="./assest/images/svg/checked.svg"
+														alt=""
+														width="30px"
+														height="30px"
+													/>
+												</div>
+											</div>
+											<small class="text-left">
+												<a href="#">See more</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-sm-6 col-md-4">
+									<div class="card-product">
+										<a href="./view-specific-car.html">
+											<img
+												src="./assest/images/asphalt-auto-automobile-244206.jpg"
+												alt="car image"
+												class="responsive-image"
+												width="100%"
+												height="150px"
+											/>
+										</a>
+										<div class="p-2">
+											<h5 class="m-0 text-left">Mercedez C300 C-Class</h5>
+											<p class="price my-1">#3500000</p>
+											<div class="d-flex justify-content-between">
+												<div class="">
+													<img
+														class="responsive-img"
+														src="./assest/images/svg/placeholder.svg"
+														alt=""
+														width="20px"
+														height="20px"
+													/>
+													<small class="text-deep-purple">Abuja</small>
+												</div>
+												<div class="">
+													<img
+														class="responsive-image"
+														src="./assest/images/svg/sold.svg"
+														alt=""
+														width="30px"
+														height="30px"
+													/>
+												</div>
+											</div>
+											<small class="text-left">
+												<a href="#">See more</a>
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-sm-6 col-md-4">
+									<div class="card-product">
+										<img
+											src="./assest/images/action-automobile-automotive-50704.jpg"
+											alt="car image"
+											class="responsive-image"
+											width="100%"
+											height="150px"
+										/>
+										<div class="p-2">
+											<h5 class="m-0 text-left">
+												Aston Martin Evoke
+											</h5>
+											<p class="price my-1">#1500000</p>
+											<div class="d-flex justify-content-between">
+												<div class="">
+													<img
+														class="responsive-img"
+														src="./assest/images/svg/placeholder.svg"
+														alt=""
+														width="20px"
+														height="20px"
+													/>
+													<small class="text-deep-purple">Lagos</small>
+												</div>
+												<div class="">
+													<img
+														class="responsive-image"
+														src="./assest/images/svg/sold.svg"
+														alt=""
+														width="30px"
+														height="30px"
+													/>
+												</div>
+											</div>
+											<small class="text-left">
+												<a href="#">See more</a>
+											</small>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
