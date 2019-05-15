@@ -15,7 +15,7 @@
 
 	--pure-white: #fff;
 
-	--abstract-orange: rgb(243, 164, 73);
+	--abstract-orange: rgb(250, 140, 15);
 	--abstract-orange-shadow: rgb(255, 195, 126);
 	--base-blue: #5cc8f2;
 
@@ -33,7 +33,7 @@
 
 .bg-base-purple {
 	background-color: var(--base-purple);
-	color: #fff
+	color: #fff;
 }
 
 /* Color Theme Swatches in Hex */

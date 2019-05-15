@@ -3,7 +3,7 @@
 }
 
 .h-10vh {
-	height: 8vh;
+	min-height: 10vh;
 }
 
 .h-80vh {

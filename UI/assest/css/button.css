@@ -16,6 +16,11 @@
 	color: #fff;
 	border: 1px solid var(--deep-purple);
 }
+.btn-purple:hover {
+	background-color: var(--pure-white);
+	color: var(--base-purple);
+	border: 1px solid var(--deep-purple);
+}
 
 .btn-danger {
 	background-color: var(--base-red);
@@ -38,6 +43,11 @@
 .btn-purple-reverse {
 	background-color: var(--pure-white);
 	color: var(--base-purple);
+	border: 1px solid var(--deep-purple);
+}
+.btn-purple-reverse:hover {
+	background-color: var(--base-purple);
+	color: #fff;
 	border: 1px solid var(--deep-purple);
 }
 
