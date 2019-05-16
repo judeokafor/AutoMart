@@ -14,7 +14,6 @@ module.exports = (passport) => {
       const user = userStore.find(
         olduser => olduser.email === jwtPayLoad.email,
       );
-      console.log(user);
       if (user) {
         next(null, user);
       } else {
