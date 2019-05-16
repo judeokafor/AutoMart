@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "lint": "eslint server/server.js  --fix",
+    "lint": "eslint src/  --fix",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel ./src --out-dir ./build",
     "build": "npm run clean && npm run build-babel",
     "start": "cross-env NODE_ENV=production npm run build && node ./build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/test/"
   },
   "repository": {
     "type": "git",
@@ -23,18 +23,19 @@
   },
   "homepage": "https://github.com/judeokafor/AutoMart#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.9.1",
     "@babel/polyfill": "^7.2.5",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "gravatar": "^1.8.0",
     "joi": "^14.3.0",
+    "jsonwebtoken": "^8.5.1",
     "mocha": "^5.2.0",
+    "morgan": "^1.9.1",
     "multer": "^1.4.1"
   },
   "devDependencies": {
