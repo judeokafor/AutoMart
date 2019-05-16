@@ -103,6 +103,13 @@ export default {
     }
   },
   currentProfile: (req, res) => {
-    res.json(req.user);
+    res.status(200).json(req.user);
+  },
+  logOut: (req, res) => {
+    req.logOut();
+    res.status(200).json({
+      status: 'success',
+      message: 'Log out succesfully',
+    });
   },
 };
