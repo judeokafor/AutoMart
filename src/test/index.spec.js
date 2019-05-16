@@ -1,5 +1,6 @@
-const { expect } = require('chai');
-const server = require('../server');
+import chai from 'chai';
+import server from '../server';
+const { expect } = chai;
 
 describe('test', () => {
   it('should return a string', () => {
