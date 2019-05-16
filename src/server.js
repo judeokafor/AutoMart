@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import passport from 'passport';
 
 import users from './routes/api/user';
 
@@ -13,6 +14,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan('dev'));
+
+// passport config
+app.use(passport.initialize());
+require('./lib/config/passport')(passport);
 
 app.use('/api/v1/auth', users);
 
