@@ -34,7 +34,7 @@ export default class orderController {
       relatedOrder.newPriceOffered = req.body.newPriceOffered;
       return res.status(201).json({
         status: 'success',
-        message: 'Update Succesfully',
+        message: 'Updated Succesfully',
         data: relatedOrder,
       });
     }
