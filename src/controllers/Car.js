@@ -131,4 +131,28 @@ export default class carController {
       message: 'Car not found',
     });
   }
+
+  static viewUnsoldCarBetweenMaxandMin(req, res) {
+    const { min, max } = req.query;
+    const unSoldCars = carStore.filter(order => order.status === 'unsold');
+    if (unSoldCars.length > 0) {
+      const filteredCars = unSoldCars.filter(
+        order => order.price >= min && order.price <= max,
+      );
+      if (filteredCars.length > 0) {
+        return res.status(200).json({
+          status: 'success',
+          data: filteredCars,
+        });
+      }
+      return res.status(404).json({
+        status: 'error',
+        message: 'Car not found',
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Car not found',
+    });
+  }
 }

@@ -9,5 +9,9 @@ router.put('/markAsSold', carController.markAsSold);
 router.put('/updateOrderPrice', carController.updateOrderPrice);
 router.get('/viewSpecificCar/:id', carController.viewSpecificCar);
 router.get('/viewUnsoldcars', carController.viewUnsoldCar);
+router.get(
+  '/viewUnsoldcarsWithRange',
+  carController.viewUnsoldCarBetweenMaxandMin,
+);
 
 export default router;
