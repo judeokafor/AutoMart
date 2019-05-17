@@ -17,7 +17,8 @@ export default class carController {
         });
       }
       console.log('the requested file', req.files[0].path);
-
+      // image doesnt exist, upload to cloudinary
+      // IF ALL THING GO WELL, POST THE IMAGE TO CLOUDINARY
       cloud(req.files[0].path)
         .then((result) => {
           const imageValues = {
