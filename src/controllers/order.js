@@ -23,4 +23,24 @@ export default class orderController {
       .status(201)
       .json({ status: 'success', message: 'Created succesfully', data: order });
   }
+
+  static updateOrder(req, res) {
+    const orderData = req.body;
+    const relatedOrder = orderStore.find(
+      order => parseInt(order.id, 10) === parseInt(orderData.id, 10),
+    );
+    if (relatedOrder) {
+      relatedOrder.oldPriceOffered = req.body.priceOffered;
+      relatedOrder.newPriceOffered = req.body.newPriceOffered;
+      return res.status(201).json({
+        status: 'success',
+        message: 'Update Succesfully',
+        data: relatedOrder,
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Order not found',
+    });
+  }
 }
