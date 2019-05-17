@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post('/postAdvert', upload.any(), carController.postCarAd);
 router.put('/markAsSold', carController.markAsSold);
+router.put('/updateOrderPrice', carController.updateOrderPrice);
 
 export default router;

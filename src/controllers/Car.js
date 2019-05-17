@@ -79,4 +79,23 @@ export default class carController {
       message: 'Order not found',
     });
   }
+
+  static updateOrderPrice(req, res) {
+    const carAdData = req.body;
+    const relatedOrder = carStore.find(
+      order => parseInt(order.id, 10) === parseInt(carAdData.id, 10),
+    );
+    if (relatedOrder) {
+      relatedOrder.price = parseInt(req.body.price, 10);
+      return res.status(201).json({
+        status: 'success',
+        message: 'Updated Succesfully',
+        data: relatedOrder,
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Order not found',
+    });
+  }
 }
