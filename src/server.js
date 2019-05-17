@@ -4,15 +4,22 @@ import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import passport from 'passport';
+import path from 'path';
 
 import users from './routes/api/user';
 
 dotenv.config();
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static('uploads'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cors());
+
 app.use(morgan('dev'));
 
 app.use(passport.initialize());

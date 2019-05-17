@@ -1,4 +1,4 @@
-class CarAdvert {
+class Car {
   constructor(
     id,
     model,
@@ -27,4 +27,4 @@ class CarAdvert {
     this.createdOn = createdOn;
   }
 }
-export default CarAdvert;
+export default Car;
