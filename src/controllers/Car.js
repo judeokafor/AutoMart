@@ -68,7 +68,7 @@ export default class carController {
     );
     if (relatedOrder) {
       relatedOrder.status = 'sold';
-      return res.status(201).json({
+      return res.status(204).json({
         status: 'success',
         message: 'Updated Succesfully',
         data: relatedOrder,
@@ -87,7 +87,7 @@ export default class carController {
     );
     if (relatedOrder) {
       relatedOrder.price = parseInt(req.body.price, 10);
-      return res.status(201).json({
+      return res.status(204).json({
         status: 'success',
         message: 'Updated Succesfully',
         data: relatedOrder,

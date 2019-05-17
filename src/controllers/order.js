@@ -32,7 +32,7 @@ export default class orderController {
     if (relatedOrder) {
       relatedOrder.oldPriceOffered = req.body.priceOffered;
       relatedOrder.newPriceOffered = req.body.newPriceOffered;
-      return res.status(201).json({
+      return res.status(204).json({
         status: 'success',
         message: 'Updated Succesfully',
         data: relatedOrder,
