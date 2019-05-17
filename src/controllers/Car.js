@@ -98,4 +98,22 @@ export default class carController {
       message: 'Order not found',
     });
   }
+
+  static viewSpecificCar(req, res) {
+    const carId = req.params.id;
+    const specificCar = carStore.filter(
+      order => parseInt(order.id, 10) === parseInt(carId, 10),
+    );
+    console.log('specific car', specificCar);
+    if (specificCar.length > 0) {
+      return res.status(200).json({
+        status: 'success',
+        data: specificCar,
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Car not found',
+    });
+  }
 }
