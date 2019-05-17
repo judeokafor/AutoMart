@@ -4,6 +4,7 @@ class User {
     firstName,
     lastName,
     phoneNumber,
+    address,
     gender,
     email,
     password,
@@ -15,6 +16,7 @@ class User {
     this.firstName = firstName;
     this.lastName = lastName;
     this.phoneNumber = phoneNumber;
+    this.address = address;
     this.gender = gender;
     this.email = email;
     this.password = password;

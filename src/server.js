@@ -7,6 +7,7 @@ import passport from 'passport';
 import path from 'path';
 
 import users from './routes/api/user';
+import cars from './routes/api/car';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(passport.initialize());
 require('./lib/config/passport')(passport);
 
 app.use('/api/v1/auth', users);
+app.use('/api/v1/car', cars);
 
 app.get('/', (req, res) => {
   res.send('Welcome to jude app');
