@@ -5,5 +5,6 @@ import carController from '../../controllers/car';
 const router = express.Router();
 
 router.post('/postAdvert', upload.any(), carController.postCarAd);
+router.put('/markAsSold', carController.markAsSold);
 
 export default router;
