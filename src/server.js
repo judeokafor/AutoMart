@@ -8,6 +8,7 @@ import path from 'path';
 
 import users from './routes/api/user';
 import cars from './routes/api/car';
+import orders from './routes/api/order';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ require('./lib/config/passport')(passport);
 
 app.use('/api/v1/auth', users);
 app.use('/api/v1/car', cars);
+app.use('/api/v1/order', orders);
 
 app.get('/', (req, res) => {
   res.send('Welcome to jude app');

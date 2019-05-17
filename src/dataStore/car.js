@@ -11,7 +11,7 @@ export default [
     fuelType: 'Fuel',
     bodyType: 'Suv',
     state: 'used',
-    price: 1700000,
+    price: 4700000,
     status: 'Available',
     description:
       'car ac still intact, alloy rims, perfect for travel with family',

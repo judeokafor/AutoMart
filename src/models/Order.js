@@ -5,20 +5,20 @@ class Order {
     carId,
     createdOn,
     status,
-    amount,
-    amountOffered,
-    oldAmountOffered,
-    newAmountOffered,
+    price,
+    priceOffered,
+    oldPriceOffered,
+    newPriceOffered,
   ) {
     this.id = id;
     this.buyer = buyer;
     this.carId = carId;
     this.createdOn = createdOn;
     this.status = status;
-    this.amount = amount;
-    this.amountOffered = amountOffered;
-    this.oldAmountOffered = oldAmountOffered;
-    this.newAmountOffered = newAmountOffered;
+    this.price = price;
+    this.priceOffered = priceOffered;
+    this.oldPriceOffered = oldPriceOffered;
+    this.newPriceOffered = newPriceOffered;
   }
 }
 export default Order;
