@@ -1,22 +1,24 @@
 class Order {
   constructor(
     id,
+    buyer,
     carId,
     createdOn,
     status,
-    price,
-    priceOffered,
-    oldPriceOffered,
-    newPriceOffered,
+    amount,
+    amountOffered,
+    oldAmountOffered,
+    newAmountOffered,
   ) {
     this.id = id;
+    this.buyer = buyer;
     this.carId = carId;
     this.createdOn = createdOn;
     this.status = status;
-    this.price = price;
-    this.priceOffered = priceOffered;
-    this.oldPriceOffered = oldPriceOffered;
-    this.newPriceOffered = newPriceOffered;
+    this.amount = amount;
+    this.amountOffered = amountOffered;
+    this.oldAmountOffered = oldAmountOffered;
+    this.newAmountOffered = newAmountOffered;
   }
 }
 export default Order;
