@@ -9,11 +9,12 @@ import userStore from '../dataStore/user';
 
 dotenv.config();
 
-export default {
-  test: (req, res) => {
+export default class userController {
+  static test(req, res) {
     res.json({ message: 'user works' });
-  },
-  signUp: (req, res) => {
+  }
+
+  static signUp(req, res) {
     const userData = req.body;
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(userData.password, salt);
@@ -59,8 +60,9 @@ export default {
     return res
       .status(201)
       .json({ status: 'success', token: `Bearer ${token}`, data: payload });
-  },
-  signIn: (req, res) => {
+  }
+
+  static signIn(req, res) {
     const userData = req.body;
     const verifiedUser = userStore.find(
       databaseUser => databaseUser.email === userData.email,
@@ -101,15 +103,17 @@ export default {
         return false;
       });
     }
-  },
-  currentProfile: (req, res) => {
+  }
+
+  static currentProfile(req, res) {
     res.status(200).json(req.user);
-  },
-  logOut: (req, res) => {
+  }
+
+  static logOut(req, res) {
     req.logOut();
     res.status(200).json({
       status: 'success',
       message: 'Log out succesfully',
     });
-  },
-};
+  }
+}

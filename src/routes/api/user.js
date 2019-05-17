@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/signUp', userController.signUp);
 router.post('/signIn', userController.signIn);
 router.get(
-  '/currentProfile',
+  '/getProfile',
   passport.authenticate('jwt', { session: false }),
   userController.currentProfile,
 );
