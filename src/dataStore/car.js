@@ -12,7 +12,7 @@ export default [
     bodyType: 'Suv',
     state: 'new',
     price: 4700000,
-    status: 'available',
+    status: 'sold',
     description:
       'car ac still intact, alloy rims, perfect for travel with family',
     createdOn: new Date(),
