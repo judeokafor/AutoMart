@@ -1,6 +1,6 @@
 import express from 'express';
-import carController from '../../controllers/car';
 import upload from '../../lib/config/multerConfig';
+import carController from '../../controllers/car';
 
 const router = express.Router();
 
