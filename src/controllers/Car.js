@@ -173,4 +173,21 @@ export default class carController {
       });
     });
   }
+
+  static viewAllAdverts(req, res) {
+    const cars = carStore.filter(
+      order => order.status === 'unsold' || order.status === 'sold',
+    );
+    console.log('these are the cars', cars);
+    if (cars.length > 0) {
+      return res.status(200).json({
+        status: 'success',
+        data: cars,
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Car not found',
+    });
+  }
 }

@@ -21,5 +21,11 @@ router.delete(
   isAdmin,
   carController.deleteAdvert,
 );
+router.get(
+  '/viewAllAdverts',
+  passport.authenticate('jwt', { session: false }),
+  isAdmin,
+  carController.viewAllAdverts,
+);
 
 export default router;

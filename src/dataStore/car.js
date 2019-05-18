@@ -13,8 +13,7 @@ export default [
     state: 'new',
     price: 4700000,
     status: 'sold',
-    description:
-      'car ac still intact, alloy rims, perfect for travel with family',
+    description: 'car ac still intact, alloy rims',
     createdOn: new Date(),
   },
   {
