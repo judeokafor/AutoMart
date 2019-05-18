@@ -155,4 +155,22 @@ export default class carController {
       message: 'Car not found',
     });
   }
+
+  static deleteAdvert(req, res) {
+    const { id } = req.params;
+    carStore.forEach((order, i) => {
+      if (parseInt(order.id, 10) === parseInt(id, 10)) {
+        carStore.splice(i, 1);
+        return res.status(200).json({
+          status: 'success',
+          message: 'Deleted Successfully',
+          data: carStore,
+        });
+      }
+      return res.status(404).json({
+        status: 'error',
+        message: 'Car not found',
+      });
+    });
+  }
 }

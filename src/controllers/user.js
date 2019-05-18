@@ -30,11 +30,12 @@ export default class userController {
       userData.firstName,
       userData.lastName,
       userData.phoneNumber,
+      userData.address,
       userData.gender,
       userData.email,
       (userData.password = hash),
       (userData.avatar = avatar),
-      (userData.isAdmin = false),
+      userData.isAdmin,
       (userData.role = 'buyer'),
     );
     const verifiedUser = userStore.find(
@@ -59,7 +60,7 @@ export default class userController {
     const token = jwt.sign(payload, process.env.SECRET_KEY);
     return res
       .status(201)
-      .json({ status: 'success', token: `Bearer ${token}`, data: payload });
+      .json({ status: 'success', token: `Bearer ${token}`, data: user });
   }
 
   static signIn(req, res) {
