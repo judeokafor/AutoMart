@@ -1,22 +1,27 @@
-class CarAdvert {
+class Car {
   constructor(
     id,
+    owner, // user id
     model,
     manufacturer,
-    color,
-    transmission,
+    imageName,
+    imageUrl,
+    transmission, // automatic or manual
     year,
-    fuelType,
+    fuelType, // disel or petrol
     bodyType,
-    state,
+    state, // used or new
     price,
-    status,
+    status, // sold and available default is available
+    description,
     createdOn,
   ) {
     this.id = id;
+    this.owner = owner;
     this.model = model;
     this.manufacturer = manufacturer;
-    this.color = color;
+    this.imageName = imageName;
+    this.imageUrl = imageUrl;
     this.transmission = transmission;
     this.year = year;
     this.fuelType = fuelType;
@@ -24,7 +29,8 @@ class CarAdvert {
     this.state = state;
     this.price = price;
     this.status = status;
+    this.description = description;
     this.createdOn = createdOn;
   }
 }
-export default CarAdvert;
+export default Car;

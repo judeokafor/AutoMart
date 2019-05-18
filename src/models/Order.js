@@ -1,6 +1,7 @@
 class Order {
   constructor(
     id,
+    buyer,
     carId,
     createdOn,
     status,
@@ -10,6 +11,7 @@ class Order {
     newPriceOffered,
   ) {
     this.id = id;
+    this.buyer = buyer;
     this.carId = carId;
     this.createdOn = createdOn;
     this.status = status;
