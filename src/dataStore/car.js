@@ -27,7 +27,7 @@ export default [
     year: 2006,
     fuelType: 'Fuel',
     bodyType: 'Sedan',
-    state: 'used',
+    state: 'new',
     price: 1400000,
     status: 'unsold',
     description: 'leather interior based on factory fittings',

@@ -31,5 +31,7 @@ router.get(
   '/viewUnsoldCarsWithMake/:manufacturer',
   carController.viewUnsoldCarSpecificMake,
 );
+router.get('/viewNewUnsoldCar', carController.viewNewUnsoldCar);
+router.get('/viewUsedUnsoldCar', carController.viewUsedUnsoldCar);
 
 export default router;

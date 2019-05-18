@@ -214,4 +214,46 @@ export default class carController {
       message: 'Car not found',
     });
   }
+
+  static viewNewUnsoldCar(req, res) {
+    const unSoldCars = carStore.filter(order => order.status === 'unsold');
+    if (unSoldCars.length > 0) {
+      const filteredCars = unSoldCars.filter(order => order.state === 'new');
+      if (filteredCars.length > 0) {
+        return res.status(200).json({
+          status: 'success',
+          data: filteredCars,
+        });
+      }
+      return res.status(404).json({
+        status: 'error',
+        message: 'Car not found',
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Car not found',
+    });
+  }
+
+  static viewUsedUnsoldCar(req, res) {
+    const unSoldCars = carStore.filter(order => order.status === 'unsold');
+    if (unSoldCars.length > 0) {
+      const filteredCars = unSoldCars.filter(order => order.state === 'used');
+      if (filteredCars.length > 0) {
+        return res.status(200).json({
+          status: 'success',
+          data: filteredCars,
+        });
+      }
+      return res.status(404).json({
+        status: 'error',
+        message: 'Car not found',
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Car not found',
+    });
+  }
 }
