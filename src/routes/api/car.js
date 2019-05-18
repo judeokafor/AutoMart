@@ -33,5 +33,9 @@ router.get(
 );
 router.get('/viewNewUnsoldCar', carController.viewNewUnsoldCar);
 router.get('/viewUsedUnsoldCar', carController.viewUsedUnsoldCar);
+router.get(
+  '/viewAllWithSpecificBodyType/:bodyType',
+  carController.viewAllWithSpecificBodyType,
+);
 
 export default router;

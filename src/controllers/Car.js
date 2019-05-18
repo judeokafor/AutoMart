@@ -256,4 +256,19 @@ export default class carController {
       message: 'Car not found',
     });
   }
+
+  static viewAllWithSpecificBodyType(req, res) {
+    const { bodyType } = req.params;
+    const cars = carStore.filter(order => order.bodyType === bodyType);
+    if (cars.length > 0) {
+      return res.status(200).json({
+        status: 'success',
+        data: cars,
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Car not found',
+    });
+  }
 }
