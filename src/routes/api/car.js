@@ -27,5 +27,9 @@ router.get(
   isAdmin,
   carController.viewAllAdverts,
 );
+router.get(
+  '/viewUnsoldCarsWithMake/:manufacturer',
+  carController.viewUnsoldCarSpecificMake,
+);
 
 export default router;
