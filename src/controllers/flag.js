@@ -31,4 +31,17 @@ export default class flagController {
       data: flag,
     });
   }
+
+  static viewAllFlags(req, res) {
+    if (flagStore.length > 0) {
+      return res.status(200).json({
+        status: 'success',
+        data: flagStore,
+      });
+    }
+    return res.status(404).json({
+      status: 'error',
+      message: 'Reports not found',
+    });
+  }
 }
