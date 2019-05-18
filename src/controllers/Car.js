@@ -48,7 +48,7 @@ export default class carController {
           carStore.push(car);
           return res.status(201).json({
             status: 'success',
-            message: 'Car Post Created Succesfully',
+            message: 'Advert Post Created Succesfully',
             data: car,
           });
         })
@@ -70,7 +70,7 @@ export default class carController {
       relatedOrder.status = 'sold';
       return res.status(204).json({
         status: 'success',
-        message: 'Updated Succesfully',
+        message: 'Updated succesfully, marked as sold',
         data: relatedOrder,
       });
     }
@@ -89,7 +89,7 @@ export default class carController {
       relatedOrder.price = parseInt(req.body.price, 10);
       return res.status(204).json({
         status: 'success',
-        message: 'Updated Succesfully',
+        message: 'Order Price Updated Succesfully',
         data: relatedOrder,
       });
     }
@@ -163,7 +163,7 @@ export default class carController {
         carStore.splice(i, 1);
         return res.status(200).json({
           status: 'success',
-          message: 'Deleted Successfully',
+          message: 'Advert Deleted Successfully',
           data: carStore,
         });
       }
