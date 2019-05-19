@@ -50,11 +50,7 @@ export default class userController {
     userStore.push(user);
     const payload = {
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
       email: user.email,
-      avatar: user.avatar,
-      role: user.role,
       isAdmin: user.isAdmin,
     };
     const token = jwt.sign(payload, process.env.SECRET_KEY);
@@ -75,11 +71,7 @@ export default class userController {
         if (isMatch) {
           const payload = {
             id: userData.id,
-            firstName: userData.firstName,
-            lastName: userData.lastName,
             email: userData.email,
-            avatar: userData.avatar,
-            role: userData.role,
             isAdmin: userData.isAdmin,
           };
           jwt.sign(

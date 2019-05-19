@@ -5,11 +5,13 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import passport from 'passport';
 import path from 'path';
+import '@babel/polyfill/noConflict';
 
 import users from './routes/api/user';
 import cars from './routes/api/car';
 import orders from './routes/api/order';
 import flags from './routes/api/flag';
+import reset from './routes/api/reset';
 
 dotenv.config();
 
@@ -32,6 +34,7 @@ app.use('/api/v1/auth', users);
 app.use('/api/v1/car', cars);
 app.use('/api/v1/order', orders);
 app.use('/api/v1/flag', flags);
+app.use('/api/v1/reset', reset);
 
 app.get('/', (req, res) => {
   res.send('Welcome to jude app');
