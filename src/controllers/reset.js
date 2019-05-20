@@ -58,7 +58,7 @@ export default class resetController {
     const { token } = req.query;
     try {
       const receivedUser = jwt.verify(token, process.env.SECRET_KEY);
-      const { email, id } = receivedUser;
+      const { email } = receivedUser;
       const verifiedUser = await userStore.find(
         olduser => olduser.email === email,
       );
@@ -79,15 +79,11 @@ export default class resetController {
             }
             return res.status(201).json({
               status: 'success',
-              message: 'Message sent successfully',
+              message: 'Password Updated successfully',
               data: info.response,
             });
           },
         );
-        return res.status(201).json({
-          status: 'success',
-          message: 'Password Updated successfully',
-        });
       }
     } catch (error) {
       return res.status(400).json({

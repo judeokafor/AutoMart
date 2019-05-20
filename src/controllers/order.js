@@ -25,14 +25,14 @@ export default class orderController {
   }
 
   static updateOrder(req, res) {
-    const orderData = req.body;
+    const { id, price } = req.params;
     const relatedOrder = orderStore.find(
-      order => parseInt(order.id, 10) === parseInt(orderData.id, 10),
+      order => parseInt(order.id, 10) === parseInt(id, 10)
+				&& order.status === 'pending',
     );
     if (relatedOrder) {
-      relatedOrder.oldPriceOffered = req.body.priceOffered;
-      relatedOrder.newPriceOffered = req.body.newPriceOffered;
-      return res.status(204).json({
+      relatedOrder.newPriceOffered = price;
+      return res.status(200).json({
         status: 'success',
         message: 'Updated Succesfully',
         data: relatedOrder,

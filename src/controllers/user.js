@@ -74,24 +74,21 @@ export default class userController {
             email: userData.email,
             isAdmin: userData.isAdmin,
           };
-          jwt.sign(
-            payload,
-            process.env.SECRET_KEY,
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) {
-                throw err;
-              } else {
-                res.status(201).json({
-                  status: 'success',
-                  message: 'Login Succesful',
-                  token: `Bearer ${token}`,
-                });
-              }
-            },
-          );
+          jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
+            if (err) {
+              throw err;
+            } else {
+              res.status(201).json({
+                status: 'success',
+                message: 'Login Succesful',
+                token: `Bearer ${token}`,
+              });
+            }
+          });
         } else {
-          return res.status(400).json({ message: 'Password Incorrect' });
+          return res
+            .status(400)
+            .json({ status: 'error', message: 'Password Incorrect' });
         }
         return false;
       });
@@ -99,7 +96,10 @@ export default class userController {
   }
 
   static currentProfile(req, res) {
-    res.status(200).json(req.user);
+    if (req.user) {
+      return res.status(200).json({ status: 'success', data: req.user });
+    }
+    return false;
   }
 
   static logOut(req, res) {

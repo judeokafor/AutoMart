@@ -62,13 +62,13 @@ export default class carController {
   }
 
   static markAsSold(req, res) {
-    const carAdData = req.body;
+    const { id, status } = req.params;
     const relatedOrder = carStore.find(
-      order => parseInt(order.id, 10) === parseInt(carAdData.id, 10),
+      order => parseInt(order.id, 10) === parseInt(id, 10),
     );
     if (relatedOrder) {
-      relatedOrder.status = 'sold';
-      return res.status(204).json({
+      relatedOrder.status = status;
+      return res.status(200).json({
         status: 'success',
         message: 'Updated succesfully, marked as sold',
         data: relatedOrder,
@@ -81,13 +81,13 @@ export default class carController {
   }
 
   static updateOrderPrice(req, res) {
-    const carAdData = req.body;
+    const { id, price } = req.params;
     const relatedOrder = carStore.find(
-      order => parseInt(order.id, 10) === parseInt(carAdData.id, 10),
+      order => parseInt(order.id, 10) === parseInt(id, 10),
     );
     if (relatedOrder) {
-      relatedOrder.price = parseInt(req.body.price, 10);
-      return res.status(204).json({
+      relatedOrder.price = parseInt(price, 10);
+      return res.status(200).json({
         status: 'success',
         message: 'Order Price Updated Succesfully',
         data: relatedOrder,
@@ -118,8 +118,8 @@ export default class carController {
   }
 
   static viewUnsoldCar(req, res) {
-    const unSoldCars = carStore.filter(order => order.status === 'unsold');
-    console.log('specific car', unSoldCars);
+    const { status } = req.query;
+    const unSoldCars = carStore.filter(order => order.status === status);
     if (unSoldCars.length > 0) {
       return res.status(200).json({
         status: 'success',
@@ -133,8 +133,9 @@ export default class carController {
   }
 
   static viewUnsoldCarBetweenMaxandMin(req, res) {
-    const { min, max } = req.query;
-    const unSoldCars = carStore.filter(order => order.status === 'unsold');
+    const { status, min, max } = req.query;
+    console.log(min);
+    const unSoldCars = carStore.filter(order => order.status === status);
     if (unSoldCars.length > 0) {
       const filteredCars = unSoldCars.filter(
         order => order.price >= min && order.price <= max,
