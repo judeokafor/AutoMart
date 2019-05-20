@@ -6,7 +6,6 @@ export default class carController {
   static postCarAd(req, res) {
     try {
       const carAdData = req.body;
-
       const verifiedImage = carStore.find(
         oldcar => oldcar.imageName === carAdData.imageName,
       );
