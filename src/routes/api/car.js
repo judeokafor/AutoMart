@@ -10,9 +10,9 @@ router.post('/', upload.any(), carController.postCarAd);
 router.put('/:id/:status', carController.markAsSold);
 router.put('/:id/price', carController.updateOrderPrice);
 
+router.get('/', carController.viewUnsoldCarBetweenMaxandMin);
+router.get('/view', carController.viewUnsoldCar);
 router.get('/:id', carController.viewSpecificCar);
-router.get('/', carController.viewUnsoldCar);
-router.get('/view', carController.viewUnsoldCarBetweenMaxandMin);
 
 router.delete(
   '/deleteAdvert/:id',

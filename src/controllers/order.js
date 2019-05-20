@@ -27,8 +27,7 @@ export default class orderController {
   static updateOrder(req, res) {
     const { id, price } = req.params;
     const relatedOrder = orderStore.find(
-      order => parseInt(order.id, 10) === parseInt(id, 10)
-				&& order.status === 'pending',
+      order => order.id === id && order.status === 'pending',
     );
     if (relatedOrder) {
       relatedOrder.newPriceOffered = price;

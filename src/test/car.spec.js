@@ -77,7 +77,7 @@ describe('Testing the car advert placement route', () => {
     it('should get all cars that has status of available', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car?status=available');
+        .get('/api/v1/car/view?status=available');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
@@ -85,7 +85,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car?status=availablessss');
+        .get('/api/v1/car/view?status=availablessss');
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
@@ -95,7 +95,7 @@ describe('Testing the car advert placement route', () => {
     it('should get all cars that has status of available within a range', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/view?status=available&min=1000000&max=1500000');
+        .get('/api/v1/car?status=available&min=1000000&max=1500000');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
@@ -103,7 +103,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/view?status=available&min=100&max=1500');
+        .get('/api/v1/car?status=available&min=100&max=1500');
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
