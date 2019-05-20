@@ -8,7 +8,7 @@ import path from 'path';
 import '@babel/polyfill/noConflict';
 
 import users from './routes/api/user';
-import cars from './routes/api/car';
+import cars from './controllers/car.route';
 import orders from './routes/api/order';
 import flags from './routes/api/flag';
 import reset from './routes/api/reset';
