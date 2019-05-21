@@ -10,8 +10,10 @@
 	--base-purple: #512da8;
 	--deep-purple: #311b92;
 	--new-purple: #b3b4e6;
+	--background-purple: #f3f2f7;
 
 	--grey-one: #fafafa;
+	--grey-two: #f1f1f1;
 	--dark-grey: #757575;
 
 	--pure-white: #fff;
@@ -21,6 +23,7 @@
 	--base-blue: #5cc8f2;
 
 	--base-red: #e53935;
+	--deep-red: #c62829;
 
 	--base-green: rgb(20, 145, 9);
 }
