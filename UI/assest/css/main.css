@@ -11,8 +11,8 @@
 }
 
 body {
-	background-color: var(--pure-white);
-	color: var(--base-purple);
+	background-color: var(--background-purple);
+	color: var(--soft-purple);
 	font-weight: 400;
 	/* font-family: 'Open Sans', sans-serif; */
 	font-family: 'Roboto', sans-serif;
@@ -55,6 +55,27 @@ body {
 	position: absolute;
 	top: 5px;
 	right: 10px;
+}
+
+.my-card {
+	position: relative;
+}
+
+.my-card:hover {
+	position: relative;
+	box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.card-img {
+	z-index: -1;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	position: relative;
+}
+
+.push-up {
+	margin-top: -1rem;
+	z-index: 5;
 }
 
 .car-title {
@@ -165,7 +186,7 @@ select.filter:focus {
 	border-radius: 10px 0 0 10px;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 768px) {
 	#landing-image {
 		display: none;
 	}
