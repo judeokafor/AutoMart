@@ -10,7 +10,8 @@
     "build-babel": "babel ./src --out-dir ./build",
     "build": "npm run clean && npm run build-babel",
     "start": "cross-env NODE_ENV=production npm run build && node ./build/index.js",
-    "test": "cross-env NODE_ENV=test mocha --require @babel/register src/test --timeout 25000 --exit"
+    "test": "cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require @babel/register src/test --timeout 25000 --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "mocha": "^5.2.0",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
+    "nodemailer": "^6.1.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0"
   },
@@ -48,13 +50,34 @@
     "@babel/preset-env": "^7.2.2",
     "@babel/register": "^7.0.0",
     "babel-plugin-istanbul": "^5.1.0",
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
     "eslint": "^5.11.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "istanbul": "^0.4.5",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.18.9",
     "nyc": "^13.1.0"
+  },
+  "engines": {
+    "node": "10.5.0"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "nyc": {
+    "require": [
+      "@babel/register",
+      "@babel/polyfill"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }
