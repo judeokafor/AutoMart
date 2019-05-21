@@ -1,8 +1,8 @@
 import express from 'express';
 import passport from 'passport';
-import upload from '../lib/config/multerConfig';
-import carController from './cars';
-import isAdmin from '../lib/middleware/admin';
+import upload from '../../lib/config/multerConfig';
+import carController from '../../controllers/cars';
+import isAdmin from '../../lib/middleware/admin';
 
 const router = express.Router();
 
