@@ -103,7 +103,6 @@ export default class carController {
     const specificCar = carStore.filter(
       order => parseInt(order.id, 10) === parseInt(id, 10),
     );
-    console.log('specific car', specificCar);
     if (specificCar.length > 0) {
       return res.status(200).json({
         status: 'success',
@@ -117,7 +116,6 @@ export default class carController {
   }
 
   static viewUnsoldCar(req, res) {
-    console.log('stan');
     const { status } = req.query;
     const unSoldCars = carStore.filter(order => order.status === status);
     if (unSoldCars.length > 0) {
@@ -134,7 +132,6 @@ export default class carController {
 
   static viewUnsoldCarBetweenMaxandMin(req, res) {
     const { status, min, max } = req.query;
-    console.log('jude minimum', min);
     const unSoldCars = carStore.filter(order => order.status === status);
     if (unSoldCars.length > 0) {
       const filteredCars = unSoldCars.filter(
