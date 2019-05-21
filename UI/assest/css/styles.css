@@ -10,6 +10,14 @@
 	min-height: 80vh;
 }
 
+.h-70vh {
+	min-height: 70vh;
+}
+
+.h-60vh {
+	min-height: 60vh;
+}
+
 .h-80 {
 	height: 80%;
 }
@@ -96,18 +104,22 @@ a {
 .card-product {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	width: 100%;
+	height: 150px;
 	margin: auto;
 	text-align: center;
 	border-radius: 10px;
 	background-color: var(--grey-one);
-	margin-top: 1rem;
+	z-index: 2;
 }
 
 .price {
-	color: var(--dark-grey);
+	color: var(--pure-white);
 	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
 	font-size: 1.1rem;
-	text-align: left;
+	position: absolute;
+	bottom: 0%;
+	right: 0%;
 }
 
 .logo {
