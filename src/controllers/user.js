@@ -30,11 +30,12 @@ export default class userController {
       userData.firstName,
       userData.lastName,
       userData.phoneNumber,
+      userData.address,
       userData.gender,
       userData.email,
       (userData.password = hash),
       (userData.avatar = avatar),
-      (userData.isAdmin = false),
+      userData.isAdmin,
       (userData.role = 'buyer'),
     );
     const verifiedUser = userStore.find(
@@ -49,17 +50,13 @@ export default class userController {
     userStore.push(user);
     const payload = {
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
       email: user.email,
-      avatar: user.avatar,
-      role: user.role,
       isAdmin: user.isAdmin,
     };
     const token = jwt.sign(payload, process.env.SECRET_KEY);
     return res
       .status(201)
-      .json({ status: 'success', token: `Bearer ${token}`, data: payload });
+      .json({ status: 'success', token: `Bearer ${token}`, data: user });
   }
 
   static signIn(req, res) {
@@ -74,31 +71,24 @@ export default class userController {
         if (isMatch) {
           const payload = {
             id: userData.id,
-            firstName: userData.firstName,
-            lastName: userData.lastName,
             email: userData.email,
-            avatar: userData.avatar,
-            role: userData.role,
             isAdmin: userData.isAdmin,
           };
-          jwt.sign(
-            payload,
-            process.env.SECRET_KEY,
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) {
-                throw err;
-              } else {
-                res.status(201).json({
-                  status: 'success',
-                  message: 'Login Succesful',
-                  token: `Bearer ${token}`,
-                });
-              }
-            },
-          );
+          jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
+            if (err) {
+              throw err;
+            } else {
+              res.status(201).json({
+                status: 'success',
+                message: 'Login Succesful',
+                token: `Bearer ${token}`,
+              });
+            }
+          });
         } else {
-          return res.status(400).json({ message: 'Password Incorrect' });
+          return res
+            .status(400)
+            .json({ status: 'error', message: 'Password Incorrect' });
         }
         return false;
       });
@@ -106,7 +96,10 @@ export default class userController {
   }
 
   static currentProfile(req, res) {
-    res.status(200).json(req.user);
+    if (req.user) {
+      return res.status(200).json({ status: 'success', data: req.user });
+    }
+    return false;
   }
 
   static logOut(req, res) {
