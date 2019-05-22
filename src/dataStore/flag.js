@@ -7,6 +7,6 @@ export default [
     createdOn: 20171236,
     name: 'Annonymous Stan',
     email: 'notneeded@gmail.com',
-    phone: '+2347065383765',
+    phone: '065383765',
   },
 ];

@@ -4,7 +4,7 @@ export default [
     buyer: 3445,
     carId: 2345,
     status: 'pending',
-    price: 5000000,
+    amount: 5000000,
     priceOffered: 400000,
     oldPriceOffered: 3500000,
     newPriceOffered: 4500000,

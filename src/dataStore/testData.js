@@ -73,32 +73,47 @@ export default class testData {
       createdOn: 20171236,
       name: 'Annonymous Stan',
       email: 'notneeded@gmail.com',
-      phone: '+2347065383765',
+      phone: '65383765',
+    };
+  }
+
+  static sampleErrorReport() {
+    return {
+      carId: '1144',
+      reason: 'Weird demands',
+      description: 'The seller was asking for too much',
+      name: 'Annonymous Stan',
+      email: 'notneededcom',
+      phone: 65383765,
     };
   }
 
   static sampleNewReport() {
     return {
-      carId: 25553,
-      reason: 'Privacy policy',
-      description: 'Too much hatered',
-      name: 'Mendem Stan',
-      email: 'selfish@gmail.com',
-      phone: '+234704993933',
+      carId: 23456,
+      reason: 'Weird demands',
+      description: 'The seller was asking for too much',
+      name: 'Annonymous Stan',
+      email: 'sameemail@gmail.com',
+      phone: '99070653',
     };
   }
 
   static newOrder() {
     return {
-      id: 5676,
       buyer: 3445,
       carId: 2345,
-      status: 'pending',
       price: 5000000,
       priceOffered: 400000,
-      oldPriceOffered: 3500000,
-      newPriceOffered: 4500000,
-      createdOn: new Date(),
+    };
+  }
+
+  static errorOrder() {
+    return {
+      buyer: '3445',
+      carId: '2345',
+      price: '5000000',
+      priceOffered: 400000,
     };
   }
 
