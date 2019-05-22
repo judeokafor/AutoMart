@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', upload.any(), carController.postCarAd);
 router.put('/:id/:status', carController.markAsSold);
-router.put('/:id/price', carController.updateOrderPrice);
+router.put('/:id/:price', carController.updateOrderPrice);
 
 router.get('/', carController.viewUnsoldCarBetweenMaxandMin);
 router.get('/view', carController.viewUnsoldCar);

@@ -1,6 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
+import testData from '../dataStore/testData';
+
 const { expect } = chai;
 chai.use(chaiHttp);
 
@@ -10,11 +12,18 @@ describe('Testing the car advert placement route', () => {
       const res = await chai
         .request(server)
         .post('/api/v1/car')
-        .type('form')
         .send({ imageName: 'my_redcar.png' });
       expect(res).to.have.status(400);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
+    });
+    it('should return a validation error', async () => {
+      const res = await chai
+        .request(server)
+        .post('/api/v1/car')
+        .send(testData.errorCarAdvert());
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
     // it('should create an advert successfully', async () => {
     //   const res = await chai

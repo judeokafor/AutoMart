@@ -1,3 +1,5 @@
+import Joi from 'joi';
+
 class Car {
   constructor(
     id,
@@ -31,6 +33,40 @@ class Car {
     this.status = status;
     this.description = description;
     this.createdOn = createdOn;
+  }
+
+  static get carSchema() {
+    return Joi.object({
+      owner: Joi.number()
+        .integer()
+        .required(),
+      model: Joi.string()
+        .trim()
+        .alphanum()
+        .required(),
+      manufacturer: Joi.string()
+        .trim()
+        .alphanum()
+        .required(),
+      imageName: Joi.string()
+        .trim()
+        .required(),
+      transmission: Joi.string(),
+      year: Joi.date(),
+      fuelType: Joi.string(),
+      bodyType: Joi.string(),
+      state: Joi.string(),
+      price: Joi.number().precision(4),
+      status: Joi.string(),
+      description: Joi.string().max(150),
+    });
+  }
+
+  static get markAsSold() {
+    return Joi.object({
+      id: Joi.string().required(),
+      status: Joi.string().required(),
+    });
   }
 }
 export default Car;

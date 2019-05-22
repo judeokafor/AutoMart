@@ -2,6 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import testData from '../dataStore/testData';
 import server from '../server';
+
 const { expect } = chai;
 chai.use(chaiHttp);
 
@@ -11,7 +12,6 @@ describe('Testing Automart app', () => {
       const res = await chai
         .request(server)
         .post('/api/v1/auth/signUp')
-        .type('form')
         .send(testData.newUser());
       expect(res).to.have.status(201);
       expect(res.body).to.have.property('status');
@@ -22,11 +22,19 @@ describe('Testing Automart app', () => {
       const res = await chai
         .request(server)
         .post('/api/v1/auth/signUp')
-        .type('form')
         .send(testData.existingUser());
       expect(res).to.have.status(400);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
+    });
+    it('should return a validation error', async () => {
+      const res = await chai
+        .request(server)
+        .post('/api/v1/auth/signUp')
+        .send(testData.invalidUser());
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('error');
     });
   });
 
@@ -35,7 +43,6 @@ describe('Testing Automart app', () => {
       const res = await chai
         .request(server)
         .post('/api/v1/auth/signIn')
-        .type('form')
         .send(testData.signInUserPasswordError());
       expect(res).to.have.status(400);
       expect(res.body).to.have.property('status');
@@ -56,7 +63,6 @@ describe('Testing Automart app', () => {
       const res = await chai
         .request(server)
         .post('/api/v1/auth/signIn')
-        .type('form')
         .send(testData.signInUser());
       expect(res).to.have.status(201);
       expect(res.body).to.have.property('status');
