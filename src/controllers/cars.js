@@ -1,11 +1,19 @@
+import Joi from 'joi';
 import Car from '../models/Car';
 import carStore from '../dataStore/car';
 import cloud from '../lib/config/cloudinaryConfig';
 
 export default class carController {
   static postCarAd(req, res) {
+    const carAdData = req.body;
+    const results = Joi.validate(carAdData, Car.carSchema, { convert: false });
+    if (results.error === null) {
+      console.log('continue with app');
+    } else {
+      console.log(results.error.details[0].message);
+    }
+
     try {
-      const carAdData = req.body;
       const verifiedImage = carStore.find(
         oldcar => oldcar.imageName === carAdData.imageName,
       );
@@ -15,7 +23,6 @@ export default class carController {
           message: 'File Already Exist',
         });
       }
-      console.log('the requested file', req.files[0].path);
       cloud(req.files[0].path)
         .then((result) => {
           const imageValues = {
@@ -62,6 +69,17 @@ export default class carController {
 
   static markAsSold(req, res) {
     const { id, status } = req.params;
+    const data = {
+      id,
+      status,
+    };
+    const results = Joi.validate(data, Car.length, { convert: false });
+    if (results.error === null) {
+      console.log('continue with app');
+    } else {
+      console.log(results.error.details[0].message);
+    }
+
     const relatedOrder = carStore.find(
       order => parseInt(order.id, 10) === parseInt(id, 10),
     );
