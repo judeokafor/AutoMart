@@ -41,7 +41,7 @@
 	margin: 10px;
 	padding: 0.5rem;
 	background-color: inherit !important;
-	border-bottom: 2px solid var(--deep-purple)
+	border-bottom: 2px solid var(--deep-purple);
 }
 
 .select-css {
@@ -110,7 +110,7 @@
 }
 
 /* uploader from https://tympanus.net/Tutorials/CustomFileInputs/ */
-.inputfile+label {
+.inputfile + label {
 	max-width: 80%;
 	font-size: 1.25rem;
 	/* 20px */
@@ -124,13 +124,13 @@
 	/* 10px 20px */
 }
 
-.inputfile:focus+label,
-.inputfile.has-focus+label {
+.inputfile:focus + label,
+.inputfile.has-focus + label {
 	outline: 1px dotted #000;
 	outline: -webkit-focus-ring-color auto 5px;
 }
 
-.inputfile+label svg {
+.inputfile + label svg {
 	width: 1em;
 	height: 1em;
 	vertical-align: middle;
@@ -147,17 +147,17 @@ input[type='file'] {
 
 /* style 4 */
 
-.inputfile-4+label {
+.inputfile-4 + label {
 	color: var(--faint-purple);
 }
 
-.inputfile-4:focus+label,
-.inputfile-4.has-focus+label,
-.inputfile-4+label:hover {
+.inputfile-4:focus + label,
+.inputfile-4.has-focus + label,
+.inputfile-4 + label:hover {
 	color: var(--abstract-orange-shadow);
 }
 
-.inputfile-4+label figure {
+.inputfile-4 + label figure {
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
@@ -167,14 +167,14 @@ input[type='file'] {
 	margin: 0 auto 10px;
 }
 
-.inputfile-4:focus+label figure,
-.inputfile-4.has-focus+label figure,
-.inputfile-4+label:hover figure {
+.inputfile-4:focus + label figure,
+.inputfile-4.has-focus + label figure,
+.inputfile-4 + label:hover figure {
 	/* background-color: var(--abstract-orange-shadow); */
 	box-shadow: 0 4px 8px 0 var(--base-purple);
 }
 
-.inputfile-4+label svg {
+.inputfile-4 + label svg {
 	width: 100%;
 	height: 100%;
 	fill: var(--faint-purple);
@@ -232,19 +232,19 @@ input[type='file'] {
 	animation: check 0.4s linear forwards;
 }
 
-.slider__nav:checked:nth-of-type(1)~.slider__inner {
+.slider__nav:checked:nth-of-type(1) ~ .slider__inner {
 	left: 0%;
 }
 
-.slider__nav:checked:nth-of-type(2)~.slider__inner {
+.slider__nav:checked:nth-of-type(2) ~ .slider__inner {
 	left: -100%;
 }
 
-.slider__nav:checked:nth-of-type(3)~.slider__inner {
+.slider__nav:checked:nth-of-type(3) ~ .slider__inner {
 	left: -200%;
 }
 
-.slider__nav:checked:nth-of-type(4)~.slider__inner {
+.slider__nav:checked:nth-of-type(4) ~ .slider__inner {
 	left: -300%;
 }
 
