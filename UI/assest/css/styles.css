@@ -113,13 +113,10 @@ a {
 }
 
 .price {
-	color: var(--pure-white);
+	color: var(--dark-grey);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
 	font-size: 1.1rem;
-	position: absolute;
-	bottom: 0%;
-	right: 0%;
 }
 
 .logo {
