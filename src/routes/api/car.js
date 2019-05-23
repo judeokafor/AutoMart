@@ -6,12 +6,34 @@ import isAdmin from '../../lib/middleware/admin';
 
 const router = express.Router();
 
-router.post('/', upload.any(), carController.postCarAd);
-router.put('/:id/:status', carController.markAsSold);
-router.put('/:id/:price', carController.updateOrderPrice);
+router.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  upload.any(),
+  carController.postCarAd,
+);
+router.put(
+  '/:id/:status',
+  passport.authenticate('jwt', { session: false }),
+  carController.markAsSold,
+);
+router.put(
+  '/:id/:price',
+  passport.authenticate('jwt', { session: false }),
+  carController.updateOrderPrice,
+);
 
 router.get('/', carController.viewUnsoldCarBetweenMaxandMin);
 router.get('/view', carController.viewUnsoldCar);
+router.get(
+  '/viewAllAdverts',
+  passport.authenticate('jwt', { session: false }),
+  isAdmin,
+  carController.viewAllAdverts,
+);
+router.get('/used', carController.viewUsedUnsoldCar);
+router.get('/new', carController.viewNewUnsoldCar);
+
 router.get('/:id', carController.viewSpecificCar);
 
 router.delete(
@@ -20,18 +42,12 @@ router.delete(
   isAdmin,
   carController.deleteAdvert,
 );
-router.get(
-  '/viewAllAdverts',
-  passport.authenticate('jwt', { session: false }),
-  isAdmin,
-  carController.viewAllAdverts,
-);
+
 router.get(
   '/viewUnsoldCarsWithMake/:manufacturer',
   carController.viewUnsoldCarSpecificMake,
 );
-router.get('/viewNewUnsoldCar', carController.viewNewUnsoldCar);
-router.get('/viewUsedUnsoldCar', carController.viewUsedUnsoldCar);
+
 router.get(
   '/viewAllWithSpecificBodyType/:bodyType',
   carController.viewAllWithSpecificBodyType,

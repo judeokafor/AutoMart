@@ -191,10 +191,11 @@ export default class carController {
   }
 
   static viewAllAdverts(req, res) {
+    console.log('the filtered cars');
     const cars = carStore.filter(
-      order => order.status === 'unsold' || order.status === 'sold',
+      order => order.status === 'available' || order.status === 'sold',
     );
-    console.log('these are the cars', cars);
+
     if (cars.length > 0) {
       return res.status(200).json({
         status: 'success',
@@ -203,13 +204,13 @@ export default class carController {
     }
     return res.status(404).json({
       status: 'error',
-      message: 'Car not found',
+      message: 'not here please',
     });
   }
 
   static viewUnsoldCarSpecificMake(req, res) {
     const { manufacturer } = req.params;
-    const unSoldCars = carStore.filter(order => order.status === 'unsold');
+    const unSoldCars = carStore.filter(order => order.status === 'available');
     if (unSoldCars.length > 0) {
       const filteredCars = unSoldCars.filter(
         order => order.manufacturer === manufacturer,
@@ -232,8 +233,8 @@ export default class carController {
   }
 
   static viewNewUnsoldCar(req, res) {
-    const unSoldCars = carStore.filter(order => order.status === 'unsold');
-    if (unSoldCars.length > 0) {
+    const unSoldCars = carStore.filter(order => order.status === 'available');
+    if (unSoldCars.length >= 0) {
       const filteredCars = unSoldCars.filter(order => order.state === 'new');
       if (filteredCars.length > 0) {
         return res.status(200).json({
@@ -253,8 +254,8 @@ export default class carController {
   }
 
   static viewUsedUnsoldCar(req, res) {
-    const unSoldCars = carStore.filter(order => order.status === 'unsold');
-    if (unSoldCars.length > 0) {
+    const unSoldCars = carStore.filter(order => order.status === 'available');
+    if (unSoldCars.length >= 0) {
       const filteredCars = unSoldCars.filter(order => order.state === 'used');
       if (filteredCars.length > 0) {
         return res.status(200).json({

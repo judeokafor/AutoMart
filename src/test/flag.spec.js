@@ -2,7 +2,9 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import testData from '../dataStore/testData';
 import server from '../server';
+
 const { expect } = chai;
+let auth;
 chai.use(chaiHttp);
 
 describe('Testing the flag as fradulent route', () => {
@@ -26,8 +28,27 @@ describe('Testing the flag as fradulent route', () => {
     expect(res.body).to.have.property('status');
     expect(res.body).to.have.property('error');
   });
-  it('should not view all flaged reported if unauthorized', async () => {
-    const res = await chai.request(server).get('/api/v1/flag');
-    expect(res).to.have.status(401);
+
+  describe('it should view all flags', () => {
+    before(async () => {
+      const res = await chai
+        .request(server)
+        .post('/api/v1/auth/signIn')
+        .send(testData.signInUser());
+      const { token } = res.body;
+      auth = token;
+    });
+    it('should view all flags successfully if authorized', async () => {
+      const res = await chai
+        .request(server)
+        .get('/api/v1/flag')
+        .set('Authorization', auth);
+      expect(res).to.have.status(200);
+      expect(res).to.have.property('status');
+    });
+    it('should not view all flaged reported if unauthorized', async () => {
+      const res = await chai.request(server).get('/api/v1/flag');
+      expect(res).to.have.status(401);
+    });
   });
 });

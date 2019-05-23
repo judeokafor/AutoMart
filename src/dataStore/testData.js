@@ -71,8 +71,8 @@ export default class testData {
 
   static resetPasswordTrue() {
     return {
-      password: 'pass',
-      cnfPassword: 'pass',
+      password: '12345678',
+      cnfPassword: '12345678',
     };
   }
 
