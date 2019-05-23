@@ -1,38 +1,50 @@
 export default class testData {
   static existingUser() {
     return {
-      firstName: 'Jude',
-      lastName: 'Okafor',
-      phoneNumber: '07065383765',
-      address: 'Plot 436 Arab Road Kubwa Abuja',
-      gender: 'Male',
-      email: 'okaforjudechukwuebuka@gmail.com',
-      password: 'pass',
-      avatar: 'my avatar url',
+      firstName: 'jude',
+      lastName: 'okafor',
+      phoneNumber: '12345678',
+      address: 'plot 436 arab road kubwa',
+      gender: 'male',
+      email: 'judegodwin@gmail.com',
+      password: 'passsss',
       isAdmin: true,
-      role: 'none',
+      role: 'buyer',
+    };
+  }
+
+  static invalidUser() {
+    return {
+      firstName: 'jude',
+      lastName: 'okafor',
+      phoneNumber: '123456783333333333',
+      address: 'plot 436 arab road kubwa',
+      gender: 'male',
+      email: 'judegodwin@gmail.com',
+      password: 'pa',
+      isAdmin: true,
+      role: 'buyer',
     };
   }
 
   static newUser() {
     return {
-      firstName: 'Jason',
-      lastName: 'Okafor',
-      phoneNumber: '07062313448',
-      address: 'Plot 436 Arab Road Kubwa Abuja',
-      gender: 'Male',
-      email: 'iamjudegodwin@gmail.com',
-      password: 'pass',
-      avatar: 'my avatar url',
+      firstName: 'jude',
+      lastName: 'okafor',
+      phoneNumber: '12345678',
+      address: 'plot 436 arab road kubwa',
+      gender: 'male',
+      email: 'judegodwin@gmail.com',
+      password: 'passsss',
       isAdmin: true,
-      role: 'none',
+      role: 'buyer',
     };
   }
 
   static signInUser() {
     return {
-      email: 'iamjudegodwin@gmail.com',
-      password: 'pass',
+      email: 'okaforjudechukwuebuka@gmail.com',
+      password: 'passsss',
     };
   }
 
@@ -130,6 +142,25 @@ export default class testData {
       bodyType: 'Suv',
       state: 'new',
       price: 4700000,
+      status: 'sold',
+      description: 'car ac still intact, alloy rims',
+      createdOn: new Date(),
+    };
+  }
+
+  static errorCarAdvert() {
+    return {
+      owner: '5550',
+      model: 'RAV 4',
+      manufacturer: 'Toyota',
+      imageUrl: 'My Image url from cloudinary',
+      imageName: 'my_redcar.png',
+      transmission: 'Automatic',
+      year: 2011,
+      fuelType: 'Fuel',
+      bodyType: 'Suv',
+      state: 'new',
+      price: '4700000',
       status: 'sold',
       description: 'car ac still intact, alloy rims',
       createdOn: new Date(),
