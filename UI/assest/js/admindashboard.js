@@ -1,5 +1,10 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-plusplus */
+/* eslint-disable prefer-const */
 function openCar(evt, condition) {
-  var i, tabcontent, tablinks;
+  let i;
+  let tabcontent;
+  let tablinks;
   tabcontent = document.getElementsByClassName('tabcontent');
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = 'none';
@@ -9,5 +14,5 @@ function openCar(evt, condition) {
     tablinks[i].className = tablinks[i].className.replace(' active', '');
   }
   document.getElementById(condition).style.display = 'block';
-  evt.currentTarget.className += ' active';
+  evt.currentTarget.className += 'active';
 }
