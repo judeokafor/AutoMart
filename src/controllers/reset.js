@@ -33,7 +33,10 @@ export default class resetController {
           return res.status(201).json({
             status: 'success',
             message: 'Message sent successfully',
-            data: info.response,
+            data: {
+              message: info.response,
+              token,
+            },
           });
         },
       );

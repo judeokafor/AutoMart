@@ -4,6 +4,7 @@ import testData from '../dataStore/testData';
 import server from '../server';
 
 const { expect } = chai;
+let auth;
 chai.use(chaiHttp);
 
 describe('Testing Automart app', () => {
@@ -80,6 +81,22 @@ describe('Testing Automart app', () => {
     });
   });
   describe('Testing the authenticated current profile route', () => {
+    before(async () => {
+      const res = await chai
+        .request(server)
+        .post('/api/v1/auth/signIn')
+        .send(testData.signInUser());
+      const { token } = res.body;
+      auth = token;
+    });
+    it('should get a user profile succesfully', async () => {
+      const res = await chai
+        .request(server)
+        .get('/api/v1/auth/getProfile')
+        .set('Authorization', auth);
+      expect(res).to.have.status(200);
+      expect(res).to.have.property('status');
+    });
     it('should return error for the user profile not being authenticated', async () => {
       const res = await chai.request(server).get('/api/v1/auth/getProfile');
       expect(res).to.have.status(401);
