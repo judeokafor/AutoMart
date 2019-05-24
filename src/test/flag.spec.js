@@ -46,6 +46,13 @@ describe('Testing the flag as fradulent route', () => {
       expect(res).to.have.status(200);
       expect(res).to.have.property('status');
     });
+    it('should return an error flag not exist', async () => {
+      const res = await chai
+        .request(server)
+        .get('/api/v1/flagss')
+        .set('Authorization', auth);
+      expect(res).to.have.status(404);
+    });
     it('should not view all flaged reported if unauthorized', async () => {
       const res = await chai.request(server).get('/api/v1/flag');
       expect(res).to.have.status(401);
