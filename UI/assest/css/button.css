@@ -21,6 +21,32 @@
 .btn-more:hover {
 	background-color: rgb(250, 155, 45);
 }
+.btn-delete {
+	color: #fff;
+	/* background-color: var(--base-red); */
+	padding: 0.5rem 0.8rem;
+	font-size: 12px;
+}
+.btn-delete:hover {
+	background-color: var(--base-red);
+}
+.btn-edit {
+	color: #fff;
+	padding: 0.5rem 0.8rem;
+	font-size: 12px;
+}
+.btn-edit:hover {
+	background-color: var(--soft-purple);
+}
+.btn-sold {
+	color: #fff;
+	padding: 0.5rem 0.8rem;
+	font-size: 12px;
+}
+.btn-sold:hover {
+	background-color: #5e8b61;
+}
+
 .btn-purple {
 	background-color: var(--soft-purple);
 	color: #fff;

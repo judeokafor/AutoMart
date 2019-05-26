@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="./assest/css/modal.css" />
+	<link rel="stylesheet" href="./assest/css/carousel.css" />
+	<link rel="stylesheet" href="./assest/css/main.css" />
+	<title>Userdashboard</title>
+</head>
+
+<body>
+	<div class="w-80 mx-auto">
+		<div class="h-100vh">
+			<div class="d-flex flex-column justify-content-between">
+				<nav class="h-10vh">
+					<div class="d-flex justify-content-between">
+						<div class="logo">
+							<a href="./index.html">
+								<img src="./assest/images/svg/logo.png" alt="logo" width="100%" height="100%"
+									class="responsive-image" />
+							</a>
+						</div>
+						<div class="d-flex justify-content-between mt-3">
+							<small class="mr-2 mt-2">
+								Jason Okafor
+							</small>
+							<div>
+								<a href="./index.html">
+									<img src="https://randomuser.me/api/portraits/men/85.jpg" alt="user image"
+										width="40px" height="40px" class="rounded-image mr-2 align-image" />
+								</a>
+							</div>
+							<div>
+								<a href="./index.html" class="btn btn-purple-reverse">Logout</a href="./index.html">
+							</div>
+						</div>
+					</div>
+				</nav>
+				<section class="h-80vh">
+					<div class="d-flex">
+						<div class="w-25">
+							<div class="sidebar w-100 h-100">
+								<div class="container-fluid">
+									<div class="tab ">
+										<div class="usertab">
+											<button class="tablinks active" onclick="openCar(event, 'Unsold')">
+												Selected Cars
+											</button>
+										</div>
+										<div class="usertab">
+											<button class="tablinks" onclick="openCar(event, 'Sold')">
+												Buy Orders
+											</button>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="w-75">
+							<div id="Unsold" class="tabcontent" style="display:block">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-12 col-sm-6 col-md-4">
+											<div class="card-product">
+												<a href="./view-specific-buyer.html">
+													<img src="./assest/images/action-automobile-automotive-50704.jpg"
+														alt="car image" class="responsive-image" width="100%"
+														height="150px" />
+												</a>
+
+												<div class="p-2">
+													<h5 class="m-0 text-left">
+														Aston Martin Evoke
+													</h5>
+													<p class="price my-1">#1500000</p>
+													<div class="d-flex justify-content-between">
+														<div class="">
+															<img class="responsive-img"
+																src="./assest/images/svg/placeholder.svg" alt=""
+																width="20px" height="20px" />
+															<small class="text-deep-purple">Lagos</small>
+														</div>
+														<div class="">
+															<img class="responsive-image"
+																src="./assest/images/svg/sold.svg" alt="" width="30px"
+																height="30px" />
+														</div>
+													</div>
+													<small class="text-left">
+														<a href="./view-specific-buyer.html">See more</a>
+													</small>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-sm-6 col-md-4">
+											<div class="card-product">
+												<a href="./view-specific-buyer.html">
+													<img src="./assest/images/asphalt-auto-automobile-244206.jpg"
+														alt="car image" class="responsive-image" width="100%"
+														height="150px" />
+												</a>
+												<div class="p-2">
+													<h5 class="m-0 text-left">Mercedez C300 C-Class</h5>
+													<p class="price my-1">#3500000</p>
+													<div class="d-flex justify-content-between">
+														<div class="">
+															<img class="responsive-img"
+																src="./assest/images/svg/placeholder.svg" alt=""
+																width="20px" height="20px" />
+															<small class="text-deep-purple">Abuja</small>
+														</div>
+														<div class="">
+															<img class="responsive-image"
+																src="./assest/images/svg/sold.svg" alt="" width="30px"
+																height="30px" />
+														</div>
+													</div>
+													<small class="text-left">
+														<a href="./view-specific-buyer.html">See more</a>
+													</small>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-12 col-sm-6 col-md-4">
+											<div class="card-product">
+												<a href="./view-specific-buyer.html">
+													<img src="./assest/images/architecture-audi-automotive-1545743.jpg"
+														alt="car image" class="responsive-image" width="100%"
+														height="150px" />
+												</a>
+												<div class="p-2">
+													<h5 class="m-0 text-left">Audi E2 Evolution</h5>
+													<p class="price my-1">#1000000</p>
+													<div class="d-flex justify-content-between">
+														<div class="">
+															<img class="responsive-img"
+																src="./assest/images/svg/placeholder.svg" alt=""
+																width="20px" height="20px" />
+															<small class="text-deep-purple">Lagos</small>
+														</div>
+														<div class="">
+															<img class="responsive-image"
+																src="./assest/images/svg/checked.svg" alt=""
+																width="30px" height="30px" />
+														</div>
+													</div>
+													<small class="text-left">
+														<a href="./view-specific-buyer.html">See more</a>
+													</small>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="Sold" class="tabcontent">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-12 col-sm-6 col-md-4">
+											<div class="card-product">
+												<a href="./view-specific-buyer.html">
+													<img src="./assest/images/action-automobile-automotive-50704.jpg"
+														alt="car image" class="responsive-image" width="100%"
+														height="150px" />
+												</a>
+												<div class="p-2">
+													<h5 class="m-0 text-left">
+														Aston Martin Evoke
+													</h5>
+													<p class="price my-1">#1500000</p>
+													<div class="d-flex justify-content-between">
+														<div class="">
+															<img class="responsive-img"
+																src="./assest/images/svg/placeholder.svg" alt=""
+																width="20px" height="20px" />
+															<small class="text-deep-purple">Lagos</small>
+														</div>
+														<div class="">
+															<img class="responsive-image"
+																src="./assest/images/svg/sold.svg" alt="" width="30px"
+																height="30px" />
+														</div>
+													</div>
+													<small class="text-left">
+														<a href="./view-specific-buyer.html">See more</a>
+													</small>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<footer class="h-10vh">
+					<div class="d-flex justify-content-center">
+						<p>
+							Okafor Jude Chukwuebuka
+							<i class="material-icons">copyright</i> 2019
+						</p>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<script src="./assest/js/app.js"></script>
+	<script src="./assest/js/modal.js"></script>
+	<script src="./assest/js/admindashboard.js"></script>
+</body>
+
+</html>
