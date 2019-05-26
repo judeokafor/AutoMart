@@ -1,157 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+			integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="./assest/css/modal.css" />
+		<link rel="stylesheet" href="./assest/css/carousel.css" />
+		<link rel="stylesheet" href="./assest/css/bars.css" />
+		<link rel="stylesheet" href="./assest/css/main.css" />
+		<title>Userdashboard Buyer</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<link rel="stylesheet" href="./assest/css/modal.css" />
-	<link rel="stylesheet" href="./assest/css/carousel.css" />
-	<link rel="stylesheet" href="./assest/css/main.css" />
-	<title>Userdashboard</title>
-</head>
-
-<body>
-	<div class="w-80 mx-auto">
-		<div class="h-100vh">
-			<div class="d-flex flex-column justify-content-between">
-				<nav class="h-10vh">
-					<div class="d-flex justify-content-between">
-						<div class="logo">
-							<a href="./index.html">
-								<img src="./assest/images/svg/logo.png" alt="logo" width="100%" height="100%"
-									class="responsive-image" />
-							</a>
-						</div>
-						<div class="d-flex justify-content-between mt-3">
-							<small class="mr-2 mt-2">
-								Jason Okafor
-							</small>
-							<div>
+	<body>
+		<div class="container-fluid">
+			<div class="h-100vh">
+				<div class="d-flex flex-column justify-content-between">
+					<nav class="h-10vh">
+						<div class="d-flex justify-content-between">
+							<div class="logo">
 								<a href="./index.html">
-									<img src="https://randomuser.me/api/portraits/men/85.jpg" alt="user image"
-										width="40px" height="40px" class="rounded-image mr-2 align-image" />
+									<img
+										src="./assest/images/svg/logo.png"
+										alt="logo"
+										width="100%"
+										height="100%"
+										class="responsive-image"
+									/>
 								</a>
 							</div>
-							<div>
-								<a href="./index.html" class="btn btn-purple-reverse">Logout</a href="./index.html">
-							</div>
-						</div>
-					</div>
-				</nav>
-				<section class="h-80vh">
-					<div class="d-flex">
-						<div class="w-25">
-							<div class="sidebar w-100 h-100">
-								<div class="container-fluid">
-									<div class="tab ">
-										<div class="usertab">
-											<button class="tablinks active" onclick="openCar(event, 'Unsold')">
-												Selected Cars
-											</button>
-										</div>
-										<div class="usertab">
-											<button class="tablinks" onclick="openCar(event, 'Sold')">
-												Buy Orders
-											</button>
-										</div>
-
-									</div>
+							<div class="d-flex mt-3">
+								<small class="mx-2">
+									Jason Okafor
+								</small>
+								<div>
+									<a href="./index.html">
+										<img
+											src="https://randomuser.me/api/portraits/men/12.jpg"
+											alt="user image"
+											width="35px"
+											height="35px"
+											class="rounded-image mx-2 responsive-image"
+										/>
+									</a>
+								</div>
+								<div>
+									<a href="./index.html" class="btn btn-purple-reverse"
+										>Logout</a
+									>
 								</div>
 							</div>
 						</div>
-						<div class="w-75">
+					</nav>
+					<section class="h-80vh">
+						<div class="sidebar tab">
+							<a class="tablinks active" onclick="openCar(event, 'Unsold')">
+								Inventory
+							</a>
+							<a class="tablinks" onclick="openCar(event, 'Sold')"
+								>Pending Orders
+							</a>
+						</div>
+						<div class="content">
 							<div id="Unsold" class="tabcontent" style="display:block">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-12 col-sm-6 col-md-4">
-											<div class="card-product">
-												<a href="./view-specific-buyer.html">
-													<img src="./assest/images/action-automobile-automotive-50704.jpg"
-														alt="car image" class="responsive-image" width="100%"
-														height="150px" />
-												</a>
-
-												<div class="p-2">
-													<h5 class="m-0 text-left">
-														Aston Martin Evoke
-													</h5>
-													<p class="price my-1">#1500000</p>
-													<div class="d-flex justify-content-between">
-														<div class="">
-															<img class="responsive-img"
-																src="./assest/images/svg/placeholder.svg" alt=""
-																width="20px" height="20px" />
-															<small class="text-deep-purple">Lagos</small>
+								<div class="row">
+									<div class="col-12 col-md-6 col-lg-4 my-2">
+										<div class="wrapper">
+											<div class="container">
+												<div class="top">
+													<img
+														src="./assest/images/images2.jpg"
+														alt=""
+														width="100%"
+														height="100%"
+													/>
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="details">
+															<h1>Mercedez Benz c300</h1>
+															<p class="monseratt text-dark-grey">#4500000</p>
 														</div>
-														<div class="">
-															<img class="responsive-image"
-																src="./assest/images/svg/sold.svg" alt="" width="30px"
-																height="30px" />
+														<div class="buy">
+															<i class="material-icons">add_shopping_cart</i>
 														</div>
 													</div>
-													<small class="text-left">
-														<a href="./view-specific-buyer.html">See more</a>
-													</small>
+												</div>
+											</div>
+											<div class="inside">
+												<div class="icon">
+													<i class="material-icons">info_outline</i>
+												</div>
+												<div class="contents">
+													<div class="d-flex justify-content-between">
+														<div>
+															<i class="fas fa-map-marker-alt"></i>
+															<small class="mr-2">Abuja</small>
+														</div>
+														<div>
+															<i class="fas fa-cart-plus"></i>
+															<small class="mr-2">Available</small>
+														</div>
+													</div>
+													<div class="text-white">
+														<hr />
+													</div>
+
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<div class="row">
+																<div class="col-6 p-1">
+																	<i class="fas fa-tachometer-alt"></i>
+																	<small class="mr-2">Automatic</small>
+																</div>
+																<div class="col-6 p-1 ">
+																	<i class="fas fa-gas-pump"></i>
+																	<small class="mr-2">Fuel</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-car"></i>
+																	<small class="mr-2">Body Type</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-calendar-alt"></i>
+																	<small class="mr-2">2012</small>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="container text-white">
+														<hr />
+													</div>
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<p>
+																Full Ac, factory fitted, only 3 months in
+																Nigeria. All custom duties fully paid. Interior
+																leather design.
+															</p>
+														</div>
+													</div>
+													<div class="d-flex justify-content-between ">
+														<a
+															id="open-button"
+															class="btn-more clickable"
+															role="button"
+														>
+															View more
+														</a>
+														<a
+															id="open-button2"
+															class="btn-sold clickable"
+															role="button"
+														>
+															Order Now
+														</a>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-12 col-sm-6 col-md-4">
-											<div class="card-product">
-												<a href="./view-specific-buyer.html">
-													<img src="./assest/images/asphalt-auto-automobile-244206.jpg"
-														alt="car image" class="responsive-image" width="100%"
-														height="150px" />
-												</a>
-												<div class="p-2">
-													<h5 class="m-0 text-left">Mercedez C300 C-Class</h5>
-													<p class="price my-1">#3500000</p>
-													<div class="d-flex justify-content-between">
-														<div class="">
-															<img class="responsive-img"
-																src="./assest/images/svg/placeholder.svg" alt=""
-																width="20px" height="20px" />
-															<small class="text-deep-purple">Abuja</small>
+									</div>
+									<div class="col-12 col-md-6 col-lg-4 my-2">
+										<div class="wrapper">
+											<div class="container">
+												<div class="top">
+													<img
+														src="./assest/images/images9.jpg"
+														alt=""
+														width="100%"
+														height="100%"
+													/>
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="details">
+															<h1>Mercedez Benz c300</h1>
+															<p class="monseratt text-dark-grey">#4500000</p>
 														</div>
-														<div class="">
-															<img class="responsive-image"
-																src="./assest/images/svg/sold.svg" alt="" width="30px"
-																height="30px" />
+														<div class="buy">
+															<i class="material-icons">add_shopping_cart</i>
 														</div>
 													</div>
-													<small class="text-left">
-														<a href="./view-specific-buyer.html">See more</a>
-													</small>
+												</div>
+											</div>
+											<div class="inside">
+												<div class="icon">
+													<i class="material-icons">info_outline</i>
+												</div>
+												<div class="contents">
+													<div class="d-flex justify-content-between">
+														<div>
+															<i class="fas fa-map-marker-alt"></i>
+															<small class="mr-2">Abuja</small>
+														</div>
+														<div>
+															<i class="fas fa-cart-plus"></i>
+															<small class="mr-2">Available</small>
+														</div>
+													</div>
+													<div class="text-white">
+														<hr />
+													</div>
+
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<div class="row">
+																<div class="col-6 p-1">
+																	<i class="fas fa-tachometer-alt"></i>
+																	<small class="mr-2">Automatic</small>
+																</div>
+																<div class="col-6 p-1 ">
+																	<i class="fas fa-gas-pump"></i>
+																	<small class="mr-2">Fuel</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-car"></i>
+																	<small class="mr-2">Body Type</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-calendar-alt"></i>
+																	<small class="mr-2">2012</small>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="container text-white">
+														<hr />
+													</div>
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<p>
+																Full Ac, factory fitted, only 3 months in
+																Nigeria. All custom duties fully paid. Interior
+																leather design.
+															</p>
+														</div>
+													</div>
+													<div class="d-flex justify-content-between ">
+														<a
+															id="open-button"
+															class="btn-more clickable"
+															role="button"
+														>
+															View more
+														</a>
+														<a
+															id="open-button2"
+															class="btn-sold clickable"
+															role="button"
+														>
+															Order Now
+														</a>
+													</div>
 												</div>
 											</div>
 										</div>
-
-										<div class="col-12 col-sm-6 col-md-4">
-											<div class="card-product">
-												<a href="./view-specific-buyer.html">
-													<img src="./assest/images/architecture-audi-automotive-1545743.jpg"
-														alt="car image" class="responsive-image" width="100%"
-														height="150px" />
-												</a>
-												<div class="p-2">
-													<h5 class="m-0 text-left">Audi E2 Evolution</h5>
-													<p class="price my-1">#1000000</p>
-													<div class="d-flex justify-content-between">
-														<div class="">
-															<img class="responsive-img"
-																src="./assest/images/svg/placeholder.svg" alt=""
-																width="20px" height="20px" />
-															<small class="text-deep-purple">Lagos</small>
+									</div>
+									<div class="col-12 col-md-6 col-lg-4 my-2">
+										<div class="wrapper">
+											<div class="container">
+												<div class="top">
+													<img
+														src="./assest/images/images3.jpg"
+														alt=""
+														width="100%"
+														height="100%"
+													/>
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="details">
+															<h1>Mercedez Benz c300</h1>
+															<p class="monseratt text-dark-grey">#4500000</p>
 														</div>
-														<div class="">
-															<img class="responsive-image"
-																src="./assest/images/svg/checked.svg" alt=""
-																width="30px" height="30px" />
+														<div class="buy">
+															<i class="material-icons">add_shopping_cart</i>
 														</div>
 													</div>
-													<small class="text-left">
-														<a href="./view-specific-buyer.html">See more</a>
-													</small>
+												</div>
+											</div>
+											<div class="inside">
+												<div class="icon">
+													<i class="material-icons">info_outline</i>
+												</div>
+												<div class="contents">
+													<div class="d-flex justify-content-between">
+														<div>
+															<i class="fas fa-map-marker-alt"></i>
+															<small class="mr-2">Abuja</small>
+														</div>
+														<div>
+															<i class="fas fa-cart-plus"></i>
+															<small class="mr-2">Available</small>
+														</div>
+													</div>
+													<div class="text-white">
+														<hr />
+													</div>
+
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<div class="row">
+																<div class="col-6 p-1">
+																	<i class="fas fa-tachometer-alt"></i>
+																	<small class="mr-2">Automatic</small>
+																</div>
+																<div class="col-6 p-1 ">
+																	<i class="fas fa-gas-pump"></i>
+																	<small class="mr-2">Fuel</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-car"></i>
+																	<small class="mr-2">Body Type</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-calendar-alt"></i>
+																	<small class="mr-2">2012</small>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="container text-white">
+														<hr />
+													</div>
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<p>
+																Full Ac, factory fitted, only 3 months in
+																Nigeria. All custom duties fully paid. Interior
+																leather design.
+															</p>
+														</div>
+													</div>
+													<div class="d-flex justify-content-between ">
+														<a
+															id="open-button"
+															class="btn-more clickable"
+															role="button"
+														>
+															View more
+														</a>
+														<a
+															id="open-button2"
+															class="btn-sold clickable"
+															role="button"
+														>
+															Order Now
+														</a>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -159,36 +360,179 @@
 								</div>
 							</div>
 							<div id="Sold" class="tabcontent">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-12 col-sm-6 col-md-4">
-											<div class="card-product">
-												<a href="./view-specific-buyer.html">
-													<img src="./assest/images/action-automobile-automotive-50704.jpg"
-														alt="car image" class="responsive-image" width="100%"
-														height="150px" />
-												</a>
-												<div class="p-2">
-													<h5 class="m-0 text-left">
-														Aston Martin Evoke
-													</h5>
-													<p class="price my-1">#1500000</p>
-													<div class="d-flex justify-content-between">
-														<div class="">
-															<img class="responsive-img"
-																src="./assest/images/svg/placeholder.svg" alt=""
-																width="20px" height="20px" />
-															<small class="text-deep-purple">Lagos</small>
+								<div class="row">
+									<div class="col-12 col-md-6 col-lg-4 my-2">
+										<div class="wrapper">
+											<div class="container">
+												<div class="top">
+													<img
+														src="./assest/images/images4.jpg"
+														alt=""
+														width="100%"
+														height="100%"
+													/>
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="details">
+															<h1>Toyota Matrix</h1>
+															<p class="monseratt text-dark-grey">#2000000</p>
 														</div>
-														<div class="">
-															<img class="responsive-image"
-																src="./assest/images/svg/sold.svg" alt="" width="30px"
-																height="30px" />
+														<div class="buy">
+															<i class="material-icons">add_shopping_cart</i>
 														</div>
 													</div>
-													<small class="text-left">
-														<a href="./view-specific-buyer.html">See more</a>
-													</small>
+												</div>
+											</div>
+											<div class="inside">
+												<div class="icon">
+													<i class="material-icons">info_outline</i>
+												</div>
+												<div class="contents">
+													<div class="d-flex justify-content-between">
+														<div>
+															<i class="fas fa-map-marker-alt"></i>
+															<small class="mr-2">Abuja</small>
+														</div>
+														<div>
+															<i class="fas fa-cart-plus"></i>
+															<small class="mr-2">Available</small>
+														</div>
+													</div>
+													<div class="text-white">
+														<hr />
+													</div>
+
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<div class="row">
+																<div class="col-6 p-1">
+																	<i class="fas fa-tachometer-alt"></i>
+																	<small class="mr-2">Automatic</small>
+																</div>
+																<div class="col-6 p-1 ">
+																	<i class="fas fa-gas-pump"></i>
+																	<small class="mr-2">Fuel</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-car"></i>
+																	<small class="mr-2">Body Type</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-calendar-alt"></i>
+																	<small class="mr-2">2012</small>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="container text-white">
+														<hr />
+													</div>
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<p>
+																Full Ac, factory fitted, only 3 months in
+																Nigeria. All custom duties fully paid. Interior
+																leather design.
+															</p>
+														</div>
+													</div>
+													<div class="d-flex justify-content-between">
+														<a href="#" class="btn-more">
+															View more
+														</a>
+														<a href="#" class="btn-edit">
+															Edit Order
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-12 col-md-6 col-lg-4 my-2">
+										<div class="wrapper">
+											<div class="container">
+												<div class="top">
+													<img
+														src="./assest/images/images6.jpg"
+														alt=""
+														width="100%"
+														height="100%"
+													/>
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="details">
+															<h1>Range Rover Evogue</h1>
+															<p class="monseratt text-dark-grey">#20000000</p>
+														</div>
+														<div class="buy">
+															<i class="material-icons">add_shopping_cart</i>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="inside">
+												<div class="icon">
+													<i class="material-icons">info_outline</i>
+												</div>
+												<div class="contents">
+													<div class="d-flex justify-content-between">
+														<div>
+															<i class="fas fa-map-marker-alt"></i>
+															<small class="mr-2">Abuja</small>
+														</div>
+														<div>
+															<i class="fas fa-cart-plus"></i>
+															<small class="mr-2">Available</small>
+														</div>
+													</div>
+													<div class="text-white">
+														<hr />
+													</div>
+
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<div class="row">
+																<div class="col-6 p-1">
+																	<i class="fas fa-tachometer-alt"></i>
+																	<small class="mr-2">Automatic</small>
+																</div>
+																<div class="col-6 p-1 ">
+																	<i class="fas fa-gas-pump"></i>
+																	<small class="mr-2">Fuel</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-car"></i>
+																	<small class="mr-2">Body Type</small>
+																</div>
+																<div class="col-6 p-1">
+																	<i class="fas fa-calendar-alt"></i>
+																	<small class="mr-2">2012</small>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="container text-white">
+														<hr />
+													</div>
+													<div class="row">
+														<div class="col-10 mx-auto">
+															<p>
+																Full Ac, factory fitted, only 3 months in
+																Nigeria. All custom duties fully paid. Interior
+																leather design.
+															</p>
+														</div>
+													</div>
+													<div class="d-flex justify-content-between">
+														<a href="#" class="btn-more">
+															View more
+														</a>
+														<a href="#" class="btn-edit">
+															Edit Order
+														</a>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -196,22 +540,305 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-				<footer class="h-10vh">
-					<div class="d-flex justify-content-center">
-						<p>
-							Okafor Jude Chukwuebuka
-							<i class="material-icons">copyright</i> 2019
-						</p>
-					</div>
-				</footer>
+					</section>
+					<footer class="h-10vh">
+						<div class="d-flex justify-content-center">
+							<p>
+								Okafor Jude Chukwuebuka
+								<i class="material-icons">copyright</i> 2019
+							</p>
+						</div>
+					</footer>
+				</div>
 			</div>
 		</div>
-	</div>
-	<script src="./assest/js/app.js"></script>
-	<script src="./assest/js/modal.js"></script>
-	<script src="./assest/js/admindashboard.js"></script>
-</body>
+		<div class="modal-overlay" id="modal-overlay"></div>
 
+		<div class="modal" id="modal">
+			<div class="close-button clickable" id="close-button">
+				<img
+					src="./assest/images/svg/x-button.svg"
+					alt=""
+					class="responsive-image"
+					width="25px"
+					height="25px"
+				/>
+			</div>
+			<div class="modal-guts">
+				<div class="row">
+					<div class="bg-light-grey">
+						<div class=" p-2 row">
+							<div class="col-12 col-lg-6">
+								<div class="slider">
+									<input
+										type="radio"
+										name="slider"
+										title="slide1"
+										checked="checked"
+										class="slider__nav"
+									/>
+									<input
+										type="radio"
+										name="slider"
+										title="slide2"
+										class="slider__nav"
+									/>
+									<input
+										type="radio"
+										name="slider"
+										title="slide3"
+										class="slider__nav"
+									/>
+									<input
+										type="radio"
+										name="slider"
+										title="slide4"
+										class="slider__nav"
+									/>
+									<div class="slider__inner">
+										<div class="slider__contents">
+											<img
+												class="responsive-image min-width"
+												src="./assest/images/images2.jpg"
+												alt=""
+												width="350px"
+												height="400px"
+											/>
+										</div>
+										<div class="slider__contents">
+											<img
+												class="responsive-image"
+												src="./assest/images/images3.jpg"
+												alt=""
+												width="100%"
+												height="100%"
+											/>
+										</div>
+										<div class="slider__contents">
+											<img
+												class="responsive-image"
+												src="./assest/images/images4.jpg"
+												alt=""
+												width="100%"
+												height="100%"
+											/>
+										</div>
+										<div class="slider__contents">
+											<img
+												class="responsive-image "
+												src="./assest/images/images9.jpg"
+												alt=""
+												width="100%"
+												height="100%"
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-lg-6">
+								<div class="p-3">
+									<div class="d-flex justify-content-between">
+										<h5 class="car-title my-0">
+											Mercedez
+											<span>C 300</span>
+										</h5>
+										<div class="">
+											<img
+												class="responsive-image"
+												src="./assest/images/svg/sold.svg"
+												alt=""
+												width="30px"
+												height="30px"
+											/>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-6 p-1">
+											<i class="fas fa-tachometer-alt"></i>
+											<small class="mr-2">Automatic</small>
+										</div>
+										<div class="col-6 p-1 ">
+											<i class="fas fa-gas-pump"></i>
+											<small class="mr-2">Fuel</small>
+										</div>
+										<div class="col-6 p-1">
+											<i class="fas fa-car"></i>
+											<small class="mr-2">Body Type</small>
+										</div>
+										<div class="col-6 p-1">
+											<i class="fas fa-calendar-alt"></i>
+											<small class="mr-2">2012</small>
+										</div>
+									</div>
+									<h5 class="text-dark-grey font-weight-bold montserrat my-1">
+										&#8358; 3500000
+									</h5>
+
+									<p class="font-weight-normal paragraph">
+										Very clean, still about 45000km. Factory fitted air
+										conditioning. Not up to 5 months in Nigeria. Owner is
+										looking for a good buy.
+									</p>
+
+									<div class="d-flex justify-content-between my-2">
+										<button id="open-button2" class="btn btn-purple clickable">
+											Buy Now
+										</button>
+										<a
+											href="./userdashboard.html"
+											class="btn btn-purple-reverse"
+										>
+											Back
+										</a>
+									</div>
+									<div class="d-flex justify-content-end">
+										<a id="open-button3" class="text-red">
+											<small class="text-red">Fradulent?</small>
+											<img
+												src="./assest/images/svg/warning.svg"
+												alt=""
+												width="25px"
+												height="25px"
+												class="align-image"
+											/>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-overlay" id="modal-overlay2"></div>
+
+		<div class="modal" id="modal2">
+			<div class="close-button clickable" id="close-button2">
+				<img
+					src="./assest/images/svg/x-button.svg"
+					alt=""
+					class="responsive-image"
+					width="25px"
+					height="25px"
+				/>
+			</div>
+			<div class="modal-guts">
+				<div class="">
+					<div class="p-2">
+						<h4 class="m-0">
+							Purchase Order
+						</h4>
+						<small class="text-abstract-orange">Order-id: 123-456-789-0</small>
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<img
+									src="./assest/images/images2.jpg"
+									alt=""
+									width="100%"
+									height="300px"
+								/>
+							</div>
+							<div class="col-12 col-md-6">
+								<div>
+									<h5>
+										Asking Price is
+										<span class="price">#4500000</span>
+									</h5>
+								</div>
+
+								<div id="amount" class="my-1">
+									<small class="text-abstract-orange">What's your Offer?</small>
+									<input type="text" class="w-100 p-5" />
+								</div>
+
+								<div class="d-flex justify-content-end mt-3">
+									<button class="btn btn-purple">
+										Place Order
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-overlay" id="modal-overlay3"></div>
+
+		<div class="modal" id="modal3">
+			<div class="close-button clickable" id="close-button3">
+				<img
+					src="./assest/images/svg/x-button.svg"
+					alt=""
+					class="responsive-image"
+					width="25px"
+					height="25px"
+				/>
+			</div>
+			<div class="modal-guts">
+				<div class="container-fluid">
+					<div class="card bg-light-grey">
+						<div class="bg-soft-purple card-header">
+							<div class="d-flex justify-content-center">
+								<h5 class="mb-1">
+									REPORT ADVERT
+								</h5>
+							</div>
+							<h6
+								class="d-flex justify-content-end text-grey-one montserrat m-0 pt-0 pr-3"
+							>
+								ID: <span class="">01-234-567-89</span>
+							</h6>
+						</div>
+						<div class="p-5">
+							<div class="name my-1">
+								<small class="text-abstract-orange">Name</small>
+								<input type="text" class="w-100" />
+							</div>
+							<div class="email my-1">
+								<small class="text-abstract-orange">Email</small>
+								<input type="text" class="w-100" />
+							</div>
+							<div class="phone my-1">
+								<small class="text-abstract-orange">Phone</small>
+								<input type="number" class="w-100" />
+							</div>
+							<div class="reasons my-1">
+								<small class="text-abstract-orange">Reasons</small>
+								<div class="search_categories">
+									<div class="select">
+										<select class="select-css">
+											<option disabled selected>Select Reasons</option>
+											<option>Others</option>
+											<option>Location Issues</option>
+											<option>Price Variation</option>
+											<option>Stolen Vehicle</option>
+											<option>Fradulent</option>
+											<option>Misleading</option>
+											<option>Offensive</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class=" my-1">
+								<div class="w-100 mr-2">
+									<small class="text-abstract-orange">Comment</small>
+									<textarea type="text" class="w-100"></textarea>
+								</div>
+							</div>
+							<div class="d-flex justify-content-between my-3">
+								<a href="./userdashboard.html" class="btn btn-purple-reverse">
+									Cancel
+								</a>
+								<a href="./userdashboard.html" class="btn btn-danger-reverse">
+									Report
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./assest/js/modal.js"></script>
+		<script src="./assest/js/admindashboard.js"></script>
+	</body>
 </html>
