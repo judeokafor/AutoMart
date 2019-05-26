@@ -174,7 +174,7 @@ select.filter:focus {
 .wrapper {
 	width: 270px;
 	height: 340px;
-	background: white;
+	background: var(--background-purple);
 	margin: auto;
 	position: relative;
 	overflow: hidden;
@@ -194,8 +194,8 @@ select.filter:focus {
 .wrapper .container .top {
 	height: 75%;
 	width: 100%;
-	background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg)
-		no-repeat center center;
+	/* background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg)
+		no-repeat center center; */
 	-webkit-background-size: 100%;
 	-moz-background-size: 100%;
 	-o-background-size: 100%;

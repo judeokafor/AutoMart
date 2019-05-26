@@ -36,7 +36,7 @@
 	font-size: 12px;
 }
 .btn-edit:hover {
-	background-color: var(--soft-purple);
+	background-color: var(--base-purple);
 }
 .btn-sold {
 	color: #fff;
