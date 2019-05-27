@@ -9,7 +9,7 @@
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel ./src --out-dir ./build",
     "build": "npm run clean && npm run build-babel",
-    "start": "cross-env NODE_ENV=production npm run build && node ./build/server.js",
+    "start": "npm run build && node ./build/server.js",
     "test": "cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require @babel/register src/test --timeout 25000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
