@@ -21,42 +21,42 @@
 		<div class="container-fluid">
 			<div class="h-100vh">
 				<div class="d-flex flex-column justify-content-between">
-					<nav class="h-10vh">
-						<div class="d-flex justify-content-between">
-							<div class="logo">
-								<a href="./index.html">
-									<img
-										src="./assest/images/svg/logo.png"
-										alt="logo"
-										width="100%"
-										height="100%"
-										class="responsive-image"
-									/>
-								</a>
-							</div>
-							<div class="d-flex mt-3">
-								<small class="mx-2">
-									John Snow
-								</small>
-								<div>
-									<a href="./index.html">
-										<img
-											src="https://randomuser.me/api/portraits/men/12.jpg"
-											alt="user image"
-											width="35px"
-											height="35px"
-											class="rounded-image mx-2 responsive-image"
-										/>
-									</a>
-								</div>
-								<div>
-									<a href="./index.html" class="btn btn-purple-reverse"
+					<nav class="navbar">
+							<span class="navbar-toggle" id="js-navbar-toggle">
+								<i class="fas fa-bars"></i>
+							</span>
+							<a class="logo" href="index.html">
+								<img
+									src="./assest/images/svg/logo.png"
+									alt="logo"
+									width="80px"
+									height="80px"
+								/>
+							</a>
+							<ul class="main-nav" id="js-menu">
+								<li>
+										<small class="">
+												John Snow
+											</small>
+								</li>
+								<li>
+										<a class="mx-2">
+											<img
+												src="https://randomuser.me/api/portraits/men/12.jpg"
+												alt="user image"
+												width="35px"
+												height="35px"
+												class="rounded-image responsive-image"
+											/>
+										</a>
+								</li>
+								<li>
+										<a href="./index.html" class="btn btn-purple-reverse"
 										>Logout</a
 									>
-								</div>
-							</div>
-						</div>
-					</nav>
+								</li>
+							</ul>
+						</nav>
 					<section class="h-80vh">
 						<div class="sidebar tab">
 							<a class="tablinks active" onclick="openCar(event, 'Unsold')">
@@ -942,6 +942,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="./assest/js/app.js"></script>
 		<script src="./assest/js/modal.js"></script>
 		<script src="./assest/js/admindashboard.js"></script>
 	</body>
