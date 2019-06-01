@@ -45,7 +45,12 @@
 	background-color: var(--soft-purple);
 	color: #fff;
 }
-
+.bg-background-purple {
+	background-color: var(--background-purple) !important;
+}
+.bg-white {
+	background-color: #fff !important;
+}
 /* Color Theme Swatches in Hex */
 .ore-colors-1-hex {
 	color: #151450;

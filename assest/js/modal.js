@@ -12,6 +12,15 @@ const modalOverlay3 = document.querySelector('#modal-overlay3');
 const closeButton3 = document.querySelector('#close-button3');
 const openButton3 = document.querySelector('#open-button3');
 
+const hideAllModal = () => {
+  modal.classList.add('closed');
+  modalOverlay.classList.add('closed');
+  modal2.classList.toggle('closed');
+  modalOverlay2.classList.toggle('closed');
+  modal3.classList.toggle('closed');
+  modalOverlay3.classList.toggle('closed');
+};
+hideAllModal();
 closeButton.addEventListener('click', () => {
   modal.classList.toggle('closed');
   modalOverlay.classList.toggle('closed');

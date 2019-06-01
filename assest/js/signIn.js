@@ -1,11 +1,27 @@
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
+/* eslint-disable array-callback-return */
+const loginBtn = document.getElementById('login');
+const signupBtn = document.getElementById('signup');
 
-signUpButton.addEventListener('click', () => {
-  container.classList.add('right-panel-active');
+loginBtn.addEventListener('click', (e) => {
+  const parent = e.target.parentNode.parentNode;
+  Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+    if (element !== 'slide-up') {
+      parent.classList.add('slide-up');
+    } else {
+      signupBtn.parentNode.classList.add('slide-up');
+      parent.classList.remove('slide-up');
+    }
+  });
 });
 
-signInButton.addEventListener('click', () => {
-  container.classList.remove('right-panel-active');
+signupBtn.addEventListener('click', (e) => {
+  const parent = e.target.parentNode;
+  Array.from(e.target.parentNode.classList).find((element) => {
+    if (element !== 'slide-up') {
+      parent.classList.add('slide-up');
+    } else {
+      loginBtn.parentNode.parentNode.classList.add('slide-up');
+      parent.classList.remove('slide-up');
+    }
+  });
 });
