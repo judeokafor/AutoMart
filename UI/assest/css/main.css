@@ -15,12 +15,8 @@ body {
 	background-color: var(--pure-white);
 	color: var(--soft-purple);
 	font-weight: 400;
-	/* font-family: 'Open Sans', sans-serif; */
 	font-family: 'Roboto', sans-serif;
-
-	/* font-family: 'Raleway', sans-serif; */
-	/* font-family: 'Noto Sans', sans-serif; */
-	font-size: calc(0.75em + 1vmin);
+	font-size: 14px;
 	box-sizing: border-box;
 }
 .container {
