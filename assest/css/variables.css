@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+	--faint-purple: #e8eaf6;
+	--light-purple: #d1c4e9;
+	--soft-purple: #9575cd;
+	--mild-purple: #7e57c2;
+	--base-purple: #512da8;
+	--deep-purple: #311b92;
+	--new-purple: #b3b4e6;
+	--background-purple: #f3f2f7;
+
+	--grey-one: #fafafa;
+	--grey-two: #f1f1f1;
+	--dark-grey: #757575;
+
+	--pure-white: #fff;
+
+	--abstract-orange: rgb(250, 140, 15);
+	--abstract-orange-shadow: rgb(255, 195, 126);
+	--base-blue: #5cc8f2;
+
+	--base-red: #e53935;
+	--deep-red: #c62829;
+
+	--base-green: rgb(20, 145, 9);
+	--light-green: rgb(171, 248, 164);
+}
+
+.bg-light-grey {
+	background-color: var(--grey-one);
+}
+
+.bg-light-yellow {
+	background-color: var(--abstract-orange);
+}
+
+.bg-base-purple {
+	background-color: var(--base-purple);
+	color: #fff;
+}
+.bg-soft-purple {
+	background-color: var(--soft-purple);
+	color: #fff;
+}
+.bg-background-purple {
+	background-color: var(--background-purple) !important;
+}
+.bg-white {
+	background-color: #fff !important;
+}
+/* Color Theme Swatches in Hex */
+.ore-colors-1-hex {
+	color: #151450;
+}
+
+.ore-colors-2-hex {
+	color: #ffc27c;
+}
+
+.ore-colors-3-hex {
+	color: #6078bf;
+}
+
+.ore-colors-4-hex {
+	color: #5cc8f2;
+}
+
+.ore-colors-5-hex {
+	color: #1f2988;
+}

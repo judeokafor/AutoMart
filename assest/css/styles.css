@@ -1,0 +1,205 @@
+.h-100vh {
+	min-height: 100vh;
+}
+.h-90vh {
+	min-height: 90vh;
+}
+
+.h-10vh {
+	min-height: 10vh;
+}
+
+.h-80vh {
+	min-height: 80vh;
+}
+
+.h-70vh {
+	min-height: 70vh;
+}
+
+.h-60vh {
+	min-height: 60vh;
+}
+
+.h-80 {
+	height: 80%;
+}
+
+.h-100 {
+	height: 100%;
+}
+
+.font-weight-bold {
+	font-weight: 700;
+}
+
+.font-small {
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.font-weight-light {
+	font-weight: 300;
+}
+
+.font-weight-normal {
+	font-weight: 400;
+	font-size: 1rem;
+}
+
+.text-light-purple {
+	color: var(--light-purple) !important;
+}
+
+.text-deep-purple {
+	color: var(--deep-purple) !important;
+}
+
+.text-abstract-orange {
+	color: var(--abstract-orange);
+}
+
+.text-dark-grey {
+	color: var(--dark-grey) !important;
+}
+
+.text-grey-one {
+	color: var(--grey-one);
+}
+
+.text-red {
+	color: var(--base-red) !important;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.text-large {
+	font-size: 1.7rem;
+}
+
+.text-medium {
+	font-size: 1.2rem;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.montserrat {
+	font-family: 'Montserrat', sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: var(--mild-purple);
+}
+
+.card-product {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 150px;
+	margin: auto;
+	text-align: center;
+	border-radius: 10px;
+	background-color: var(--grey-one);
+	z-index: 2;
+}
+
+.price {
+	color: var(--dark-grey);
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 1.1rem;
+}
+
+.logo {
+	width: 80px;
+	height: 80px;
+}
+
+.card-product small a {
+	color: var(--abstract-orange);
+	font-size: 12px;
+	text-align: right;
+	cursor: pointer;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.card-product small a:hover {
+	color: var(--base-purple);
+}
+
+.card-product div h5 {
+	width: 100%;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	border-radius: 10px;
+}
+
+.align-image {
+	vertical-align: text-bottom;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.select-css {
+	display: block;
+	font-size: 1rem;
+	font-weight: 400;
+	color: var(--deep-purple);
+	line-height: 1.3;
+	padding: 0.6em 1.4em 0.5em 0.8em;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+	border-radius: 0.5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+		linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right 0.7em top 50%, 0 0;
+	background-size: 0.65em auto, 100%;
+}
+
+.select-css::-ms-expand {
+	display: none;
+}
+
+.select-css:hover {
+	border-color: var(--light-purple);
+}
+
+.select-css:focus {
+	border-color: var(--abstract-orange-shadow);
+	box-shadow: 0 0 1px 1px var(--abstract-orange);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: var(--base-purple);
+	outline: none;
+}
+
+.select-css option {
+	font-weight: normal;
+}

@@ -1,0 +1,15 @@
+.overlay {
+	background: #fff8e1 !important;
+	background: -webkit-linear-gradient(to right, #ffd54f, #ffb300) !important;
+	background: linear-gradient(to right, #ffd54f, #ffb300) !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-position: 0 0;
+	color: #ffffff !important;
+	position: relative;
+	left: -100% !important;
+	height: 100% !important;
+	width: 200% !important;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
