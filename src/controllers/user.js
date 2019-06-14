@@ -7,12 +7,28 @@ import Joi from 'joi';
 import User from '../models/User';
 import userStore from '../dataStore/user';
 import errorHandler from '../lib/helpers/errorHandler';
+import Queries from '../lib/helpers/queries';
+import db from '../lib/helpers/dbHelpers';
 
 dotenv.config();
 
 export default class userController {
   static test(req, res) {
     res.json({ message: 'user works' });
+  }
+
+  static async testdbconnection(req, res) {
+    const { rowCount, rows } = await db.Query(Queries.testTable);
+    try {
+      if (rowCount > 0) {
+        return res.json({
+          data: rows,
+        });
+      }
+    } catch (error) {
+      errorHandler.tryCatchError(res, error);
+    }
+    return false;
   }
 
   static signUp(req, res) {
