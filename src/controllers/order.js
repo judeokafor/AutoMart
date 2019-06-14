@@ -2,33 +2,52 @@ import Joi from 'joi';
 import Order from '../models/Order';
 import errorHandler from '../lib/helpers/errorHandler';
 import orderStore from '../dataStore/order';
+import Queries from '../lib/helpers/queries';
+import db from '../lib/helpers/dbHelpers';
 
 export default class orderController {
-  static createOrder(req, res) {
-    const orderData = req.body;
-    const result = Joi.validate(orderData, Order.orderSchema, {
+  static async createOrder(req, res) {
+    const { carId, amount, priceOffered } = req.body;
+    const dataToValidate = {
+      carId: parseInt(carId, 10),
+      amount: parseInt(amount, 10),
+      priceOffered: parseInt(priceOffered, 10),
+    };
+    const result = Joi.validate(dataToValidate, Order.orderSchema, {
       convert: false,
     });
     if (result.error === null) {
-      const order = new Order(
-        (orderData.id = Math.ceil(
-          Math.random() * 100000 * (orderStore.length + 1),
-        )),
-        orderData.buyer,
-        orderData.carId,
-        (orderData.status = 'pending'),
-        orderData.price,
-        orderData.priceOffered,
-        (orderData.oldPriceOffered = null),
-        (orderData.newPriceOffered = null),
-        orderData.createdOn,
-      );
-      orderStore.push(order);
-      return res.status(201).json({
-        status: 'success',
-        message: 'Created succesfully',
-        data: order,
-      });
+      const args = [parseInt(carId, 10), parseInt(req.user.userid, 10)];
+      const { rowCount } = await db.Query(Queries.existingOrder, args);
+      try {
+        if (rowCount > 0) {
+          return res.status(400).json({
+            status: 400,
+            message: 'Order created previously on this car',
+          });
+        }
+        const args2 = [
+          'pending',
+          amount,
+          priceOffered,
+          null,
+          null,
+          parseInt(req.user.userid, 10),
+          parseInt(carId, 10),
+        ];
+        const { rows } = await db.Query(Queries.createOrder, args2);
+        try {
+          return res.status(201).json({
+            status: 201,
+            message: 'Created succesfully',
+            data: rows[0],
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
     return errorHandler.validationError(res, result);
   }
