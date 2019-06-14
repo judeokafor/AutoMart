@@ -2,38 +2,48 @@ import Joi from 'joi';
 import Flag from '../models/Flag';
 import flagStore from '../dataStore/flag';
 import errorHandler from '../lib/helpers/errorHandler';
+import Queries from '../lib/helpers/queries';
+import db from '../lib/helpers/dbHelpers';
 export default class flagController {
   static async flagAdvert(req, res) {
-    const flagData = req.body;
-    const result = Joi.validate(flagData, Flag.flagSchema, { convert: false });
+    const {
+      carId, reason, description, name, email, phone,
+    } = req.body;
+    const dataToValidate = {
+      carId: parseInt(carId, 10),
+      phone,
+      reason,
+      description,
+      name,
+      email,
+    };
+    const result = Joi.validate(dataToValidate, Flag.flagSchema, {
+      convert: false,
+    });
     if (result.error === null) {
-      const flag = new Flag(
-        (flagData.id = Math.ceil(
-          Math.random() * 100000 * (flagStore.length + 1),
-        )),
-        flagData.carId,
-        flagData.reason,
-        flagData.description,
-        (flagData.createdOn = Date.now()),
-        flagData.name,
-        flagData.email,
-        flagData.phone,
-      );
-      const outstandingFlag = flagStore.find(
-        olduser => olduser.email === flagData.email && olduser.carId === flagData.carId,
-      );
-      if (outstandingFlag) {
-        return res.status(400).json({
-          status: 'error',
-          message: 'We are handling previous reports',
-        });
+      const args = [email, carId];
+      const { rowCount } = await db.Query(Queries.searchPendingReport, args);
+      try {
+        if (rowCount > 0) {
+          return res.status(400).json({
+            status: 400,
+            message: 'We are handling previous reports',
+          });
+        }
+        const args2 = [reason, description, name, email, phone, carId];
+        const { rows } = await db.Query(Queries.insertFlags, args2);
+        try {
+          return res.status(201).json({
+            status: 201,
+            message: 'Report created succesfully',
+            data: rows[0],
+          });
+        } catch (error) {
+          errorHandler.tryCatchError(res, error);
+        }
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
       }
-      flagStore.push(flag);
-      return res.status(201).json({
-        status: 'success',
-        message: 'Report created succesfully',
-        data: flag,
-      });
     }
     return errorHandler.validationError(res, result);
   }
