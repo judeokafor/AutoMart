@@ -8,8 +8,7 @@ export default [
     gender: 'male',
     email: 'okaforjudechukwuebuka@gmail.com',
     password: '$2a$10$qvE4KEta6xjgspziGxxZ1OG4wFitfmu/auUHKKaDWEGxNo0wv4uZS',
-    avatar:
-			'//www.gravatar.com/avatar/16b7ce500621cfe1940b09d09ee42385?s=200&r=pg&d=mm',
+    avatar: '//www.gravatar.com/avatar/16bd09ee42385?s=200&r=pg&d=mm',
     isAdmin: true,
     role: 'buyer',
   },
