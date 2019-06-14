@@ -1,59 +1,78 @@
 import Joi from 'joi';
 
-class User {
-  constructor(
-    id,
-    firstName,
-    lastName,
-    phoneNumber,
-    address,
-    gender,
-    email,
-    password,
-    avatar,
-    isAdmin,
-    role,
-  ) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.phoneNumber = phoneNumber;
-    this.address = address;
-    this.gender = gender;
-    this.email = email;
-    this.password = password;
-    this.avatar = avatar;
-    this.isAdmin = isAdmin;
-    this.role = role;
-  }
-
+export default class User {
   static get userSchema() {
     return Joi.object({
       lastName: Joi.string()
         .min(2)
+        .max(150)
         .required(),
       firstName: Joi.string()
         .min(2)
+        .max(150)
         .required(),
       phoneNumber: Joi.string()
         .trim()
+        .max(150)
         .required()
         .regex(/^[0-9]{7,10}$/),
       address: Joi.string()
         .trim()
-        .max(100),
-      gender: Joi.string().lowercase(),
+        .max(350),
+      gender: Joi.string()
+        .max(25)
+        .lowercase(),
       email: Joi.string()
         .email()
+        .min(3)
+        .max(150)
         .required(),
       password: Joi.string()
         .alphanum()
         .min(6)
-        .max(16)
+        .max(30)
         .required(),
-      isAdmin: Joi.bool().required(),
       role: Joi.string(),
     });
   }
+
+  static get signInUser() {
+    return Joi.object({
+      email: Joi.string()
+        .email()
+        .min(3)
+        .max(150)
+        .required(),
+      password: Joi.string()
+        .alphanum()
+        .min(6)
+        .max(30)
+        .required(),
+    });
+  }
+
+  static get regEmail() {
+    return Joi.object({
+      email: Joi.string()
+        .email()
+        .min(3)
+        .max(150)
+        .required(),
+    });
+  }
+
+  static get confirmPassword() {
+    return Joi.object({
+      password: Joi.string()
+        .alphanum()
+        .min(6)
+        .max(30)
+        .required(),
+      cnfPassword: Joi.string()
+        .alphanum()
+        .min(6)
+        .max(30)
+        .required(),
+    });
+  }
 }
-export default User;

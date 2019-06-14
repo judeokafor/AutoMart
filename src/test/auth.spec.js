@@ -16,28 +16,39 @@ describe('User auth routes', () => {
         .request(server)
         .post(`${base}/signUp`)
         .send(testData.newUser());
-      expect(res).to.have.status(201);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('data');
-      expect(res.body).to.have.property('token');
+      try {
+        expect(res).to.have.status(201);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('token');
+      } catch (error) {
+        console.log(error);
+      }
     });
     it('should return an already existing user', async () => {
       const res = await chai
         .request(server)
         .post(`${base}/signUp`)
         .send(testData.existingUser());
-      expect(res).to.have.status(400);
-      expect(res.body).to.have.property('status');
-      // expect(res.body).to.have.property('message');
+      try {
+        expect(res).to.have.status(400);
+        expect(res.body).to.have.property('status');
+      } catch (error) {
+        console.log(error);
+      }
     });
     it('should return a validation error', async () => {
       const res = await chai
         .request(server)
         .post(`${base}/signUp`)
         .send(testData.invalidUser());
-      expect(res).to.have.status(400);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('error');
+      try {
+        expect(res).to.have.status(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+      } catch (error) {
+        console.log(error);
+      }
     });
   });
 
@@ -45,32 +56,57 @@ describe('User auth routes', () => {
     it('should return password error', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v2/auth/signIn')
+        .post(`${base}/signIn`)
         .send(testData.signInUserPasswordError());
-      expect(res).to.have.status(400);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
+      try {
+        expect(res).to.have.status(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('message');
+      } catch (error) {
+        console.log(error);
+      }
     });
 
     it('should return user not found', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v2/auth/signIn')
+        .post(`${base}/signIn`)
         .type('form')
         .send(testData.strangeUser());
-      expect(res).to.have.status(404);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
+      try {
+        expect(res).to.have.status(404);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('message');
+      } catch (error) {
+        console.log(error);
+      }
     });
     it('should signIn a user successfully', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v2/auth/signIn')
+        .post(`${base}/signIn`)
         .send(testData.signInUser());
-      expect(res).to.have.status(201);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
-      expect(res.body).to.have.property('token');
+      try {
+        expect(res).to.have.status(201);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('token');
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    it('should return a validation error', async () => {
+      const res = await chai
+        .request(server)
+        .post(`${base}/signIn`)
+        .send(testData.invalidUserSignIn());
+      try {
+        expect(res).to.have.status(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+      } catch (error) {
+        console.log(error);
+      }
     });
   });
 

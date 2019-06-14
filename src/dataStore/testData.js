@@ -6,7 +6,7 @@ export default class testData {
       phoneNumber: '12345678',
       address: 'plot 436 arab road kubwa',
       gender: 'male',
-      email: 'judegodwin@gmail.com',
+      email: 'okaforjudechukwuebuka@gmail.com',
       password: 'passsss',
       isAdmin: true,
       role: 'buyer',
@@ -27,24 +27,44 @@ export default class testData {
     };
   }
 
+  static invalidUserSignIn() {
+    return {
+      email: 'judegmail',
+      password: 'pass',
+    };
+  }
+
   static newUser() {
     return {
+      email: 'newUser@gmail.com',
+      password: 'password',
       firstName: 'jude',
       lastName: 'okafor',
-      phoneNumber: '12345678',
+      phoneNumber: '123456789',
       address: 'plot 436 arab road kubwa',
       gender: 'male',
-      email: 'judegodwin@gmail.com',
-      password: 'passsss',
-      isAdmin: true,
-      role: 'buyer',
+      role: 'SELLER',
     };
   }
 
   static signInUser() {
     return {
       email: 'okaforjudechukwuebuka@gmail.com',
-      password: 'passsss',
+      password: 'password',
+    };
+  }
+
+  static signInAdmin() {
+    return {
+      email: 'jude@gmail.com',
+      password: 'password',
+    };
+  }
+
+  static signInSeller() {
+    return {
+      email: 'janefrances@gmail.com',
+      password: 'password',
     };
   }
 
@@ -58,14 +78,14 @@ export default class testData {
   static strangeUser() {
     return {
       email: 'userNotfound@gmail.com',
-      password: 'pass',
+      password: 'passssssss',
     };
   }
 
   static resetPasswordError() {
     return {
-      password: 'pass',
-      cnfPassword: 'passnot',
+      password: 'password123',
+      cnfPassword: 'password',
     };
   }
 

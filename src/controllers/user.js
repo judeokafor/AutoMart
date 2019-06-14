@@ -93,40 +93,59 @@ export default class userController {
     return errorHandler.validationError(res, result);
   }
 
-  static signIn(req, res) {
-    const userData = req.body;
-    const verifiedUser = userStore.find(
-      databaseUser => databaseUser.email === userData.email,
-    );
-    if (!verifiedUser) {
-      res.status(404).json({ status: 'error', message: 'User Not Found' });
-    } else {
-      bcrypt.compare(userData.password, verifiedUser.password).then((isMatch) => {
-        if (isMatch) {
-          const payload = {
-            id: userData.id,
-            email: userData.email,
-            isAdmin: userData.isAdmin,
-          };
-          jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
-            if (err) {
-              throw err;
-            } else {
-              res.status(201).json({
-                status: 'success',
-                message: 'Login Succesful',
-                token: `Bearer ${token}`,
+  static async signIn(req, res) {
+    const { email, password } = req.body;
+    const result = Joi.validate(req.body, User.signInUser, { convert: false });
+    if (result.error === null) {
+      const args = [email];
+      const { rowCount, rows } = await db.Query(Queries.searchForEmail, args);
+      try {
+        if (rowCount === 1) {
+          const validPassword = await bcrypt.compare(
+            password,
+            rows[0].password,
+          );
+          try {
+            if (validPassword) {
+              const payload = {
+                id: rows[0].userid,
+                email: rows[0].email,
+                isAdmin: rows[0].isAdmin,
+                role: rows[0].role,
+              };
+              jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
+                if (err) {
+                  throw err;
+                } else {
+                  return res.status(201).json({
+                    status: 201,
+                    message: 'Login Succesful',
+                    token: `Bearer ${token}`,
+                    role: rows[0].role,
+                    isAdmin: rows[0].isAdmin,
+                  });
+                }
               });
+            } else {
+              return res
+                .status(400)
+                .json({ status: 400, message: 'Password Incorrect' });
             }
-          });
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
         } else {
           return res
-            .status(400)
-            .json({ status: 'error', message: 'Password Incorrect' });
+            .status(404)
+            .json({ status: 404, message: 'User Not Found' });
         }
-        return false;
-      });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
+    } else {
+      return errorHandler.validationError(res, result);
     }
+    return false;
   }
 
   static currentProfile(req, res) {
