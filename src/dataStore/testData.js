@@ -133,18 +133,16 @@ export default class testData {
 
   static newOrder() {
     return {
-      buyer: 3445,
-      carId: 2345,
-      price: 5000000,
+      carId: 3,
+      amount: 5000000,
       priceOffered: 400000,
     };
   }
 
   static errorOrder() {
     return {
-      buyer: '3445',
-      carId: '2345',
-      price: '5000000',
+      carId: '2-',
+      amount: '_5000000',
       priceOffered: 400000,
     };
   }

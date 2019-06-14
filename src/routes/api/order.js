@@ -12,9 +12,10 @@ router.post(
   isBuyer,
   orderController.createOrder,
 );
-router.put(
-  '/:id/:price',
+router.patch(
+  '/:id/price',
   passport.authenticate('jwt', { session: false }),
+  isBuyer,
   orderController.updateOrder,
 );
 
