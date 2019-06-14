@@ -48,16 +48,22 @@ export default class flagController {
     return errorHandler.validationError(res, result);
   }
 
-  static viewAllFlags(req, res) {
-    if (flagStore.length > 0) {
-      return res.status(200).json({
-        status: 'success',
-        data: flagStore,
+  static async viewAllFlags(req, res) {
+    const { rowCount, rows } = await db.Query(Queries.allFlags);
+    try {
+      if (rowCount > 0) {
+        return res.status(200).json({
+          status: 200,
+          data: rows,
+        });
+      }
+      return res.status(404).json({
+        status: 404,
+        message: 'Reports not found',
       });
+    } catch (error) {
+      errorHandler.tryCatchError(res, error);
     }
-    return res.status(404).json({
-      status: 'error',
-      message: 'Reports not found',
-    });
+    return false;
   }
 }
