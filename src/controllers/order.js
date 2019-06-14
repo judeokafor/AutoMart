@@ -100,4 +100,37 @@ export default class orderController {
     }
     return errorHandler.validationError(res, result);
   }
+
+  static async getAllUserOrders(req, res) {
+    const { userid } = req.user;
+    const result = Joi.validate(
+      parseInt(userid, 10),
+      Joi.number()
+        .integer()
+        .required(),
+      {
+        convert: false,
+      },
+    );
+    if (result.error === null) {
+      const args = [parseInt(userid, 10), 'pending'];
+      const { rowCount, rows } = await db.Query(Queries.userOrder, args);
+      try {
+        if (rowCount > 0) {
+          return res.status(200).json({
+            status: 200,
+            message: 'Pending orders',
+            data: rows,
+          });
+        }
+        return res.status(404).json({
+          status: 404,
+          message: 'Order not found',
+        });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
+    }
+    return errorHandler.validationError(res, result);
+  }
 }

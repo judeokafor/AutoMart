@@ -12,6 +12,12 @@ router.post(
   isBuyer,
   orderController.createOrder,
 );
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  isBuyer,
+  orderController.getAllUserOrders,
+);
 router.patch(
   '/:id/price',
   passport.authenticate('jwt', { session: false }),

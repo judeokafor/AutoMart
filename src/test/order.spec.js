@@ -110,14 +110,27 @@ describe('Testing the order route', () => {
       }
     });
   });
+  describe('View all orders', () => {
+    it('should get all pending orders from a single user', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}`)
+        .set('Authorization', auth);
+      try {
+        expect(res).to.have.status(200);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('message');
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  });
+  it('should return authorization error', async () => {
+    const res = await chai.request(server).get(`${base2}`);
+    try {
+      expect(res).to.have.status(401);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 });
-
-// it('should get all pending orders from a single user', async () => {
-//   const res = await chai
-//     .request(server)
-//     .get(`${base2}`)
-//     .set('Authorization', auth);
-//   expect(res).to.have.status(200);
-//   expect(res.body).to.have.property('status');
-//   expect(res.body).to.have.property('message');
-// });
