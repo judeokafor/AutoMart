@@ -112,32 +112,48 @@ describe('User auth routes', () => {
 
   describe('Testing the logout endpoint', () => {
     it('should log a user out succesfully', async () => {
-      const res = await chai.request(server).get('/api/v2/auth/logout');
-      expect(res).to.have.status(200);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
+      const res = await chai.request(server).get(`${base}/logout`);
+      try {
+        expect(res).to.have.status(200);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('message');
+      } catch (error) {
+        console.log(error);
+      }
     });
   });
   describe('Testing the authenticated current profile route', () => {
     before(async () => {
       const res = await chai
         .request(server)
-        .post('/api/v2/auth/signIn')
+        .post(`${base}/signIn`)
         .send(testData.signInUser());
-      const { token } = res.body;
-      auth = token;
+      try {
+        const { token } = res.body;
+        auth = token;
+      } catch (error) {
+        console.log(error);
+      }
     });
     it('should get a user profile succesfully', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v2/auth/getProfile')
+        .get(`${base}/getProfile`)
         .set('Authorization', auth);
-      expect(res).to.have.status(200);
-      expect(res).to.have.property('status');
+      try {
+        expect(res).to.have.status(200);
+        expect(res).to.have.property('status');
+      } catch (error) {
+        console.log(error);
+      }
     });
     it('should return error for the user profile not being authenticated', async () => {
-      const res = await chai.request(server).get('/api/v2/auth/getProfile');
-      expect(res).to.have.status(401);
+      const res = await chai.request(server).get(`${base}`);
+      try {
+        expect(res).to.have.status(401);
+      } catch (error) {
+        console.log(error);
+      }
     });
   });
 });

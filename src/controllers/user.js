@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import Joi from 'joi';
 
 import User from '../models/User';
-import userStore from '../dataStore/user';
 import errorHandler from '../lib/helpers/errorHandler';
 import Queries from '../lib/helpers/queries';
 import db from '../lib/helpers/dbHelpers';
@@ -150,7 +149,7 @@ export default class userController {
 
   static currentProfile(req, res) {
     if (req.user) {
-      return res.status(200).json({ status: 'success', data: req.user });
+      return res.status(200).json({ status: 200, data: req.user });
     }
     return false;
   }
