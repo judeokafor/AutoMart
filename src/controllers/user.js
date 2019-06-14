@@ -31,52 +31,64 @@ export default class userController {
     return false;
   }
 
-  static signUp(req, res) {
-    const userData = req.body;
-
-    const result = Joi.validate(userData, User.userSchema, { convert: false });
+  static async signUp(req, res) {
+    const {
+      firstName,
+      lastName,
+      phoneNumber,
+      address,
+      gender,
+      email,
+      password,
+      role,
+    } = req.body;
+    const result = Joi.validate(req.body, User.userSchema, { convert: false });
     if (result.error === null) {
       const salt = bcrypt.genSaltSync(10);
-      const hash = bcrypt.hashSync(userData.password, salt);
-      const avatar = gravatar.url(req.body.email, {
+      const hash = bcrypt.hashSync(password, salt);
+      const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
         d: 'mm',
       });
-      const user = new User(
-        (userData.id = Math.ceil(
-          Math.random() * 100000 * (userStore.length + 1),
-        )),
-        userData.firstName,
-        userData.lastName,
-        userData.phoneNumber,
-        userData.address,
-        userData.gender,
-        userData.email,
-        (userData.password = hash),
-        (userData.avatar = avatar),
-        userData.isAdmin,
-        userData.role,
-      );
-      const verifiedUser = userStore.find(
-        olduser => olduser.email === userData.email,
-      );
-      if (verifiedUser) {
+      const args = [email];
+      const { rowCount } = await db.Query(Queries.searchForEmail, args);
+      try {
+        if (rowCount === 0) {
+          const args2 = [
+            firstName,
+            lastName,
+            phoneNumber,
+            hash,
+            address,
+            gender,
+            email,
+            avatar,
+            false,
+            role,
+          ];
+          const { rows } = await db.Query(Queries.insertUsers, args2);
+          try {
+            const payload = {
+              userid: rows[0].userid,
+              email,
+              role,
+            };
+            const token = jwt.sign(payload, process.env.SECRET_KEY);
+            return res
+              .status(201)
+              .json({ status: 201, token: `Bearer ${token}`, data: payload });
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
+        }
         return res.status(400).json({
-          status: 'error',
+          status: 400,
           message: 'Email Already Exist',
         });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
       }
-      userStore.push(user);
-      const payload = {
-        id: user.id,
-        email: user.email,
-        isAdmin: user.isAdmin,
-      };
-      const token = jwt.sign(payload, process.env.SECRET_KEY);
-      return res
-        .status(201)
-        .json({ status: 'success', token: `Bearer ${token}`, data: user });
     }
     return errorHandler.validationError(res, result);
   }

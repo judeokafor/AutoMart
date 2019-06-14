@@ -12,7 +12,7 @@ describe('Testing the reset password functionality', () => {
     it('should send password reset to email', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v1/reset/resetPassword')
+        .post('/api/v2/reset/resetPassword')
         .type('form')
         .send({ email: 'okaforjudechukwuebuka@gmail.com' });
       expect(res).to.have.status(201);
@@ -23,7 +23,7 @@ describe('Testing the reset password functionality', () => {
     it('should return an error user not found', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v1/reset/resetPassword')
+        .post('/api/v2/reset/resetPassword')
         .type('form')
         .send({ email: 'notfound@gmail.com' });
       expect(res).to.have.status(404);
@@ -36,7 +36,7 @@ describe('Testing the reset password functionality', () => {
     before('it should send a mail for request a new password', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v1/reset/resetPassword')
+        .post('/api/v2/reset/resetPassword')
         .type('form')
         .send({ email: 'okaforjudechukwuebuka@gmail.com' });
       const { token } = res.body.data;
@@ -45,7 +45,7 @@ describe('Testing the reset password functionality', () => {
     it('should reset password successfully', async () => {
       const res = await chai
         .request(server)
-        .post(`/api/v1/reset/confirmReset/?token=${auth}`)
+        .post(`/api/v2/reset/confirmReset/?token=${auth}`)
         .type('form')
         .send(testData.resetPasswordTrue());
       expect(res).to.have.status(201);
@@ -56,7 +56,7 @@ describe('Testing the reset password functionality', () => {
     it('should return error if password not equal to confirm password', async () => {
       const res = await chai
         .request(server)
-        .post(`/api/v1/reset/confirmReset/?token=${auth}`)
+        .post(`/api/v2/reset/confirmReset/?token=${auth}`)
         .type('form')
         .send(testData.resetPasswordError());
       expect(res).to.have.status(400);
@@ -66,7 +66,7 @@ describe('Testing the reset password functionality', () => {
     it('should return an error if unauthorized user', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v1/reset/resetPassword')
+        .post('/api/v2/reset/resetPassword')
         .type('form')
         .send(testData.resetPasswordTrue());
       expect(res).to.have.status(404);
