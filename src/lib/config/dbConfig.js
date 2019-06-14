@@ -6,7 +6,7 @@ const { Pool } = pg;
 let connectionString;
 let ssl;
 if (process.env.NODE_ENV === 'test') {
-  connectionString = process.env.PGURLTEST;
+  connectionString = process.env.PGELEPHANTURL;
   ssl = false;
 } else {
   connectionString = process.env.PGHEROKU;
