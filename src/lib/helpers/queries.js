@@ -76,4 +76,8 @@ export default class Queries {
     return `UPDATE cars SET price = $1 
     WHERE carid = $2 RETURNING carid, manufacturer, model, price`;
   }
+
+  static get searchByStatus() {
+    return 'SELECT * FROM cars WHERE status = $1';
+  }
 }
