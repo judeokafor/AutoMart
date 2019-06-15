@@ -100,34 +100,41 @@ export default class carController {
     return false;
   }
 
-  static markAsSold(req, res) {
-    const { id, status } = req.params;
+  static async markAsSold(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
     const data = {
-      id,
+      id: parseInt(id, 10),
       status,
     };
-    const results = Joi.validate(data, Car.length, { convert: false });
-    if (results.error === null) {
-      console.log('continue with app');
-    } else {
-      console.log(results.error.details[0].message);
+    const result = Joi.validate(data, Car.markAsSold, { convert: false });
+    if (result.error === null) {
+      const args = [data.id];
+      const { rowCount } = await db.Query(Queries.searchForCarAdById, args);
+      try {
+        if (rowCount === 1) {
+          const args2 = ['sold', data.id];
+          const { rows } = await db.Query(Queries.updateCarAsSold, args2);
+          try {
+            if (rows.length === 1) {
+              return res.status(200).json({
+                status: 200,
+                message: 'Updated succesfully, marked as sold',
+              });
+            }
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
+        }
+        return res.status(404).json({
+          status: 404,
+          message: 'Order not found',
+        });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
     }
-
-    const relatedOrder = carStore.find(
-      order => parseInt(order.id, 10) === parseInt(id, 10),
-    );
-    if (relatedOrder) {
-      relatedOrder.status = status;
-      return res.status(200).json({
-        status: 'success',
-        message: 'Updated succesfully, marked as sold',
-        data: relatedOrder,
-      });
-    }
-    return res.status(404).json({
-      status: 'error',
-      message: 'Order not found',
-    });
+    return errorHandler.validationError(res, result);
   }
 
   static updateOrderPrice(req, res) {

@@ -3,18 +3,20 @@ import passport from 'passport';
 import upload from '../../lib/config/multerConfig';
 import carController from '../../controllers/cars';
 import isAdmin from '../../lib/middleware/admin';
-
+import isSeller from '../../lib/middleware/seller';
 const router = express.Router();
 
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
+  isSeller,
   upload.any(),
   carController.postCarAd,
 );
-router.put(
-  '/:id/:status',
+router.patch(
+  '/:id/status',
   passport.authenticate('jwt', { session: false }),
+  isSeller,
   carController.markAsSold,
 );
 router.put(
