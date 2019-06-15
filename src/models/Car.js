@@ -35,4 +35,15 @@ export default class Car {
         .required(),
     });
   }
+
+  static get updateOrderPrice() {
+    return Joi.object({
+      id: Joi.number()
+        .integer()
+        .required(),
+      price: Joi.number()
+        .integer()
+        .required(),
+    });
+  }
 }
