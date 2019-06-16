@@ -248,22 +248,30 @@ export default class carController {
     });
   }
 
-  static deleteAdvert(req, res) {
+  static async deleteAdvert(req, res) {
     const { id } = req.params;
-    carStore.forEach((order, i) => {
-      if (parseInt(order.id, 10) === parseInt(id, 10)) {
-        carStore.splice(i, 1);
-        return res.status(200).json({
-          status: 'success',
+    const result = Joi.validate(
+      parseInt(id, 10),
+      Joi.number()
+        .integer()
+        .required(),
+      { convert: false },
+    );
+    if (result.error === null) {
+      const args = [parseInt(id, 10)];
+      const { rowCount } = await db.Query(Queries.deleteCarAd, args);
+      if (rowCount === 1) {
+        return res.status(200).send({
+          status: 200,
           message: 'Advert Deleted Successfully',
-          data: carStore,
         });
       }
       return res.status(404).json({
-        status: 'error',
+        status: 404,
         message: 'Car not found',
       });
-    });
+    }
+    return errorHandler.validationError(res, result);
   }
 
   static viewAllAdverts(req, res) {

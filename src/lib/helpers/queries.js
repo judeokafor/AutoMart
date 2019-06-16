@@ -80,4 +80,8 @@ export default class Queries {
   static get searchByStatus() {
     return 'SELECT * FROM cars WHERE status = $1';
   }
+
+  static get deleteCarAd() {
+    return 'DELETE FROM cars WHERE carid = $1';
+  }
 }

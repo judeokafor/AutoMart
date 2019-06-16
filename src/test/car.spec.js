@@ -166,7 +166,7 @@ describe('Testing the car advert placement route', () => {
     it('should delete a particular advert if authencticated as an admin and user', async () => {
       const res = await chai
         .request(server)
-        .delete('/api/v2/car/deleteAdvert/4444')
+        .delete(`${base2}/1`)
         .set('Authorization', auth);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
@@ -175,7 +175,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v2/car/deleteAdvert/4')
+        .delete(`${base2}/100`)
         .set('Authorization', auth);
       expect(res).to.have.status(404);
     });
