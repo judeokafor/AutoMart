@@ -38,17 +38,6 @@ describe('Testing the car advert placement route', () => {
         console.log(error);
       }
     });
-    // it('should create an advert successfully', async () => {
-    //   const res = await chai
-    //     .request(server)
-    //     .post('/api/v2/car')
-    //     .type('form')
-    //     .send(testData.carAdvert());
-    //   expect(res).to.have.status(201);
-    //   expect(res.body).to.have.property('status');
-    //   expect(res.body).to.have.property('message');
-    //   expect(res.body).to.have.property('data');
-    // });
   });
   describe('should mark an advert as sold', () => {
     it('should mark an order as sold', async () => {
@@ -156,24 +145,24 @@ describe('Testing the car advert placement route', () => {
       expect(res.body).to.have.property('message');
     });
   });
-  describe('should get details of all unsold cars within a particular range', () => {
-    it('should get all cars that has status of available within a range', async () => {
-      const res = await chai
-        .request(server)
-        .get('/api/v2/car?status=available&min=1000000&max=1500000');
-      expect(res).to.have.status(200);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('data');
-    });
-    it('should return an error if it doesnt exist', async () => {
-      const res = await chai
-        .request(server)
-        .get('/api/v2/car?status=available&min=10&max=150');
-      expect(res).to.have.status(404);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
-    });
-  });
+  // describe('should get details of all unsold cars within a particular range', () => {
+  //   it('should get all cars that has status of available within a range', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get('/api/v2/car?status=available&min=1000000&max=1500000');
+  //     expect(res).to.have.status(200);
+  //     expect(res.body).to.have.property('status');
+  //     expect(res.body).to.have.property('data');
+  //   });
+  //   it('should return an error if it doesnt exist', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get('/api/v2/car?status=available&min=10&max=150');
+  //     expect(res).to.have.status(404);
+  //     expect(res.body).to.have.property('status');
+  //     expect(res.body).to.have.property('message');
+  //   });
+  // });
   describe('delete a particular advert', () => {
     it('should delete a particular advert if authencticated as an admin and user', async () => {
       const res = await chai

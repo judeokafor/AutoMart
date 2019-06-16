@@ -9,7 +9,7 @@ dotenv.config();
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.SECRET_KEY;
-export default (passport) => {
+const passportFunction = (passport) => {
   passport.use(
     new Strategy(opts, async (jwtPayLoad, next) => {
       const args = [jwtPayLoad.email];
@@ -23,3 +23,5 @@ export default (passport) => {
     }),
   );
 };
+
+export default passportFunction;
