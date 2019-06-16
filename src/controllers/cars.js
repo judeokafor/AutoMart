@@ -224,6 +224,42 @@ export default class carController {
     });
   }
 
+  static async cars(req, res) {
+    try {
+      // const {
+      //   status, min, max, state, manufacturer, bodyType,
+      // } = req.query;
+      const { authorization } = req.headers;
+      if (authorization) {
+        const token = authorization.split(' ')[1];
+        const decoded = decode(token);
+        if (decoded.role === 'admin') {
+          const args = ['available', 'sold'];
+          const { rowCount, rows } = await db.Query(
+            Queries.allAdvertsSoldAvaliable,
+            args,
+          );
+          if (rowCount > 0) {
+            return res.status(200).json({
+              status: 200,
+              data: rows,
+            });
+          }
+          return res.status(404).json({
+            status: 404,
+            message: 'Cars not available',
+          });
+        }
+        if (decoded.role !== 'admin') {
+          return res.status(401).json({ status: 401, message: 'Unauthorized' });
+        }
+      }
+    } catch (error) {
+      errorHandler.tryCatchError(res, error);
+    }
+    return false;
+  }
+
   static viewUnsoldCarBetweenMaxandMin(req, res) {
     const { status, min, max } = req.query;
     const unSoldCars = carStore.filter(order => order.status === status);

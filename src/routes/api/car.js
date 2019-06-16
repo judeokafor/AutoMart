@@ -25,8 +25,7 @@ router.patch(
   isSeller,
   carController.updateOrderPrice,
 );
-
-router.get('/', carController.viewUnsoldCarBetweenMaxandMin);
+router.get('/', carController.cars);
 router.get('/view', carController.viewUnsoldCar);
 router.get(
   '/viewAllAdverts',
