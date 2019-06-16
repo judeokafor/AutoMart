@@ -226,9 +226,9 @@ export default class carController {
 
   static async cars(req, res) {
     try {
-      // const {
-      //   status, min, max, state, manufacturer, bodyType,
-      // } = req.query;
+      const {
+        status, min, max, state, manufacturer, bodyType,
+      } = req.query;
       const { authorization } = req.headers;
       if (authorization) {
         const token = authorization.split(' ')[1];
