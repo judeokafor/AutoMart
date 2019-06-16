@@ -9,8 +9,8 @@ if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.PGURLTEST;
   ssl = false;
 } else {
-  connectionString = process.env.PGURLDEV;
-  ssl = false;
+  connectionString = process.env.PGHEROKU;
+  ssl = true;
 }
 
 const pool = new Pool({
