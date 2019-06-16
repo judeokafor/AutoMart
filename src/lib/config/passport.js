@@ -2,7 +2,6 @@ import JwtStrategy from 'passport-jwt';
 import dotenv from 'dotenv';
 import Queries from '../helpers/queries';
 import db from '../helpers/dbHelpers';
-import ErrorHandler from '../helpers/errorHandler';
 
 const { Strategy, ExtractJwt } = JwtStrategy;
 dotenv.config();
@@ -10,7 +9,7 @@ dotenv.config();
 const passportFunction = (passport) => {
   const opts = {};
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-  opts.secretOrKey = process.env.SECRET_KEY;
+  opts.secretOrKey = 'winter is coming';
   passport.use(
     new Strategy(opts, async (jwtPayLoad, next) => {
       try {
