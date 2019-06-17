@@ -89,4 +89,8 @@ export default class Queries {
     return `SELECT * FROM cars
     WHERE status = $1 OR status = $2`;
   }
+
+  static get searchUnsoldCarBetweenMaxandMin() {
+    return 'SELECT * FROM cars WHERE status = $1 AND price BETWEEN $2 AND $3';
+  }
 }

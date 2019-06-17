@@ -142,6 +142,39 @@ describe('Testing the car advert placement route', () => {
       expect(res.body).to.have.property('status');
     });
   });
+  describe('should get details of all unsold cars within a particular range', () => {
+    it('should get all cars that has status of available within a range', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&min=1000000&max=4500000`);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('data');
+    });
+    it('should return an error if it doesnt exist', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&min=10&max=150`);
+      expect(res).to.have.status(404);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
+    });
+    it('should return a validation error', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&min=-1&max=-abcd`);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
+    });
+    it('should return a validation error', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&min=-1&max=abcd`)
+        .set('Authorization', auth);
+      expect(res).to.have.status(401);
+      expect(res.body).to.have.property('status');
+    });
+  });
 
   describe('delete a particular advert', () => {
     it('should delete a particular advert if authencticated as an admin and user', async () => {

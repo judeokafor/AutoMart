@@ -46,4 +46,18 @@ export default class Car {
         .required(),
     });
   }
+
+  static get viewUnsoldCarBetweenMaxandMin() {
+    return Joi.object({
+      status: Joi.string()
+        .max(15)
+        .required(),
+      min: Joi.number()
+        .integer()
+        .positive(),
+      max: Joi.number()
+        .integer()
+        .positive(),
+    });
+  }
 }
