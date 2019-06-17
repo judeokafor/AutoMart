@@ -72,10 +72,6 @@ export default class carController {
               data: rows[0],
             });
           }
-          return res.status(409).json({
-            status: 409,
-            message: 'Something went wrong while storing at the db',
-          });
         }
         return res.status(400).json({
           status: 400,
