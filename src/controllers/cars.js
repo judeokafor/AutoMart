@@ -282,6 +282,34 @@ export default class carController {
         }
         return errorHandler.validationError(res, result);
       }
+      if (status && state) {
+        const result = Joi.validate(
+          state,
+          Joi.string()
+            .max(100)
+            .equal(['new', 'used'])
+            .required(),
+          { convert: false },
+        );
+        if (result.error === null) {
+          const args = ['available', state];
+          const { rowCount, rows } = await db.Query(
+            Queries.viewUnsoldCarAnyState,
+            args,
+          );
+          if (rowCount > 0) {
+            return res.status(200).json({
+              status: 200,
+              data: rows,
+            });
+          }
+          return res.status(404).json({
+            status: 404,
+            message: 'Car not found',
+          });
+        }
+        return errorHandler.validationError(res, result);
+      }
       if (bodyType) {
         const result = Joi.validate(
           bodyType,
