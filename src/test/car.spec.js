@@ -224,16 +224,22 @@ describe('Testing the car advert placement route', () => {
     it('should get all cars from a particular manufacturer successfully', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v2/car/viewUnsoldCarsWithMake/Toyota');
+        .get(`${base2}?status=available&manufacturer=Toyota`);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
     });
     it('should return an error if it doesnt exist', async () => {
+      const res = await chai.request(server).get(`${base2}/manufacturer/Toy`);
+      expect(res).to.have.status(404);
+    });
+    it('should return an unauthorized error', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v2/car/viewUnsoldCarsWithMake/Toy');
-      expect(res).to.have.status(404);
+        .get(`${base2}?status=available&manufacturer=Toyota`)
+        .set('Authorization', auth);
+      expect(res).to.have.status(401);
+      expect(res.body).to.have.property('status');
     });
   });
   describe('should get details of all unsold cars of a particular body type', () => {

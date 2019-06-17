@@ -282,6 +282,33 @@ export default class carController {
         }
         return errorHandler.validationError(res, result);
       }
+      if (status && manufacturer) {
+        const result = Joi.validate(
+          manufacturer,
+          Joi.string()
+            .max(100)
+            .required(),
+          { convert: false },
+        );
+        if (result.error === null) {
+          const args = ['available', manufacturer];
+          const { rowCount, rows } = await db.Query(
+            Queries.viewUnsoldCarSpecificMake,
+            args,
+          );
+          if (rowCount > 0) {
+            return res.status(200).json({
+              status: 200,
+              data: rows,
+            });
+          }
+          return res.status(404).json({
+            status: 404,
+            message: 'Car not found',
+          });
+        }
+        return errorHandler.validationError(res, result);
+      }
       if (status && state) {
         const result = Joi.validate(
           state,
@@ -347,7 +374,10 @@ export default class carController {
         );
         if (result.error === null) {
           const args = [status];
-          const { rowCount, rows } = await db.Query(Queries.searchByStatus, args);
+          const { rowCount, rows } = await db.Query(
+            Queries.searchByStatus,
+            args,
+          );
           if (rowCount >= 1) {
             return res.status(200).json({
               status: 200,
