@@ -93,4 +93,9 @@ export default class Queries {
   static get searchUnsoldCarBetweenMaxandMin() {
     return 'SELECT * FROM cars WHERE status = $1 AND price BETWEEN $2 AND $3';
   }
+
+  static get viewAllWithSpecificBodyType() {
+    return `SELECT * FROM cars 
+    WHERE body_type = $1`;
+  }
 }

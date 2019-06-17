@@ -166,7 +166,7 @@ describe('Testing the car advert placement route', () => {
       expect(res).to.have.status(400);
       expect(res.body).to.have.property('status');
     });
-    it('should return a validation error', async () => {
+    it('should return an unauthorized error', async () => {
       const res = await chai
         .request(server)
         .get(`${base2}?status=available&min=-1&max=abcd`)
@@ -238,18 +238,22 @@ describe('Testing the car advert placement route', () => {
   });
   describe('should get details of all unsold cars of a particular body type', () => {
     it('should get all cars from a particular body type successfully', async () => {
-      const res = await chai
-        .request(server)
-        .get('/api/v2/car/viewAllWithSpecificBodyType/Sedan');
+      const res = await chai.request(server).get(`${base2}?bodyType=Sedan`);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
     });
     it('should return an error if it doesnt exist', async () => {
+      const res = await chai.request(server).get(`${base2}?bodyType=Sedanzzz`);
+      expect(res).to.have.status(404);
+    });
+    it('should return an unauthorized error', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v2/car/viewAllWithSpecificBodyType/Sedanzzz');
-      expect(res).to.have.status(404);
+        .get(`${base2}?bodyType=Sedan`)
+        .set('Authorization', auth);
+      expect(res).to.have.status(401);
+      expect(res.body).to.have.property('status');
     });
   });
 });
