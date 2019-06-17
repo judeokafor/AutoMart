@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
-import testData from '../fixtures/testData';
+import testData from '../fixtures/fixtures';
 
 let auth;
 let adminauth;
