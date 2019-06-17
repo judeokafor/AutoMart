@@ -29,7 +29,8 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use(passport.initialize());
-passportFunction(passport);
+require('./lib/config/passport')(passport);
+// passportFunction(passport);
 
 app.use('/api/v2/auth', users);
 app.use('/api/v2/car', cars);
