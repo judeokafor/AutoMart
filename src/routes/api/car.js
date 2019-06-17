@@ -4,6 +4,7 @@ import upload from '../../lib/config/multerConfig';
 import carController from '../../controllers/cars';
 import isAdmin from '../../lib/middleware/admin';
 import isSeller from '../../lib/middleware/seller';
+
 const router = express.Router();
 
 router.post(
@@ -26,15 +27,6 @@ router.patch(
   carController.updateOrderPrice,
 );
 router.get('/', carController.cars);
-router.get('/view', carController.viewUnsoldCar);
-router.get(
-  '/viewAllAdverts',
-  passport.authenticate('jwt', { session: false }),
-  isAdmin,
-  carController.viewAllAdverts,
-);
-router.get('/used', carController.viewUsedUnsoldCar);
-router.get('/new', carController.viewNewUnsoldCar);
 
 router.get('/:id', carController.viewSpecificCar);
 
@@ -44,15 +36,4 @@ router.delete(
   isAdmin,
   carController.deleteAdvert,
 );
-
-router.get(
-  '/viewUnsoldCarsWithMake/:manufacturer',
-  carController.viewUnsoldCarSpecificMake,
-);
-
-router.get(
-  '/viewAllWithSpecificBodyType/:bodyType',
-  carController.viewAllWithSpecificBodyType,
-);
-
 export default router;
