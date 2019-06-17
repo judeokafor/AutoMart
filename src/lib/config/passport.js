@@ -8,7 +8,8 @@ dotenv.config();
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = process.env.SECRET_KEY;
+// opts.secretOrKey = process.env.SECRET_KEY;
+opts.secretOrKey = 'winter is here';
 module.exports = (passport) => {
   passport.use(
     new Strategy(opts, async (jwtPayLoad, next) => {
