@@ -129,12 +129,16 @@ describe('Testing the car advert placement route', () => {
   });
   describe('should get details of all unsold cars', () => {
     it('should get all cars that has status of available', async () => {
-      const res = await chai
-        .request(server)
-        .get('/api/v2/car/view?status=available');
-      expect(res).to.have.status(200);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('data');
+      try {
+        const res = await chai
+          .request(server)
+          .get('/api/v2/car/view?status=available');
+        expect(res).to.have.status(200);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('data');
+      } catch (error) {
+        console.log(error);
+      }
     });
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
