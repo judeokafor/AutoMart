@@ -71,7 +71,7 @@ describe('Testing the order route', () => {
     it('should update the price of an order successfully', async () => {
       const res = await chai
         .request(server)
-        .patch(`${base2}/1/price`)
+        .patch(`${base2}/2/price`)
         .set('Authorization', auth)
         .send({ price: 999999999 });
       try {

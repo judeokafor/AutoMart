@@ -12,7 +12,6 @@ import cars from './routes/api/car';
 import orders from './routes/api/order';
 import flags from './routes/api/flag';
 import reset from './routes/api/reset';
-import passportFunction from './lib/config/passport';
 
 dotenv.config();
 
@@ -30,7 +29,6 @@ app.use(morgan('dev'));
 
 app.use(passport.initialize());
 require('./lib/config/passport')(passport);
-// passportFunction(passport);
 
 app.use('/api/v2/auth', users);
 app.use('/api/v2/car', cars);
