@@ -7,6 +7,9 @@ install:
 cache:
   directories:
     - 'node_modules'
+before_script:
+  - psql -c 'DROP DATABASE IF EXISTS travis;' -U postgres
+  - psql -c 'CREATE DATABASE travis;' -U postgres
 
 script:
   - npm run lint
