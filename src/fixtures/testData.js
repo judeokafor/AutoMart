@@ -96,6 +96,13 @@ export default class testData {
     };
   }
 
+  static resetFailValidation() {
+    return {
+      password: '123',
+      cnfPassword: '1234',
+    };
+  }
+
   static sampleExistingReport() {
     return {
       id: 3345,

@@ -1,7 +1,6 @@
 import Joi from 'joi';
 import decode from 'jwt-decode';
 import Car from '../models/Car';
-import carStore from '../dataStore/car';
 import cloud from '../lib/config/cloudinaryConfig';
 import Queries from '../lib/helpers/queries';
 import db from '../lib/helpers/dbHelpers';
@@ -208,26 +207,6 @@ export default class carController {
     return false;
   }
 
-  static viewUnsoldCar(req, res) {
-    try {
-      const { status } = req.query;
-      const unSoldCars = carStore.filter(order => order.status === status);
-      if (unSoldCars.length > 0) {
-        return res.status(200).json({
-          status: 'success',
-          data: unSoldCars,
-        });
-      }
-      return res.status(404).json({
-        status: 'error',
-        message: 'Car not found',
-      });
-    } catch (error) {
-      errorHandler.tryCatchError(res, error);
-    }
-    return false;
-  }
-
   static async cars(req, res) {
     try {
       const {
@@ -395,35 +374,6 @@ export default class carController {
         }
         return errorHandler.validationError(res, result);
       }
-    } catch (error) {
-      errorHandler.tryCatchError(res, error);
-    }
-    return false;
-  }
-
-  static viewUnsoldCarBetweenMaxandMin(req, res) {
-    try {
-      const { status, min, max } = req.query;
-      const unSoldCars = carStore.filter(order => order.status === status);
-      if (unSoldCars.length > 0) {
-        const filteredCars = unSoldCars.filter(
-          order => order.price >= min && order.price <= max,
-        );
-        if (filteredCars.length > 0) {
-          return res.status(200).json({
-            status: 'success',
-            data: filteredCars,
-          });
-        }
-        return res.status(404).json({
-          status: 'error',
-          message: 'Car not found',
-        });
-      }
-      return res.status(404).json({
-        status: 'error',
-        message: 'Car not found',
-      });
     } catch (error) {
       errorHandler.tryCatchError(res, error);
     }

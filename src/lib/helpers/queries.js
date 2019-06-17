@@ -108,4 +108,9 @@ export default class Queries {
     return `SELECT * FROM cars 
     WHERE status = $1 AND manufacturer = $2`;
   }
+
+  static get updatePassword() {
+    return `UPDATE users SET password = $1 
+    WHERE email = $2 RETURNING userid, firstname, lastname, password`;
+  }
 }
