@@ -129,44 +129,20 @@ describe('Testing the car advert placement route', () => {
   });
   describe('should get details of all unsold cars', () => {
     it('should get all cars that has status of available', async () => {
-      try {
-        const res = await chai
-          .request(server)
-          .get('/api/v2/car/view?status=available');
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('data');
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await chai.request(server).get(`${base2}?status=available`);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('data');
     });
-    it('should return an error if it doesnt exist', async () => {
+    it('should return a validation error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v2/car/view?status=availablessss');
-      expect(res).to.have.status(404);
+        .get(`${base2}?status=availablessss`);
+      expect(res).to.have.status(400);
       expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
     });
   });
-  // describe('should get details of all unsold cars within a particular range', () => {
-  //   it('should get all cars that has status of available within a range', async () => {
-  //     const res = await chai
-  //       .request(server)
-  //       .get('/api/v2/car?status=available&min=1000000&max=1500000');
-  //     expect(res).to.have.status(200);
-  //     expect(res.body).to.have.property('status');
-  //     expect(res.body).to.have.property('data');
-  //   });
-  //   it('should return an error if it doesnt exist', async () => {
-  //     const res = await chai
-  //       .request(server)
-  //       .get('/api/v2/car?status=available&min=10&max=150');
-  //     expect(res).to.have.status(404);
-  //     expect(res.body).to.have.property('status');
-  //     expect(res.body).to.have.property('message');
-  //   });
-  // });
+
   describe('delete a particular advert', () => {
     it('should delete a particular advert if authencticated as an admin and user', async () => {
       const res = await chai
