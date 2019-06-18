@@ -56,22 +56,29 @@ export default class resetController {
               { convert: false },
             );
             if (rslt.error === null) {
-              const salt = bcrypt.genSaltSync(10);
-              const hash = bcrypt.hashSync(newPassword, salt);
-              const args2 = [hash, email];
-              const { rowCount } = await db.Query(
-                Queries.updatePassword,
-                args2,
-              );
-              if (rowCount === 1) {
-                return res.status(204).json({
-                  status: 204,
-                  message: 'Password Updated successfully',
-                });
+              const token = authorization.split(' ')[1];
+              const user = jwt.verify(token, process.env.SECRET_KEY);
+              if (user.email === email) {
+                const salt = bcrypt.genSaltSync(10);
+                const hash = bcrypt.hashSync(newPassword, salt);
+                const args2 = [hash, email];
+                const { rowCount } = await db.Query(
+                  Queries.updatePassword,
+                  args2,
+                );
+                if (rowCount === 1) {
+                  return res.status(204).json({
+                    status: 204,
+                    message: 'Password Updated successfully',
+                  });
+                }
+              } else {
+                return res
+                  .status(403)
+                  .json({ status: 403, message: 'Cannot make this request' });
               }
-            } else {
-              return errorHandler.validationError(res, rslt);
             }
+            return errorHandler.validationError(res, rslt);
           }
         }
         return res.status(404).json({

@@ -4,6 +4,7 @@ import testData from '../fixtures/fixtures';
 import server from '../server';
 
 let auth;
+let adminauth;
 const { expect } = chai;
 const url = '/api/v2';
 const base = `${url}/users`;
@@ -12,13 +13,19 @@ chai.use(chaiHttp);
 
 describe('Testing the reset password functionality', () => {
   before(async () => {
-    const res = await chai
-      .request(server)
-      .post(`${base2}/signIn`)
-      .send(testData.signInUser());
     try {
+      const res = await chai
+        .request(server)
+        .post(`${base2}/signIn`)
+        .send(testData.signInUser());
       const { token } = res.body;
       auth = token;
+      const resp = await chai
+        .request(server)
+        .post(`${base2}/signIn`)
+        .send(testData.signInAdmin());
+      const rez = resp.body;
+      adminauth = rez.token;
     } catch (error) {
       console.log(error);
     }
@@ -36,6 +43,13 @@ describe('Testing the reset password functionality', () => {
         .post(`${base}/okaforjudechukwuebuka@gmail.com/reset_password`)
         .set('Authorization', auth);
       expect(res).to.have.status(204);
+    });
+    it('should return a forbidden error', async () => {
+      const res = await chai
+        .request(server)
+        .post(`${base}/okaforjudechukwuebuka@gmail.com/reset_password`)
+        .set('Authorization', adminauth);
+      expect(res).to.have.status(403);
     });
     it('should return an error if unauthorized user', async () => {
       const res = await chai
