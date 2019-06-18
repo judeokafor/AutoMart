@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Joi from 'joi';
 import Flag from '../models/Flag';
 import errorHandler from '../lib/helpers/errorHandler';
@@ -42,7 +43,6 @@ export default class flagController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async viewAllFlags(req, res) {
@@ -62,6 +62,5 @@ export default class flagController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 }

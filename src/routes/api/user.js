@@ -3,7 +3,6 @@ import passport from 'passport';
 import userController from '../../controllers/user';
 
 const router = express.Router();
-router.get('/test', userController.testdbconnection);
 router.post('/signUp', userController.signUp);
 router.post('/signIn', userController.signIn);
 router.get(

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
 import Car from '../models/Car';
@@ -83,7 +84,6 @@ export default class carController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async markAsSold(req, res) {
@@ -118,7 +118,6 @@ export default class carController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async updateOrderPrice(req, res) {
@@ -138,7 +137,7 @@ export default class carController {
         const { rowCount } = await db.Query(Queries.searchForCarAdById, args);
         if (rowCount === 1) {
           const args2 = [parseInt(price, 10), data.id];
-          const { rows } = await db.Query(Queries.updateCarAsSold, args2);
+          const { rows } = await db.Query(Queries.updateCarPrice, args2);
           if (rows.length === 1) {
             return res.status(200).json({
               status: 200,
@@ -156,7 +155,6 @@ export default class carController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async viewSpecificCar(req, res) {
@@ -192,7 +190,6 @@ export default class carController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async cars(req, res) {
@@ -366,7 +363,6 @@ export default class carController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async deleteAdvert(req, res) {
@@ -398,6 +394,5 @@ export default class carController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 }

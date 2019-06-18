@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Joi from 'joi';
 import Order from '../models/Order';
 import errorHandler from '../lib/helpers/errorHandler';
@@ -46,7 +47,6 @@ export default class orderController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async updateOrder(req, res) {
@@ -93,7 +93,6 @@ export default class orderController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async getAllUserOrders(req, res) {
@@ -128,6 +127,5 @@ export default class orderController {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 }
