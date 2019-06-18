@@ -80,6 +80,7 @@ export default class carController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -114,6 +115,7 @@ export default class carController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -134,31 +136,24 @@ export default class carController {
       if (result.error === null) {
         const args = [data.id];
         const { rowCount } = await db.Query(Queries.searchForCarAdById, args);
-        try {
-          if (rowCount === 1) {
-            const args2 = [parseInt(price, 10), data.id];
-            const { rows } = await db.Query(Queries.updateCarAsSold, args2);
-            try {
-              if (rows.length === 1) {
-                return res.status(200).json({
-                  status: 200,
-                  message: 'Order Price Updated Succesfully',
-                });
-              }
-            } catch (error) {
-              errorHandler.tryCatchError(res, error);
-            }
+        if (rowCount === 1) {
+          const args2 = [parseInt(price, 10), data.id];
+          const { rows } = await db.Query(Queries.updateCarAsSold, args2);
+          if (rows.length === 1) {
+            return res.status(200).json({
+              status: 200,
+              message: 'Order Price Updated Succesfully',
+            });
           }
-          return res.status(404).json({
-            status: 404,
-            message: 'Order not found',
-          });
-        } catch (error) {
-          errorHandler.tryCatchError(res, error);
         }
+        return res.status(404).json({
+          status: 404,
+          message: 'Order not found',
+        });
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -181,23 +176,20 @@ export default class carController {
           Queries.searchForCarAdById,
           args,
         );
-        try {
-          if (rowCount === 1) {
-            return res.status(200).json({
-              status: 200,
-              data: rows[0],
-            });
-          }
-          return res.status(404).json({
-            status: 404,
-            message: 'Car not found',
+        if (rowCount === 1) {
+          return res.status(200).json({
+            status: 200,
+            data: rows[0],
           });
-        } catch (error) {
-          errorHandler.tryCatchError(res, error);
         }
+        return res.status(404).json({
+          status: 404,
+          message: 'Car not found',
+        });
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -371,6 +363,7 @@ export default class carController {
         return errorHandler.validationError(res, result);
       }
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -402,6 +395,7 @@ export default class carController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;

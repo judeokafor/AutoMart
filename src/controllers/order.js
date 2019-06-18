@@ -43,6 +43,7 @@ export default class orderController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -89,6 +90,7 @@ export default class orderController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -123,6 +125,7 @@ export default class orderController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;

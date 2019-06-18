@@ -13,6 +13,7 @@ dotenv.config();
 
 export default class userController {
   static test(req, res) {
+    /* istanbul ignore next */
     res.json({ message: 'user works' });
   }
 
@@ -25,6 +26,7 @@ export default class userController {
         });
       }
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -86,6 +88,7 @@ export default class userController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
@@ -139,6 +142,7 @@ export default class userController {
         return errorHandler.validationError(res, result);
       }
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
     return false;
