@@ -58,19 +58,4 @@ export default class User {
       .max(150)
       .required();
   }
-
-  static get confirmPassword() {
-    return Joi.object({
-      password: Joi.string()
-        .alphanum()
-        .min(6)
-        .max(30)
-        .required(),
-      cnfPassword: Joi.string()
-        .alphanum()
-        .min(6)
-        .max(30)
-        .required(),
-    });
-  }
 }

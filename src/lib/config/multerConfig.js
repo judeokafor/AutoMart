@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 const multer = require('multer');
 
 const storage = multer.diskStorage({

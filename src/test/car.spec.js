@@ -17,12 +17,8 @@ describe('Testing the car advert placement route', () => {
       .request(server)
       .post(`${base}/signIn`)
       .send(testData.signInSeller());
-    try {
-      const { token } = res.body;
-      auth = token;
-    } catch (error) {
-      console.log(error);
-    }
+    const { token } = res.body;
+    auth = token;
   });
   describe('should upload image to cloudinary and create a post', () => {
     it('should return a validation error', async () => {
@@ -31,29 +27,22 @@ describe('Testing the car advert placement route', () => {
         .post(`${base2}`)
         .set('Authorization', auth)
         .send(testData.errorCarAdvert());
-      try {
-        expect(res).to.have.status(400);
-        expect(res.body).to.have.property('status');
-      } catch (error) {
-        console.log(error);
-      }
+
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
   });
   describe('should mark an advert as sold', () => {
     it('should mark an order as sold', async () => {
-      try {
-        const res = await chai
-          .request(server)
-          .patch(`${base2}/1/status`)
-          .type('form')
-          .send({ status: 'sold' })
-          .set('Authorization', auth);
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await chai
+        .request(server)
+        .patch(`${base2}/1/status`)
+        .type('form')
+        .send({ status: 'sold' })
+        .set('Authorization', auth);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
     });
     it('should return a validation error', async () => {
       const res = await chai

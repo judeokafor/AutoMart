@@ -13,16 +13,12 @@ chai.use(chaiHttp);
 
 describe('Testing the reset password functionality', () => {
   before(async () => {
-    try {
-      const res = await chai
-        .request(server)
-        .post(`${base2}/signIn`)
-        .send(testData.signInUser());
-      const { token } = res.body;
-      auth = token;
-    } catch (error) {
-      console.log(error);
-    }
+    const res = await chai
+      .request(server)
+      .post(`${base2}/signIn`)
+      .send(testData.signInUser());
+    const { token } = res.body;
+    auth = token;
   });
   describe('Test the password reactivation', () => {
     it('should send password reset to email', async () => {
@@ -69,16 +65,12 @@ describe('Testing the reset password functionality', () => {
 });
 describe('Testing the forbidden route', () => {
   before(async () => {
-    try {
-      const res = await chai
-        .request(server)
-        .post(`${base2}/signIn`)
-        .send(testData.signInAdmin());
-      const { token } = res.body;
-      adminauth = token;
-    } catch (error) {
-      console.log(error);
-    }
+    const res = await chai
+      .request(server)
+      .post(`${base2}/signIn`)
+      .send(testData.signInAdmin());
+    const { token } = res.body;
+    adminauth = token;
   });
   it('should return a forbidden error', async () => {
     const res = await chai

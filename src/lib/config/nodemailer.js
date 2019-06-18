@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import dotenv from 'dotenv';
 dotenv.config();
 export default class Mail {
@@ -41,35 +42,6 @@ export default class Mail {
       from: process.env.AUTOMART_EMAIL,
       to,
       subject: 'Password help has arrived!',
-      html: text,
-    };
-  }
-
-  static MailOptionsConfirm(name, to) {
-    const text = `<!DOCTYPE html>
-    <html>
-    
-    <head>
-        <title>Password Reset</title>
-    </head>
-    
-    <body>
-        <div>
-            <h3>Dear ${name},</h3>
-            <p>Your password has been successful reset, you can now login with your new password.</p>
-            <br>
-            <div>
-                Cheers!
-            </div>
-        </div>
-       
-    </body>
-    
-    </html>`;
-    return {
-      from: process.env.AUTOMART_EMAIL,
-      to,
-      subject: 'Your Password has being Updated Succesfully!',
       html: text,
     };
   }

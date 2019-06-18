@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import cloudinary from 'cloudinary';
 import dotenv from 'dotenv';
 

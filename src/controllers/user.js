@@ -97,7 +97,8 @@ export default class userController {
             };
             jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
               if (err) {
-                throw err;
+                /* istanbul ignore next */
+                console.log(err);
               } else {
                 return res.status(201).json({
                   status: 201,

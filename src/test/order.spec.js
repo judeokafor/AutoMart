@@ -16,12 +16,8 @@ describe('Testing the order route', () => {
       .request(server)
       .post(`${base}/signIn`)
       .send(testData.signInUser());
-    try {
-      const { token } = res.body;
-      auth = token;
-    } catch (error) {
-      console.log(error);
-    }
+    const { token } = res.body;
+    auth = token;
   });
   describe('Create an order', () => {
     it('should create an order successfully', async () => {
@@ -30,14 +26,10 @@ describe('Testing the order route', () => {
         .post(`${base2}`)
         .send(testData.newOrder())
         .set('Authorization', auth);
-      try {
-        expect(res).to.have.status(201);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body).to.have.property('data');
-      } catch (error) {
-        console.log(error);
-      }
+      expect(res).to.have.status(201);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
+      expect(res.body).to.have.property('data');
     });
     it('should return an error already handling it', async () => {
       const res = await chai
@@ -45,13 +37,9 @@ describe('Testing the order route', () => {
         .post(`${base2}`)
         .send(testData.newOrder())
         .set('Authorization', auth);
-      try {
-        expect(res).to.have.status(400);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-      } catch (error) {
-        console.log(error);
-      }
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
     });
     it('should return a validation error', async () => {
       const res = await chai
@@ -59,12 +47,8 @@ describe('Testing the order route', () => {
         .post(`${base2}`)
         .set('Authorization', auth)
         .send(testData.errorOrder());
-      try {
-        expect(res).to.have.status(400);
-        expect(res.body).to.have.property('status');
-      } catch (error) {
-        console.log(error);
-      }
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
   });
   describe('Update an order', () => {
@@ -75,13 +59,9 @@ describe('Testing the order route', () => {
         .send({ price: 999999999 })
         .set('Authorization', auth);
 
-      try {
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-      } catch (error) {
-        console.log(error);
-      }
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
     });
     it('should return an error if order is not found', async () => {
       const res = await chai
@@ -89,13 +69,9 @@ describe('Testing the order route', () => {
         .patch(`${base2}/1999999/price`)
         .send({ price: 999999999 })
         .set('Authorization', auth);
-      try {
-        expect(res).to.have.status(404);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-      } catch (error) {
-        console.log(error);
-      }
+      expect(res).to.have.status(404);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
     });
     it('should return a validation error ', async () => {
       const res = await chai
@@ -103,12 +79,8 @@ describe('Testing the order route', () => {
         .patch(`${base2}/a8k/price`)
         .send({ price: '9999ac' })
         .set('Authorization', auth);
-      try {
-        expect(res).to.have.status(400);
-        expect(res.body).to.have.property('status');
-      } catch (error) {
-        console.log(error);
-      }
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
   });
   describe('View all orders', () => {
@@ -117,21 +89,13 @@ describe('Testing the order route', () => {
         .request(server)
         .get(`${base2}`)
         .set('Authorization', auth);
-      try {
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-      } catch (error) {
-        console.log(error);
-      }
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
     });
   });
   it('should return authorization error', async () => {
     const res = await chai.request(server).get(`${base2}`);
-    try {
-      expect(res).to.have.status(401);
-    } catch (error) {
-      console.log(error);
-    }
+    expect(res).to.have.status(401);
   });
 });
