@@ -6,8 +6,10 @@ export default class DbHelpers {
       const result = await client.query(query, args);
       return result;
     } catch (e) {
+      /* istanbul ignore next */
       console.log(e.stack);
     } finally {
+      /* istanbul ignore next */
       client.release();
     }
     return false;
