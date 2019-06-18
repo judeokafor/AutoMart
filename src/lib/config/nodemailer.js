@@ -16,7 +16,7 @@ export default class Mail {
     };
   }
 
-  static MailOptionsReset(name, url, to) {
+  static MailOptionsReset(name, newPassword, to) {
     const text = `<!DOCTYPE html>
       <html>
       
@@ -27,9 +27,9 @@ export default class Mail {
       <body>
           <div>
               <h3>Dear ${name},</h3>
-              <p>You requested for a password reset, kindly use this <a href="${url}">link</a> to reset your password</p>
+              <p>You requested for a password reset, kindly use this new password:
+              <a> <h5><b> <em>${newPassword}</em> </b></h5></a> to reset your password</p>
               <br>
-              <small>Link expires after 1 hour</small>
               <br>
               <p>Cheers!</p>
           </div>

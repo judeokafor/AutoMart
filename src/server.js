@@ -34,7 +34,7 @@ app.use('/api/v2/auth', users);
 app.use('/api/v2/car', cars);
 app.use('/api/v2/order', orders);
 app.use('/api/v2/flag', flags);
-app.use('/api/v2/reset', reset);
+app.use('/api/v2/users', reset);
 
 app.get('/', (req, res) => {
   res.send('Welcome to jude app');

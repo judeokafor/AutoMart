@@ -9,7 +9,7 @@ export default class ErrorHandler {
   }
 
   static tryCatchError(res, error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: 500,
       error,
     });
