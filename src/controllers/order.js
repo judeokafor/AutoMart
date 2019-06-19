@@ -78,16 +78,13 @@ export default class orderController {
               message: 'Updated Succesfully',
             });
           }
-          return res.status(404).json({
-            status: 404,
-            message: 'Order not found',
-          });
         }
         return res.status(404).json({
           status: 404,
           message: 'Order not found',
         });
       }
+      /* istanbul ignore next */
       return errorHandler.validationError(res, result);
     } catch (error) {
       /* istanbul ignore next */
@@ -98,31 +95,20 @@ export default class orderController {
   static async getAllUserOrders(req, res) {
     try {
       const { userid } = req.user;
-      const result = Joi.validate(
-        parseInt(userid, 10),
-        Joi.number()
-          .integer()
-          .required(),
-        {
-          convert: false,
-        },
-      );
-      if (result.error === null) {
-        const args = [parseInt(userid, 10), 'pending'];
-        const { rowCount, rows } = await db.Query(Queries.userOrder, args);
-        if (rowCount > 0) {
-          return res.status(200).json({
-            status: 200,
-            message: 'Pending orders',
-            data: rows,
-          });
-        }
-        return res.status(404).json({
-          status: 404,
-          message: 'Order not found',
+      const args = [parseInt(userid, 10), 'pending'];
+      const { rowCount, rows } = await db.Query(Queries.userOrder, args);
+      if (rowCount > 0) {
+        return res.status(200).json({
+          status: 200,
+          message: 'Pending orders',
+          data: rows,
         });
       }
-      return errorHandler.validationError(res, result);
+      /* istanbul ignore next */
+      return res.status(404).json({
+        status: 404,
+        message: 'Order not found',
+      });
     } catch (error) {
       /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);

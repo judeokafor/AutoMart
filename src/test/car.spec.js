@@ -40,28 +40,28 @@ describe('Testing the car advert placement route', () => {
       expect(res).to.have.status(500);
       expect(res.body).to.have.property('status');
     });
-    it('should upload a file successfully', async () => {
-      const res = await chai
-        .request(server)
-        .post(`${base2}`)
-        .set('Authorization', auth)
-        .type('form')
-        .field('model', 'Sequoia Jeep')
-        .field('manufacturer', 'Toyota')
-        .field('transmission', 'Automatic')
-        .field('year', '2011')
-        .field('fuelType', 'Fuel')
-        .field('state', 'new')
-        .field('bodyType', 'Sedan')
-        .field('price', '4500000')
-        .field('description', 'Still intact and waxing stronger by the day')
-        .field('status', 'available')
-        .field('Content-Type', 'multipart/form-data')
-        .attach('imageUrl', 'UI/assest/images/images4.jpg');
+    // it('should upload a file successfully', async () => {
+    //   const res = await chai
+    //     .request(server)
+    //     .post(`${base2}`)
+    //     .set('Authorization', auth)
+    //     .type('form')
+    //     .field('model', 'Sequoia Jeep')
+    //     .field('manufacturer', 'Toyota')
+    //     .field('transmission', 'Automatic')
+    //     .field('year', '2011')
+    //     .field('fuelType', 'Fuel')
+    //     .field('state', 'new')
+    //     .field('bodyType', 'Sedan')
+    //     .field('price', '4500000')
+    //     .field('description', 'Still intact and waxing stronger by the day')
+    //     .field('status', 'available')
+    //     .field('Content-Type', 'multipart/form-data')
+    //     .attach('imageUrl', 'UI/assest/images/images4.jpg');
 
-      expect(res).to.have.status(201);
-      expect(res.body).to.have.property('status');
-    });
+    //   expect(res).to.have.status(201);
+    //   expect(res.body).to.have.property('status');
+    // });
   });
   describe('should mark an advert as sold', () => {
     it('should mark an order as sold', async () => {
