@@ -2,7 +2,6 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
 import testData from '../fixtures/fixtures';
-import pool from '../lib/config/dbConfig';
 
 let auth;
 let adminauth;
@@ -58,7 +57,7 @@ describe('Testing the car advert placement route', () => {
         .field('description', 'Still intact and waxing stronger by the day')
         .field('status', 'available')
         .field('Content-Type', 'multipart/form-data')
-        .attach('imageUrl', `${__dirname}/1.png`);
+        .attach('imageUrl', 'UI/assest/images/images4.jpg');
 
       expect(res).to.have.status(201);
       expect(res.body).to.have.property('status');
