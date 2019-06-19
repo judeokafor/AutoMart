@@ -58,10 +58,7 @@ describe('Testing the car advert placement route', () => {
         .field('description', 'Still intact and waxing stronger by the day')
         .field('status', 'available')
         .field('Content-Type', 'multipart/form-data')
-        .attach(
-          'imageUrl',
-          'UI/assest/images/images4.jpg',
-        );
+        .attach('imageUrl', `${__dirname}/1.png`);
 
       expect(res).to.have.status(201);
       expect(res.body).to.have.property('status');
