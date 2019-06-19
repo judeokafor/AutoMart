@@ -64,7 +64,7 @@ Documentation is hosted at [https://auto-mart01.herokuapp.com/api/v2/docs](https
 
 #### Code Climate
 
-- [Code Climate](https://codeclimate.com) - Actionable metric for engineering leaders, checks maintainability status.
+- [Code Climate](https://codeclimate.com) - Actionable metric for engineering leaders, checks maintainability status and test coverage.
 
 ## Test Tools
 
@@ -125,7 +125,7 @@ User (admin) can view all posted ads whether sold or unsold.
 - Run - npm install to install packages
 - Run npm run build to build the project
 - Run npm run dev to start the server for development
-- Run npm start to start the server for production build
+- Run npm start to start the server for production
 - Navigate to [localhost:8080](http://localhost:8080/) in browser to access the
   application
 
