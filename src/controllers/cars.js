@@ -209,6 +209,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Cars not available',
@@ -267,6 +268,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Car not found',
@@ -295,6 +297,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Car not found',
@@ -350,6 +353,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Car not found',

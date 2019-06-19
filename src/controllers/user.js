@@ -62,6 +62,7 @@ export default class userController {
             .status(201)
             .json({ status: 201, token: `Bearer ${token}`, data: payload });
         }
+        /* istanbul ignore next */
         return res.status(400).json({
           status: 400,
           message: 'Email Already Exist',

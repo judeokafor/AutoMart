@@ -7,7 +7,7 @@ export default class testData {
       address: 'plot 436 arab road kubwa',
       gender: 'male',
       email: 'jude@gmail.com',
-      password: 'passsss',
+      password: 'password',
       isAdmin: true,
       role: 'buyer',
     };
