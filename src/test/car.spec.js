@@ -346,43 +346,43 @@ describe('Testing the car advert placement route', () => {
       expect(res.body).to.have.property('status');
     });
   });
-  describe('should test advert routes without car tables', () => {
-    before(async () => {
-      const client = await pool.connect();
-      const dropTable = 'DROP TABLE IF EXISTS cars';
-      await client.query(dropTable);
-      const res = await chai
-        .request(server)
-        .post(`${base}/signIn`)
-        .send(testData.signInAdmin());
-      const { token } = res.body;
-      adminauth = token;
-    });
-    it('should return an error if cars not found', async () => {
-      const res = await chai
-        .request(server)
-        .get(`${base2}`)
-        .set('Authorization', adminauth);
-      expect(res).to.have.status(404);
-    });
-    it('should return an error if manufacturer cars not available', async () => {
-      const res = await chai
-        .request(server)
-        .get(`${base2}?status=available&manufacturer=Toyota`);
-      expect(res).to.have.status(404);
-      expect(res.body).to.have.property('status');
-    });
-    it('should return an error if cars with state not available', async () => {
-      const res = await chai
-        .request(server)
-        .get(`${base2}?status=available&state=used`);
-      expect(res).to.have.status(404);
-      expect(res.body).to.have.property('status');
-    });
-    it('should return an error if cars with state not available', async () => {
-      const res = await chai.request(server).get(`${base2}?status=available`);
-      expect(res).to.have.status(404);
-      expect(res.body).to.have.property('status');
-    });
-  });
+  // describe('should test advert routes without car tables', () => {
+  //   before(async () => {
+  //     const client = await pool.connect();
+  //     const dropTable = 'DROP TABLE IF EXISTS cars';
+  //     await client.query(dropTable);
+  //     const res = await chai
+  //       .request(server)
+  //       .post(`${base}/signIn`)
+  //       .send(testData.signInAdmin());
+  //     const { token } = res.body;
+  //     adminauth = token;
+  //   });
+  //   it('should return an error if cars not found', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get(`${base2}`)
+  //       .set('Authorization', adminauth);
+  //     expect(res).to.have.status(404);
+  //   });
+  //   it('should return an error if manufacturer cars not available', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get(`${base2}?status=available&manufacturer=Toyota`);
+  //     expect(res).to.have.status(404);
+  //     expect(res.body).to.have.property('status');
+  //   });
+  //   it('should return an error if cars with state not available', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get(`${base2}?status=available&state=used`);
+  //     expect(res).to.have.status(404);
+  //     expect(res.body).to.have.property('status');
+  //   });
+  //   it('should return an error if cars with state not available', async () => {
+  //     const res = await chai.request(server).get(`${base2}?status=available`);
+  //     expect(res).to.have.status(404);
+  //     expect(res.body).to.have.property('status');
+  //   });
+  // });
 });
