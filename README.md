@@ -24,15 +24,15 @@ You can find the template at [https://www.pivotaltracker.com/n/projects/2346025]
 
 ### Template
 
-Template is hosted at [https://judeokafor.github.io/AutoMart/](https://judeokafor.github.io/AutoMart/)
+Template is hosted at [AutoMart Github Pages](https://judeokafor.github.io/AutoMart/)
 
 ### API Deployment
 
-API is deployed at [https://auto-mart01.herokuapp.com/](https://auto-mart01.herokuapp.com/)
+API is deployed at [AutoMart Heroku App](https://auto-mart01.herokuapp.com/)
 
 ### Documentation
 
-Documentation is hosted at [https://auto-mart01.herokuapp.com/api/v2/docs](https://auto-mart01.herokuapp.com/api/v2/docs)
+Documentation is hosted at [Swagger Docs](https://auto-mart01.herokuapp.com/api/v2/docs)
 
 ## Technologies
 
@@ -87,8 +87,8 @@ Documentation is hosted at [https://auto-mart01.herokuapp.com/api/v2/docs](https
 
 ### Admin
 
-User(admin) can delete a posted AD record.
-User (admin) can view all posted ads whether sold or unsold.
+- User(admin) can delete a posted AD record.
+- User (admin) can view all posted ads whether sold or unsold.
 
 ## API Endpoints
 
@@ -108,10 +108,10 @@ User (admin) can view all posted ads whether sold or unsold.
 <tr><td>GET</td><td>/api/v2/car/<:id></td><td>View a specific car</td></tr>
 <tr><td>GET</td><td>/api/v2/car?status=available</td><td>All available cars</td></tr>
 <tr><td>GET</td><td>/api/v2/car?status=available&min=xxx_value&max=xxx_value</td><td>All available cars within a price range</td></tr>
-<tr><td>GET</td><td>/api/v2/car?status=available&manufacturer=Toyota</td><td>All available cars from a specific manufacturer</td></tr>
+<tr><td>GET</td><td>/api/v2/car?status=available&manufacturer=<:manufacturer></td><td>All available cars from a specific manufacturer</td></tr>
 <tr><td>GET</td><td>/api/v2/car?status=available&state=used</td><td>All available cars with a used condition</td></tr>
 <tr><td>GET</td><td>/api/v2/car?status=available&state=new</td><td>All available cars with a new condition</td></tr>
-<tr><td>GET</td><td>/api/v2/car?bodyType=Sedan</td><td>All cars with a specific body type</td></tr>
+<tr><td>GET</td><td>/api/v2/car?bodyType=<:bodyType></td><td>All cars with a specific body type</td></tr>
 <tr><td>POST</td><td>/api/v2/order</td><td>Create a buy order</td></tr>
 <tr><td>PATCH</td><td>/api/v2/order/<:id>/price</td><td>Update the price of a buy order</td></tr>
 </table>
