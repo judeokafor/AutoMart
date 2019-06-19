@@ -74,10 +74,6 @@ export default class carController {
             });
           }
         }
-        return res.status(400).json({
-          status: 400,
-          message: 'File Already Exist',
-        });
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
@@ -254,6 +250,7 @@ export default class carController {
         const result = Joi.validate(
           manufacturer,
           Joi.string()
+            .min(2)
             .max(100)
             .required(),
           { convert: false },
@@ -309,6 +306,7 @@ export default class carController {
         const result = Joi.validate(
           bodyType,
           Joi.string()
+            .min(2)
             .max(100)
             .required(),
           { convert: false },

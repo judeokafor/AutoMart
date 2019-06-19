@@ -134,4 +134,19 @@ export default class testData {
       description: '',
     };
   }
+
+  static postCarAdvert() {
+    return {
+      model: 'Sequoia Jeep',
+      manufacturer: 'Toyota',
+      transmission: 'Automatic',
+      year: 2011,
+      fuelType: 'Fuel',
+      bodyType: 'Four wheel drive',
+      state: 'new',
+      price: 4500000,
+      description: 'Still intact and waxing stronger by the day',
+      status: 'available',
+    };
+  }
 }
