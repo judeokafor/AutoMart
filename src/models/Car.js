@@ -14,8 +14,12 @@ export default class Car {
         .required(),
       transmission: Joi.string(),
       year: Joi.number().integer(4),
-      fuelType: Joi.string().max(10),
-      bodyType: Joi.string().max(50),
+      fuelType: Joi.string()
+        .max(10)
+        .required(),
+      bodyType: Joi.string()
+        .max(50)
+        .required(),
       state: Joi.string().required(),
       price: Joi.number()
         .precision(4)
