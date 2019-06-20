@@ -32,7 +32,7 @@ API is deployed at [AutoMart Heroku App](https://auto-mart01.herokuapp.com/)
 
 ### Documentation
 
-Documentation is hosted at [Swagger Docs](https://auto-mart01.herokuapp.com/api/v2/docs)
+Documentation was done with swagger and hosted at [SwaggerHub](https://app.swaggerhub.com/apis-docs/AutoMart/auto-mart/1.0.0)
 
 ## Technologies
 
