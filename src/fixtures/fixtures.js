@@ -6,8 +6,8 @@ export default class testData {
       phoneNumber: '12345678',
       address: 'plot 436 arab road kubwa',
       gender: 'male',
-      email: 'okaforjudechukwuebuka@gmail.com',
-      password: 'passsss',
+      email: 'jude@gmail.com',
+      password: 'password',
       isAdmin: true,
       role: 'buyer',
     };
@@ -20,7 +20,7 @@ export default class testData {
       phoneNumber: '123456783333333333',
       address: 'plot 436 arab road kubwa',
       gender: 'male',
-      email: 'judegodwin@gmail.com',
+      email: 'judegodwinzzzzzz@gmail.com',
       password: 'pa',
       isAdmin: true,
       role: 'buyer',
@@ -82,39 +82,6 @@ export default class testData {
     };
   }
 
-  static resetPasswordError() {
-    return {
-      password: 'password123',
-      cnfPassword: 'password',
-    };
-  }
-
-  static resetPasswordTrue() {
-    return {
-      password: '12345678',
-      cnfPassword: '12345678',
-    };
-  }
-
-  static resetFailValidation() {
-    return {
-      password: '123',
-      cnfPassword: '1234',
-    };
-  }
-
-  static sampleExistingReport() {
-    return {
-      carId: 2,
-      reason: 'Weird demands',
-      description: 'The seller was asking for too much',
-      createdOn: 20171236,
-      name: 'Annonymous Stan',
-      email: 'notneeded@gmail.com',
-      phone: '65383765',
-    };
-  }
-
   static sampleErrorReport() {
     return {
       carId: 1,
@@ -153,25 +120,6 @@ export default class testData {
     };
   }
 
-  static carAdvert() {
-    return {
-      owner: 5550,
-      model: 'RAV 4',
-      manufacturer: 'Toyota',
-      imageUrl: 'My Image url from cloudinary',
-      imageName: 'my_redcar.png',
-      transmission: 'Automatic',
-      year: 2011,
-      fuelType: 'Fuel',
-      bodyType: 'Suv',
-      state: 'new',
-      price: 4700000,
-      status: 'sold',
-      description: 'car ac still intact, alloy rims',
-      createdOn: new Date(),
-    };
-  }
-
   static errorCarAdvert() {
     return {
       model: '',
@@ -184,6 +132,21 @@ export default class testData {
       state: '',
       price: null,
       description: '',
+    };
+  }
+
+  static postCarAdvert() {
+    return {
+      model: 'Sequoia Jeep',
+      manufacturer: 'Toyota',
+      transmission: 'Automatic',
+      year: 2011,
+      fuelType: 'Fuel',
+      bodyType: 'Four wheel drive',
+      state: 'new',
+      price: 4500000,
+      description: 'Still intact and waxing stronger by the day',
+      status: 'available',
     };
   }
 }

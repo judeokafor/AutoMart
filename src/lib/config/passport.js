@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import JwtStrategy from 'passport-jwt';
 import dotenv from 'dotenv';
 import Queries from '../helpers/queries';
@@ -18,6 +19,7 @@ module.exports = (passport) => {
       if (user) {
         next(null, user);
       } else {
+        /* istanbul ignore next */
         next(null, false);
       }
     }),

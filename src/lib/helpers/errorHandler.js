@@ -9,6 +9,7 @@ export default class ErrorHandler {
   }
 
   static tryCatchError(res, error) {
+    /* istanbul ignore next */
     return res.status(500).json({
       status: 500,
       error,

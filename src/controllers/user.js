@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import gravatar from 'gravatar';
@@ -12,24 +13,6 @@ import db from '../lib/helpers/dbHelpers';
 dotenv.config();
 
 export default class userController {
-  static test(req, res) {
-    res.json({ message: 'user works' });
-  }
-
-  static async testdbconnection(req, res) {
-    try {
-      const { rowCount, rows } = await db.Query(Queries.testTable);
-      if (rowCount > 0) {
-        return res.json({
-          data: rows,
-        });
-      }
-    } catch (error) {
-      errorHandler.tryCatchError(res, error);
-    }
-    return false;
-  }
-
   static async signUp(req, res) {
     try {
       const {
@@ -79,6 +62,7 @@ export default class userController {
             .status(201)
             .json({ status: 201, token: `Bearer ${token}`, data: payload });
         }
+        /* istanbul ignore next */
         return res.status(400).json({
           status: 400,
           message: 'Email Already Exist',
@@ -86,9 +70,9 @@ export default class userController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async signIn(req, res) {
@@ -114,7 +98,8 @@ export default class userController {
             };
             jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
               if (err) {
-                throw err;
+                /* istanbul ignore next */
+                console.log(err);
               } else {
                 return res.status(201).json({
                   status: 201,
@@ -139,16 +124,15 @@ export default class userController {
         return errorHandler.validationError(res, result);
       }
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static currentProfile(req, res) {
     if (req.user) {
       return res.status(200).json({ status: 200, data: req.user });
     }
-    return false;
   }
 
   static logOut(req, res) {

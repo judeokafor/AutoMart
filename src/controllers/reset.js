@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -88,8 +89,8 @@ export default class resetController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 }

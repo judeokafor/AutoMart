@@ -36,10 +36,6 @@ app.use('/api/v2/order', orders);
 app.use('/api/v2/flag', flags);
 app.use('/api/v2/users', reset);
 
-app.get('/', (req, res) => {
-  res.send('Welcome to jude app');
-});
-
 const PORT = process.env.PORT || 8080;
 
 const server = app.listen(PORT, () => {

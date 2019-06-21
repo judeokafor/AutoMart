@@ -17,12 +17,8 @@ describe('Testing the car advert placement route', () => {
       .request(server)
       .post(`${base}/signIn`)
       .send(testData.signInSeller());
-    try {
-      const { token } = res.body;
-      auth = token;
-    } catch (error) {
-      console.log(error);
-    }
+    const { token } = res.body;
+    auth = token;
   });
   describe('should upload image to cloudinary and create a post', () => {
     it('should return a validation error', async () => {
@@ -31,29 +27,53 @@ describe('Testing the car advert placement route', () => {
         .post(`${base2}`)
         .set('Authorization', auth)
         .send(testData.errorCarAdvert());
-      try {
-        expect(res).to.have.status(400);
-        expect(res.body).to.have.property('status');
-      } catch (error) {
-        console.log(error);
-      }
+
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
+    it('should return an error when uploading', async () => {
+      const res = await chai
+        .request(server)
+        .post(`${base2}`)
+        .set('Authorization', auth)
+        .send(testData.postCarAdvert());
+      expect(res).to.have.status(500);
+      expect(res.body).to.have.property('status');
+    });
+    // it('should upload a file successfully', async () => {
+    //   const res = await chai
+    //     .request(server)
+    //     .post(`${base2}`)
+    //     .set('Authorization', auth)
+    //     .type('form')
+    //     .field('model', 'Sequoia Jeep')
+    //     .field('manufacturer', 'Toyota')
+    //     .field('transmission', 'Automatic')
+    //     .field('year', '2011')
+    //     .field('fuelType', 'Fuel')
+    //     .field('state', 'new')
+    //     .field('bodyType', 'Sedan')
+    //     .field('price', '4500000')
+    //     .field('description', 'Still intact and waxing stronger by the day')
+    //     .field('status', 'available')
+    //     .field('Content-Type', 'multipart/form-data')
+    //     .attach('imageUrl', 'UI/assest/images/images4.jpg');
+
+    //   expect(res).to.have.status(201);
+    //   expect(res.body).to.have.property('status');
+    // });
   });
   describe('should mark an advert as sold', () => {
     it('should mark an order as sold', async () => {
-      try {
-        const res = await chai
-          .request(server)
-          .patch(`${base2}/1/status`)
-          .type('form')
-          .send({ status: 'sold' })
-          .set('Authorization', auth);
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await chai
+        .request(server)
+        .patch(`${base2}/1/status`)
+        .type('form')
+        .send({ status: 'sold' })
+        .set('Authorization', auth);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+      expect(res.body).to.have.property('message');
     });
     it('should return a validation error', async () => {
       const res = await chai
@@ -193,6 +213,13 @@ describe('Testing the car advert placement route', () => {
         .set('Authorization', auth);
       expect(res).to.have.status(404);
     });
+    it('should return an error if it doesnt exist', async () => {
+      const res = await chai
+        .request(server)
+        .delete(`${base2}/abcd`)
+        .set('Authorization', auth);
+      expect(res).to.have.status(400);
+    });
   });
   describe('view all adverts as an admin', () => {
     before(async () => {
@@ -229,9 +256,12 @@ describe('Testing the car advert placement route', () => {
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
     });
-    it('should return an error if it doesnt exist', async () => {
-      const res = await chai.request(server).get(`${base2}/manufacturer/Toy`);
-      expect(res).to.have.status(404);
+    it('should return an error if no data supplied', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&manufacturer=s`);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
     it('should return an unauthorized error', async () => {
       const res = await chai
@@ -248,6 +278,11 @@ describe('Testing the car advert placement route', () => {
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
+    });
+    it('should get all cars from a particular body type successfully', async () => {
+      const res = await chai.request(server).get(`${base2}?bodyType=a`);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
     it('should return an error if it doesnt exist', async () => {
       const res = await chai.request(server).get(`${base2}?bodyType=Sedanzzz`);
@@ -310,4 +345,43 @@ describe('Testing the car advert placement route', () => {
       expect(res.body).to.have.property('status');
     });
   });
+  // describe('should test advert routes without car tables', () => {
+  //   before(async () => {
+  //     const client = await pool.connect();
+  //     const dropTable = 'DROP TABLE IF EXISTS cars';
+  //     await client.query(dropTable);
+  //     const res = await chai
+  //       .request(server)
+  //       .post(`${base}/signIn`)
+  //       .send(testData.signInAdmin());
+  //     const { token } = res.body;
+  //     adminauth = token;
+  //   });
+  //   it('should return an error if cars not found', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get(`${base2}`)
+  //       .set('Authorization', adminauth);
+  //     expect(res).to.have.status(404);
+  //   });
+  //   it('should return an error if manufacturer cars not available', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get(`${base2}?status=available&manufacturer=Toyota`);
+  //     expect(res).to.have.status(404);
+  //     expect(res.body).to.have.property('status');
+  //   });
+  //   it('should return an error if cars with state not available', async () => {
+  //     const res = await chai
+  //       .request(server)
+  //       .get(`${base2}?status=available&state=used`);
+  //     expect(res).to.have.status(404);
+  //     expect(res.body).to.have.property('status');
+  //   });
+  //   it('should return an error if cars with state not available', async () => {
+  //     const res = await chai.request(server).get(`${base2}?status=available`);
+  //     expect(res).to.have.status(404);
+  //     expect(res.body).to.have.property('status');
+  //   });
+  // });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Joi from 'joi';
 import Flag from '../models/Flag';
 import errorHandler from '../lib/helpers/errorHandler';
@@ -39,9 +40,9 @@ export default class flagController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async viewAllFlags(req, res) {
@@ -58,8 +59,8 @@ export default class flagController {
         message: 'Reports not found',
       });
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 }

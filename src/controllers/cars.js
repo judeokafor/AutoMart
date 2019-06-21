@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
 import Car from '../models/Car';
@@ -73,16 +74,12 @@ export default class carController {
             });
           }
         }
-        return res.status(400).json({
-          status: 400,
-          message: 'File Already Exist',
-        });
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async markAsSold(req, res) {
@@ -114,9 +111,9 @@ export default class carController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async updateOrderPrice(req, res) {
@@ -134,34 +131,26 @@ export default class carController {
       if (result.error === null) {
         const args = [data.id];
         const { rowCount } = await db.Query(Queries.searchForCarAdById, args);
-        try {
-          if (rowCount === 1) {
-            const args2 = [parseInt(price, 10), data.id];
-            const { rows } = await db.Query(Queries.updateCarAsSold, args2);
-            try {
-              if (rows.length === 1) {
-                return res.status(200).json({
-                  status: 200,
-                  message: 'Order Price Updated Succesfully',
-                });
-              }
-            } catch (error) {
-              errorHandler.tryCatchError(res, error);
-            }
+        if (rowCount === 1) {
+          const args2 = [parseInt(price, 10), data.id];
+          const { rows } = await db.Query(Queries.updateCarPrice, args2);
+          if (rows.length === 1) {
+            return res.status(200).json({
+              status: 200,
+              message: 'Order Price Updated Succesfully',
+            });
           }
-          return res.status(404).json({
-            status: 404,
-            message: 'Order not found',
-          });
-        } catch (error) {
-          errorHandler.tryCatchError(res, error);
         }
+        return res.status(404).json({
+          status: 404,
+          message: 'Order not found',
+        });
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async viewSpecificCar(req, res) {
@@ -181,26 +170,22 @@ export default class carController {
           Queries.searchForCarAdById,
           args,
         );
-        try {
-          if (rowCount === 1) {
-            return res.status(200).json({
-              status: 200,
-              data: rows[0],
-            });
-          }
-          return res.status(404).json({
-            status: 404,
-            message: 'Car not found',
+        if (rowCount === 1) {
+          return res.status(200).json({
+            status: 200,
+            data: rows[0],
           });
-        } catch (error) {
-          errorHandler.tryCatchError(res, error);
         }
+        return res.status(404).json({
+          status: 404,
+          message: 'Car not found',
+        });
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async cars(req, res) {
@@ -224,6 +209,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Cars not available',
@@ -265,6 +251,7 @@ export default class carController {
         const result = Joi.validate(
           manufacturer,
           Joi.string()
+            .min(2)
             .max(100)
             .required(),
           { convert: false },
@@ -281,6 +268,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Car not found',
@@ -309,6 +297,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Car not found',
@@ -320,6 +309,7 @@ export default class carController {
         const result = Joi.validate(
           bodyType,
           Joi.string()
+            .min(2)
             .max(100)
             .required(),
           { convert: false },
@@ -363,6 +353,7 @@ export default class carController {
               data: rows,
             });
           }
+          /* istanbul ignore next */
           return res.status(404).json({
             status: 404,
             message: 'Car not found',
@@ -371,9 +362,9 @@ export default class carController {
         return errorHandler.validationError(res, result);
       }
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 
   static async deleteAdvert(req, res) {
@@ -402,8 +393,8 @@ export default class carController {
       }
       return errorHandler.validationError(res, result);
     } catch (error) {
+      /* istanbul ignore next */
       errorHandler.tryCatchError(res, error);
     }
-    return false;
   }
 }
