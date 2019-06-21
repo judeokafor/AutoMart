@@ -38,4 +38,18 @@ export default class Queries {
     UPDATE orders SET price_offered = $1, new_price_offered = $1, old_price_offered = $2
     WHERE orderid = $3 AND status = $4`;
   }
+
+  static get searchPendingReport() {
+    return `SELECT * FROM flags
+    WHERE email = $1 AND car_id = $2`;
+  }
+
+  static get insertFlags() {
+    return `INSERT INTO flags (reason, description, name, email, phone, car_id) 
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING flagid, reason, email`;
+  }
+
+  static get allFlags() {
+    return 'SELECT * FROM flags';
+  }
 }

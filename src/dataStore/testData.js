@@ -111,7 +111,7 @@ export default class testData {
 
   static sampleErrorReport() {
     return {
-      carId: '1144',
+      carId: 1,
       reason: 'Weird demands',
       description: 'The seller was asking for too much',
       name: 'Annonymous Stan',
@@ -122,12 +122,12 @@ export default class testData {
 
   static sampleNewReport() {
     return {
-      carId: 23456,
+      carId: 2,
       reason: 'Weird demands',
       description: 'The seller was asking for too much',
       name: 'Annonymous Stan',
       email: 'sameemail@gmail.com',
-      phone: '99070653',
+      phone: '9907065311',
     };
   }
 
