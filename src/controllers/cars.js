@@ -254,6 +254,30 @@ export default class carController {
           return res.status(401).json({ status: 401, message: 'Unauthorized' });
         }
       }
+      if (status) {
+        const result = Joi.validate(
+          status,
+          Joi.string()
+            .equal('available')
+            .required(),
+          { convert: false },
+        );
+        if (result.error === null) {
+          const args = [status];
+          const { rowCount, rows } = await db.Query(Queries.searchByStatus, args);
+          if (rowCount >= 1) {
+            return res.status(200).json({
+              status: 200,
+              data: rows,
+            });
+          }
+          return res.status(404).json({
+            status: 404,
+            message: 'Car not found',
+          });
+        }
+        return errorHandler.validationError(res, result);
+      }
     } catch (error) {
       errorHandler.tryCatchError(res, error);
     }
