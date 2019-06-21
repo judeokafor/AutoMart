@@ -103,4 +103,9 @@ export default class Queries {
     return `SELECT * FROM cars 
     WHERE status = $1 AND state = $2`;
   }
+
+  static get viewUnsoldCarSpecificMake() {
+    return `SELECT * FROM cars 
+    WHERE status = $1 AND manufacturer = $2`;
+  }
 }
