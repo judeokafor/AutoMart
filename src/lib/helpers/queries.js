@@ -66,4 +66,9 @@ export default class Queries {
     return `SELECT * FROM cars 
     INNER JOIN users ON ownerid = userid WHERE carid = $1`;
   }
+
+  static get updateCarAsSold() {
+    return `UPDATE cars SET status = $1 
+    WHERE carid = $2 RETURNING carid, manufacturer, model, status`;
+  }
 }

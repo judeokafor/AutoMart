@@ -46,18 +46,28 @@ describe('Testing the car advert placement route', () => {
     it('should mark an order as sold', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v2/car/4444/sold')
+        .patch(`${base2}/1/status`)
+        .type('form')
+        .send({ status: 'sold' })
         .set('Authorization', auth);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
-      expect(res.body).to.have.property('data');
+    });
+    it('should return a validation error', async () => {
+      const res = await chai
+        .request(server)
+        .patch(`${base2}/1a/status`)
+        .set('Authorization', auth);
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
     it('should return an error if an order doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v2/car/111111/sold')
-        .set('Authorization', auth);
+        .patch(`${base2}/111/status`)
+        .set('Authorization', auth)
+        .send({ status: 'sold' });
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');

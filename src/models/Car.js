@@ -24,4 +24,15 @@ export default class Car {
       description: Joi.string().max(256),
     });
   }
+
+  static get markAsSold() {
+    return Joi.object({
+      id: Joi.number()
+        .integer()
+        .required(),
+      status: Joi.string()
+        .equal('sold')
+        .required(),
+    });
+  }
 }
