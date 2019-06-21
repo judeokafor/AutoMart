@@ -175,21 +175,38 @@ export default class carController {
     return errorHandler.validationError(res, result);
   }
 
-  static viewSpecificCar(req, res) {
+  static async viewSpecificCar(req, res) {
     const { id } = req.params;
-    const specificCar = carStore.filter(
-      order => parseInt(order.id, 10) === parseInt(id, 10),
+    const Id = parseInt(id, 10);
+    const result = Joi.validate(
+      Id,
+      Joi.number()
+        .integer()
+        .required(),
+      { convert: false },
     );
-    if (specificCar.length > 0) {
-      return res.status(200).json({
-        status: 'success',
-        data: specificCar,
-      });
+    if (result.error === null) {
+      const args = [Id];
+      const { rowCount, rows } = await db.Query(
+        Queries.searchForCarAdById,
+        args,
+      );
+      try {
+        if (rowCount === 1) {
+          return res.status(200).json({
+            status: 200,
+            data: rows[0],
+          });
+        }
+        return res.status(404).json({
+          status: 404,
+          message: 'Car not found',
+        });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
     }
-    return res.status(404).json({
-      status: 'error',
-      message: 'Car not found',
-    });
+    return errorHandler.validationError(res, result);
   }
 
   static viewUnsoldCar(req, res) {
@@ -231,22 +248,30 @@ export default class carController {
     });
   }
 
-  static deleteAdvert(req, res) {
+  static async deleteAdvert(req, res) {
     const { id } = req.params;
-    carStore.forEach((order, i) => {
-      if (parseInt(order.id, 10) === parseInt(id, 10)) {
-        carStore.splice(i, 1);
-        return res.status(200).json({
-          status: 'success',
+    const result = Joi.validate(
+      parseInt(id, 10),
+      Joi.number()
+        .integer()
+        .required(),
+      { convert: false },
+    );
+    if (result.error === null) {
+      const args = [parseInt(id, 10)];
+      const { rowCount } = await db.Query(Queries.deleteCarAd, args);
+      if (rowCount === 1) {
+        return res.status(200).send({
+          status: 200,
           message: 'Advert Deleted Successfully',
-          data: carStore,
         });
       }
       return res.status(404).json({
-        status: 'error',
+        status: 404,
         message: 'Car not found',
       });
-    });
+    }
+    return errorHandler.validationError(res, result);
   }
 
   static viewAllAdverts(req, res) {

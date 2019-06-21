@@ -40,7 +40,7 @@ router.get('/new', carController.viewNewUnsoldCar);
 router.get('/:id', carController.viewSpecificCar);
 
 router.delete(
-  '/deleteAdvert/:id',
+  '/:id',
   passport.authenticate('jwt', { session: false }),
   isAdmin,
   carController.deleteAdvert,
