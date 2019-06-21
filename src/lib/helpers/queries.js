@@ -98,4 +98,9 @@ export default class Queries {
     return `SELECT * FROM cars 
     WHERE body_type = $1`;
   }
+
+  static get viewUnsoldCarAnyState() {
+    return `SELECT * FROM cars 
+    WHERE status = $1 AND state = $2`;
+  }
 }
