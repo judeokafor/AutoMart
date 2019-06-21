@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.PGELEPHANTURL;
   ssl = true;
 } else {
-  connectionString = process.env.PGURLDEV;
+  connectionString = process.env.PGHEROKU;
   ssl = false;
 }
 
