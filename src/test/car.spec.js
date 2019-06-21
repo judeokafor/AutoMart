@@ -271,5 +271,37 @@ describe('Testing the car advert placement route', () => {
         .get(`${base2}?status=available&state=usedzzzz`);
       expect(res).to.have.status(400);
     });
+    it('should return an unauthorized error', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&state=used`)
+        .set('Authorization', auth);
+      expect(res).to.have.status(401);
+      expect(res.body).to.have.property('status');
+    });
+  });
+  describe('should get all available used cars', () => {
+    it('should get all available used cars successfully', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&state=new`);
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status');
+    });
+
+    it('should return an error if it doesnt exist', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&state=newzzzz`);
+      expect(res).to.have.status(400);
+    });
+    it('should return an unauthorized error', async () => {
+      const res = await chai
+        .request(server)
+        .get(`${base2}?status=available&state=new`)
+        .set('Authorization', auth);
+      expect(res).to.have.status(401);
+      expect(res.body).to.have.property('status');
+    });
   });
 });
