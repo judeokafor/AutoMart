@@ -6,7 +6,7 @@ export default class testData {
       phoneNumber: '12345678',
       address: 'plot 436 arab road kubwa',
       gender: 'male',
-      email: 'judegodwin@gmail.com',
+      email: 'okaforjudechukwuebuka@gmail.com',
       password: 'passsss',
       isAdmin: true,
       role: 'buyer',
@@ -27,24 +27,44 @@ export default class testData {
     };
   }
 
+  static invalidUserSignIn() {
+    return {
+      email: 'judegmail',
+      password: 'pass',
+    };
+  }
+
   static newUser() {
     return {
+      email: 'newUser@gmail.com',
+      password: 'password',
       firstName: 'jude',
       lastName: 'okafor',
-      phoneNumber: '12345678',
+      phoneNumber: '123456789',
       address: 'plot 436 arab road kubwa',
       gender: 'male',
-      email: 'judegodwin@gmail.com',
-      password: 'passsss',
-      isAdmin: true,
-      role: 'buyer',
+      role: 'SELLER',
     };
   }
 
   static signInUser() {
     return {
       email: 'okaforjudechukwuebuka@gmail.com',
-      password: 'passsss',
+      password: 'password',
+    };
+  }
+
+  static signInAdmin() {
+    return {
+      email: 'jude@gmail.com',
+      password: 'password',
+    };
+  }
+
+  static signInSeller() {
+    return {
+      email: 'janefrances@gmail.com',
+      password: 'password',
     };
   }
 
@@ -58,14 +78,14 @@ export default class testData {
   static strangeUser() {
     return {
       email: 'userNotfound@gmail.com',
-      password: 'pass',
+      password: 'passssssss',
     };
   }
 
   static resetPasswordError() {
     return {
-      password: 'pass',
-      cnfPassword: 'passnot',
+      password: 'password123',
+      cnfPassword: 'password',
     };
   }
 
@@ -91,7 +111,7 @@ export default class testData {
 
   static sampleErrorReport() {
     return {
-      carId: '1144',
+      carId: 1,
       reason: 'Weird demands',
       description: 'The seller was asking for too much',
       name: 'Annonymous Stan',
@@ -102,29 +122,27 @@ export default class testData {
 
   static sampleNewReport() {
     return {
-      carId: 23456,
+      carId: 2,
       reason: 'Weird demands',
       description: 'The seller was asking for too much',
       name: 'Annonymous Stan',
       email: 'sameemail@gmail.com',
-      phone: '99070653',
+      phone: '9907065311',
     };
   }
 
   static newOrder() {
     return {
-      buyer: 3445,
-      carId: 2345,
-      price: 5000000,
+      carId: 3,
+      amount: 5000000,
       priceOffered: 400000,
     };
   }
 
   static errorOrder() {
     return {
-      buyer: '3445',
-      carId: '2345',
-      price: '5000000',
+      carId: '2-',
+      amount: '_5000000',
       priceOffered: 400000,
     };
   }

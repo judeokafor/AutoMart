@@ -1,64 +1,135 @@
 import Joi from 'joi';
 import Order from '../models/Order';
 import errorHandler from '../lib/helpers/errorHandler';
-import orderStore from '../dataStore/order';
+import Queries from '../lib/helpers/queries';
+import db from '../lib/helpers/dbHelpers';
 
 export default class orderController {
-  static createOrder(req, res) {
-    const orderData = req.body;
-    const result = Joi.validate(orderData, Order.orderSchema, {
+  static async createOrder(req, res) {
+    const { carId, amount, priceOffered } = req.body;
+    const dataToValidate = {
+      carId: parseInt(carId, 10),
+      amount: parseInt(amount, 10),
+      priceOffered: parseInt(priceOffered, 10),
+    };
+    const result = Joi.validate(dataToValidate, Order.orderSchema, {
       convert: false,
     });
     if (result.error === null) {
-      const order = new Order(
-        (orderData.id = Math.ceil(
-          Math.random() * 100000 * (orderStore.length + 1),
-        )),
-        orderData.buyer,
-        orderData.carId,
-        (orderData.status = 'pending'),
-        orderData.price,
-        orderData.priceOffered,
-        (orderData.oldPriceOffered = null),
-        (orderData.newPriceOffered = null),
-        orderData.createdOn,
-      );
-      orderStore.push(order);
-      return res.status(201).json({
-        status: 'success',
-        message: 'Created succesfully',
-        data: order,
-      });
+      const args = [parseInt(carId, 10), parseInt(req.user.userid, 10)];
+      const { rowCount } = await db.Query(Queries.existingOrder, args);
+      try {
+        if (rowCount > 0) {
+          return res.status(400).json({
+            status: 400,
+            message: 'Order created previously on this car',
+          });
+        }
+        const args2 = [
+          'pending',
+          amount,
+          priceOffered,
+          null,
+          null,
+          parseInt(req.user.userid, 10),
+          parseInt(carId, 10),
+        ];
+        const { rows } = await db.Query(Queries.createOrder, args2);
+        try {
+          return res.status(201).json({
+            status: 201,
+            message: 'Created succesfully',
+            data: rows[0],
+          });
+        } catch (error) {
+          errorHandler.tryCatchError(res, error);
+        }
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
     }
     return errorHandler.validationError(res, result);
   }
 
-  static updateOrder(req, res) {
-    const { id, price } = req.params;
+  static async updateOrder(req, res) {
+    const { id } = req.params;
+    const { price } = req.body;
     const updateNewOrder = {
-      id,
-      price,
+      id: parseInt(id, 10),
+      price: parseInt(price, 10),
     };
-    const result = Joi.validate(updateNewOrder, Order.orderSchema, {
+    const result = Joi.validate(updateNewOrder, Order.updateOrderSchema, {
       convert: false,
     });
-    if (result.error) {
-      const convertedId = parseInt(id, 10);
-      const relatedOrder = orderStore.find(
-        order => parseInt(order.id, 10) === convertedId && order.status === 'pending',
-      );
-      if (relatedOrder) {
-        relatedOrder.newPriceOffered = price;
-        return res.status(200).json({
-          status: 'success',
-          message: 'Updated Succesfully',
-          data: relatedOrder,
-        });
+    if (result.error === null) {
+      const args = [parseInt(id, 10), 'pending'];
+      const { rowCount, rows } = await db.Query(Queries.pendingOrder, args);
+      try {
+        if (rowCount === 1) {
+          const oldPriceOffered = rows[0].price_offered;
+          const args2 = [
+            parseInt(price, 10),
+            oldPriceOffered,
+            parseInt(id, 10),
+            'pending',
+          ];
+          const results = await db.Query(Queries.updateOrder, args2);
+          try {
+            if (results.rowCount === 1) {
+              return res.status(200).json({
+                status: 200,
+                message: 'Updated Succesfully',
+              });
+            }
+            return res.status(404).json({
+              status: 404,
+              message: 'Order not found',
+            });
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
+        } else {
+          return res.status(404).json({
+            status: 404,
+            message: 'Order not found',
+          });
+        }
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
       }
-      return res.status(404).json({
-        status: 'error',
-        message: 'Order not found',
-      });
+    }
+    return errorHandler.validationError(res, result);
+  }
+
+  static async getAllUserOrders(req, res) {
+    const { userid } = req.user;
+    const result = Joi.validate(
+      parseInt(userid, 10),
+      Joi.number()
+        .integer()
+        .required(),
+      {
+        convert: false,
+      },
+    );
+    if (result.error === null) {
+      const args = [parseInt(userid, 10), 'pending'];
+      const { rowCount, rows } = await db.Query(Queries.userOrder, args);
+      try {
+        if (rowCount > 0) {
+          return res.status(200).json({
+            status: 200,
+            message: 'Pending orders',
+            data: rows,
+          });
+        }
+        return res.status(404).json({
+          status: 404,
+          message: 'Order not found',
+        });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
     }
     return errorHandler.validationError(res, result);
   }
