@@ -254,6 +254,34 @@ export default class carController {
           return res.status(401).json({ status: 401, message: 'Unauthorized' });
         }
       }
+      if (status && min && max) {
+        const data = {
+          min: parseInt(min, 10),
+          max: parseInt(max, 10),
+          status,
+        };
+        const result = Joi.validate(data, Car.viewUnsoldCarBetweenMaxandMin, {
+          convert: false,
+        });
+        if (result.error === null) {
+          const args = [status, min, max];
+          const { rowCount, rows } = await db.Query(
+            Queries.searchUnsoldCarBetweenMaxandMin,
+            args,
+          );
+          if (rowCount >= 1) {
+            return res.status(200).json({
+              status: 200,
+              data: rows,
+            });
+          }
+          return res.status(404).json({
+            status: 404,
+            message: 'Car not found',
+          });
+        }
+        return errorHandler.validationError(res, result);
+      }
       if (status) {
         const result = Joi.validate(
           status,
