@@ -51,8 +51,8 @@ export default class userController {
         d: 'mm',
       });
       const args = [email];
-      const { rowCount } = await db.Query(Queries.searchForEmail, args);
       try {
+        const { rowCount } = await db.Query(Queries.searchForEmail, args);
         if (rowCount === 0) {
           const args2 = [
             firstName,

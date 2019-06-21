@@ -30,7 +30,6 @@ describe('Testing the reset password functionality', () => {
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
     });
-    // test for sending email to return status of 409
   });
   describe('Test the confirm password route', () => {
     before('it should send a mail for request a new password', async () => {

@@ -84,4 +84,9 @@ export default class Queries {
   static get deleteCarAd() {
     return 'DELETE FROM cars WHERE carid = $1';
   }
+
+  static get allAdvertsSoldAvaliable() {
+    return `SELECT * FROM cars
+    WHERE status = $1 OR status = $2`;
+  }
 }
