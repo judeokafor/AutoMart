@@ -138,7 +138,7 @@ describe('User auth routes', () => {
     it('should get a user profile succesfully', async () => {
       const res = await chai
         .request(server)
-        .get(`${base}/getProfile`)
+        .get(`${base}`)
         .set('Authorization', auth);
       try {
         expect(res).to.have.status(200);
