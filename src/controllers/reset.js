@@ -14,95 +14,79 @@ dotenv.config();
 export default class resetController {
   static async resetPassword(req, res) {
     try {
-      const { email } = req.body;
-      const result = Joi.validate(req.body, User.regEmail, { convert: false });
+      const { email } = req.params;
+      const { authorization } = req.headers;
+      const { password, newPassword } = req.body;
+      const result = Joi.validate(email, User.regEmail, { convert: false });
       if (result.error === null) {
         const args = [email];
-        const { rowCount, rows } = await db.Query(Queries.searchForEmail, args);
-        if (rowCount === 1) {
-          const payload = {
-            userid: rows[0].userid,
-            email: rows[0].email,
-          };
-          const token = jwt.sign(payload, process.env.SECRET_KEY);
-          const url = `https://judeokafor.github.io/AutoMart?token=${token}`;
-          const transporter = nodemailer.createTransport(
-            mail.transportOptions(),
-          );
-          await transporter.sendMail(
-            mail.MailOptionsReset(rows[0].firstname, url, email),
-            (error, info) => {
-              if (error) {
-                console.log(error);
-              }
-              return res.status(201).json({
-                status: 201,
-                message: 'Message sent successfully',
-                data: {
-                  message: info.response,
-                  token,
-                },
+        const { rows } = await db.Query(Queries.searchForEmail, args);
+        if (rows.length === 1) {
+          const condition = Object.keys(req.body).length === 0;
+          const condition2 = req.body.constructor === Object;
+          if (condition && condition2) {
+            const transporter = nodemailer.createTransport(
+              mail.transportOptions(),
+            );
+            const randomPassword = Math.random()
+              .toString(36)
+              .slice(2);
+            await transporter.sendMail(
+              mail.MailOptionsReset(rows[0].firstname, randomPassword, email),
+            );
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(randomPassword, salt);
+            const args2 = [hash, email];
+            const { rowCount } = await db.Query(Queries.updatePassword, args2);
+            if (rowCount === 1) {
+              return res.status(204).json({
+                status: 204,
+                message: 'Message sent and Password Updated successfully',
               });
-            },
-          );
-        } else {
-          return res.status(404).json({
-            status: 404,
-            message: 'User not found',
-          });
-        }
-      } else {
-        return errorHandler.validationError(res, result);
-      }
-    } catch (error) {
-      errorHandler.tryCatchError(res, error);
-    }
-    return false;
-  }
-
-  static async confirmReset(req, res) {
-    try {
-      const { password, cnfPassword } = req.body;
-      const result = Joi.validate(req.body, User.confirmPassword, {
-        convert: false,
-      });
-      if (result.error === null) {
-        if (password !== cnfPassword) {
-          return res.status(400).json({
-            status: 400,
-            message: 'Verify your password',
-          });
-        }
-        const { token } = req.query;
-        const receivedUser = jwt.verify(token, process.env.SECRET_KEY);
-        const { email } = receivedUser;
-        const args = [email];
-        const { rowCount } = await db.Query(Queries.searchForEmail, args);
-        if (rowCount === 1) {
-          const salt = bcrypt.genSaltSync(10);
-          const hash = bcrypt.hashSync(password, salt);
-          const args2 = [hash, email];
-          const { rows } = await db.Query(Queries.updatePassword, args2);
-          const transporter = nodemailer.createTransport(
-            mail.transportOptions(),
-          );
-          await transporter.sendMail(
-            mail.MailOptionsConfirm(rows[0].firstname, email),
-            (error, info) => {
-              if (error) {
-                console.log(error);
+            }
+          }
+          if (authorization) {
+            const rslt = Joi.validate(
+              newPassword,
+              Joi.string()
+                .alphanum()
+                .min(3)
+                .max(30)
+                .required(),
+              { convert: false },
+            );
+            if (rslt.error === null) {
+              const token = authorization.split(' ')[1];
+              const user = jwt.verify(token, process.env.SECRET_KEY);
+              if (user.email === email) {
+                const salt = bcrypt.genSaltSync(10);
+                const hash = bcrypt.hashSync(newPassword, salt);
+                const args2 = [hash, email];
+                const { rowCount } = await db.Query(
+                  Queries.updatePassword,
+                  args2,
+                );
+                if (rowCount === 1) {
+                  return res.status(204).json({
+                    status: 204,
+                    message: 'Password Updated successfully',
+                  });
+                }
+              } else {
+                return res
+                  .status(403)
+                  .json({ status: 403, message: 'Cannot make this request' });
               }
-              return res.status(201).json({
-                status: 201,
-                message: 'Password Updated successfully',
-                data: info.response,
-              });
-            },
-          );
+            }
+            return errorHandler.validationError(res, rslt);
+          }
         }
-      } else {
-        return errorHandler.validationError(res, result);
+        return res.status(404).json({
+          status: 404,
+          message: 'User not found',
+        });
       }
+      return errorHandler.validationError(res, result);
     } catch (error) {
       errorHandler.tryCatchError(res, error);
     }

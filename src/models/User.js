@@ -52,13 +52,11 @@ export default class User {
   }
 
   static get regEmail() {
-    return Joi.object({
-      email: Joi.string()
-        .email()
-        .min(3)
-        .max(150)
-        .required(),
-    });
+    return Joi.string()
+      .email()
+      .min(3)
+      .max(150)
+      .required();
   }
 
   static get confirmPassword() {

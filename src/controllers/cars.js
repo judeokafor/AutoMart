@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import decode from 'jwt-decode';
+import jwt from 'jsonwebtoken';
 import Car from '../models/Car';
 import cloud from '../lib/config/cloudinaryConfig';
 import Queries from '../lib/helpers/queries';
@@ -211,7 +211,7 @@ export default class carController {
       const { authorization } = req.headers;
       if (authorization) {
         const token = authorization.split(' ')[1];
-        const decoded = decode(token);
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
         if (decoded.role === 'admin') {
           const args = ['available', 'sold'];
           const { rowCount, rows } = await db.Query(

@@ -4,83 +4,89 @@ import testData from '../fixtures/fixtures';
 import server from '../server';
 
 let auth;
+let adminauth;
 const { expect } = chai;
 const url = '/api/v2';
-const base = `${url}/reset`;
+const base = `${url}/users`;
+const base2 = `${url}/auth`;
 chai.use(chaiHttp);
 
 describe('Testing the reset password functionality', () => {
+  before(async () => {
+    try {
+      const res = await chai
+        .request(server)
+        .post(`${base2}/signIn`)
+        .send(testData.signInUser());
+      const { token } = res.body;
+      auth = token;
+    } catch (error) {
+      console.log(error);
+    }
+  });
   describe('Test the password reactivation', () => {
     it('should send password reset to email', async () => {
       const res = await chai
         .request(server)
-        .post(`${base}/resetPassword`)
+        .post(`${base}/okaforjudechukwuebuka@gmail.com/reset_password`);
+      expect(res).to.have.status(204);
+    });
+    it('should reset password by an authenticated user', async () => {
+      const res = await chai
+        .request(server)
+        .post(`${base}/okaforjudechukwuebuka@gmail.com/reset_password`)
         .type('form')
-        .send({ email: 'okaforjudechukwuebuka@gmail.com' });
-      expect(res).to.have.status(201);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('data');
-      expect(res.body).to.have.property('message');
+        .send({ newPassword: '1234abcddA2' })
+        .set('Authorization', auth);
+      expect(res).to.have.status(204);
     });
     it('should return an error if unauthorized user', async () => {
       const res = await chai
         .request(server)
-        .post(`${base}/resetPassword`)
+        .post(`${base}/okaforjudechukwuebukagmailcom/reset_password`)
         .type('form')
         .send({ email: 'noemailgmailcom' });
       expect(res).to.have.status(400);
       expect(res.body).to.have.property('status');
     });
+    it('should reset password by an authenticated user', async () => {
+      const res = await chai
+        .request(server)
+        .post(`${base}/okaforjudechukwuebuka@gmail.com/reset_password`)
+        .set('Authorization', auth)
+        .send({ newPassword: '12' });
+      expect(res).to.have.status(400);
+    });
     it('should return an error user not found', async () => {
       const res = await chai
         .request(server)
-        .post(`${base}/resetPassword`)
-        .type('form')
-        .send({ email: 'notfound@gmail.com' });
+        .post(`${base}/notfound@gmail.com/reset_password`);
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
     });
   });
-  describe('Test the confirm password route', () => {
-    before('it should send a mail for request a new password', async () => {
+});
+describe('Testing the forbidden route', () => {
+  before(async () => {
+    try {
       const res = await chai
         .request(server)
-        .post(`${base}/resetPassword`)
-        .type('form')
-        .send({ email: 'okaforjudechukwuebuka@gmail.com' });
-      const { token } = res.body.data;
-      auth = token;
-    });
-    it('should reset password successfully', async () => {
-      const res = await chai
-        .request(server)
-        .post(`${base}/confirmReset/?token=${auth}`)
-        .type('form')
-        .send(testData.resetPasswordTrue());
-      expect(res).to.have.status(201);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
-      expect(res.body).to.have.property('data');
-    });
-    it('should return error if password not equal to confirm password', async () => {
-      const res = await chai
-        .request(server)
-        .post(`${base}/confirmReset/?token=${auth}`)
-        .type('form')
-        .send(testData.resetPasswordError());
-      expect(res).to.have.status(400);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
-    });
-    it('should return error if password or cnfPassword fails validaton', async () => {
-      const res = await chai
-        .request(server)
-        .post(`${base}/confirmReset/?token=${auth}`)
-        .type('form')
-        .send(testData.resetFailValidation());
-      expect(res).to.have.status(400);
-      expect(res.body).to.have.property('status');
-    });
+        .post(`${base2}/signIn`)
+        .send(testData.signInAdmin());
+      const { token } = res.body;
+      adminauth = token;
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  it('should return a forbidden error', async () => {
+    const res = await chai
+      .request(server)
+      .post(`${base}/okaforjudechukwuebuka@gmail.com/reset_password`)
+      .type('form')
+      .send({ newPassword: '1234abcddA2', password: 'jude11aaww' })
+      .set('Authorization', adminauth);
+    expect(res).to.have.status(403);
   });
 });

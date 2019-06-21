@@ -71,9 +71,10 @@ describe('Testing the order route', () => {
     it('should update the price of an order successfully', async () => {
       const res = await chai
         .request(server)
-        .patch(`${base2}/1/price`)
-        .set('Authorization', auth)
-        .send({ price: 999999999 });
+        .patch(`${base2}/3/price`)
+        .send({ price: 999999999 })
+        .set('Authorization', auth);
+
       try {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property('status');
