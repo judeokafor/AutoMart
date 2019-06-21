@@ -30,11 +30,11 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 require('./lib/config/passport')(passport);
 
-app.use('/api/v1/auth', users);
-app.use('/api/v1/car', cars);
-app.use('/api/v1/order', orders);
-app.use('/api/v1/flag', flags);
-app.use('/api/v1/reset', reset);
+app.use('/api/v2/auth', users);
+app.use('/api/v2/car', cars);
+app.use('/api/v2/order', orders);
+app.use('/api/v2/flag', flags);
+app.use('/api/v2/reset', reset);
 
 app.get('/', (req, res) => {
   res.send('Welcome to jude app');

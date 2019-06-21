@@ -1,6 +1,7 @@
 import JwtStrategy from 'passport-jwt';
 import dotenv from 'dotenv';
-import userStore from '../../dataStore/user';
+import Queries from '../helpers/queries';
+import db from '../helpers/dbHelpers';
 
 const { Strategy, ExtractJwt } = JwtStrategy;
 dotenv.config();
@@ -10,10 +11,10 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.SECRET_KEY;
 module.exports = (passport) => {
   passport.use(
-    new Strategy(opts, (jwtPayLoad, next) => {
-      const user = userStore.find(
-        olduser => olduser.email === jwtPayLoad.email,
-      );
+    new Strategy(opts, async (jwtPayLoad, next) => {
+      const args = [jwtPayLoad.email];
+      const { rows } = await db.Query(Queries.searchForEmail, args);
+      const user = rows[0];
       if (user) {
         next(null, user);
       } else {

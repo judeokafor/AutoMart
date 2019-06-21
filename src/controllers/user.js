@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import Joi from 'joi';
 
 import User from '../models/User';
-import userStore from '../dataStore/user';
 import errorHandler from '../lib/helpers/errorHandler';
 import Queries from '../lib/helpers/queries';
 import db from '../lib/helpers/dbHelpers';
@@ -31,95 +30,126 @@ export default class userController {
     return false;
   }
 
-  static signUp(req, res) {
-    const userData = req.body;
-
-    const result = Joi.validate(userData, User.userSchema, { convert: false });
+  static async signUp(req, res) {
+    const {
+      firstName,
+      lastName,
+      phoneNumber,
+      address,
+      gender,
+      email,
+      password,
+      role,
+    } = req.body;
+    const result = Joi.validate(req.body, User.userSchema, { convert: false });
     if (result.error === null) {
       const salt = bcrypt.genSaltSync(10);
-      const hash = bcrypt.hashSync(userData.password, salt);
-      const avatar = gravatar.url(req.body.email, {
+      const hash = bcrypt.hashSync(password, salt);
+      const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
         d: 'mm',
       });
-      const user = new User(
-        (userData.id = Math.ceil(
-          Math.random() * 100000 * (userStore.length + 1),
-        )),
-        userData.firstName,
-        userData.lastName,
-        userData.phoneNumber,
-        userData.address,
-        userData.gender,
-        userData.email,
-        (userData.password = hash),
-        (userData.avatar = avatar),
-        userData.isAdmin,
-        userData.role,
-      );
-      const verifiedUser = userStore.find(
-        olduser => olduser.email === userData.email,
-      );
-      if (verifiedUser) {
+      const args = [email];
+      const { rowCount } = await db.Query(Queries.searchForEmail, args);
+      try {
+        if (rowCount === 0) {
+          const args2 = [
+            firstName,
+            lastName,
+            phoneNumber,
+            hash,
+            address,
+            gender,
+            email,
+            avatar,
+            false,
+            role,
+          ];
+          const { rows } = await db.Query(Queries.insertUsers, args2);
+          try {
+            const payload = {
+              userid: rows[0].userid,
+              email,
+              role,
+            };
+            const token = jwt.sign(payload, process.env.SECRET_KEY);
+            return res
+              .status(201)
+              .json({ status: 201, token: `Bearer ${token}`, data: payload });
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
+        }
         return res.status(400).json({
-          status: 'error',
+          status: 400,
           message: 'Email Already Exist',
         });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
       }
-      userStore.push(user);
-      const payload = {
-        id: user.id,
-        email: user.email,
-        isAdmin: user.isAdmin,
-      };
-      const token = jwt.sign(payload, process.env.SECRET_KEY);
-      return res
-        .status(201)
-        .json({ status: 'success', token: `Bearer ${token}`, data: user });
     }
     return errorHandler.validationError(res, result);
   }
 
-  static signIn(req, res) {
-    const userData = req.body;
-    const verifiedUser = userStore.find(
-      databaseUser => databaseUser.email === userData.email,
-    );
-    if (!verifiedUser) {
-      res.status(404).json({ status: 'error', message: 'User Not Found' });
-    } else {
-      bcrypt.compare(userData.password, verifiedUser.password).then((isMatch) => {
-        if (isMatch) {
-          const payload = {
-            id: userData.id,
-            email: userData.email,
-            isAdmin: userData.isAdmin,
-          };
-          jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
-            if (err) {
-              throw err;
-            } else {
-              res.status(201).json({
-                status: 'success',
-                message: 'Login Succesful',
-                token: `Bearer ${token}`,
+  static async signIn(req, res) {
+    const { email, password } = req.body;
+    const result = Joi.validate(req.body, User.signInUser, { convert: false });
+    if (result.error === null) {
+      const args = [email];
+      const { rowCount, rows } = await db.Query(Queries.searchForEmail, args);
+      try {
+        if (rowCount === 1) {
+          const validPassword = await bcrypt.compare(
+            password,
+            rows[0].password,
+          );
+          try {
+            if (validPassword) {
+              const payload = {
+                id: rows[0].userid,
+                email: rows[0].email,
+                isAdmin: rows[0].isAdmin,
+                role: rows[0].role,
+              };
+              jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
+                if (err) {
+                  throw err;
+                } else {
+                  return res.status(201).json({
+                    status: 201,
+                    message: 'Login Succesful',
+                    token: `Bearer ${token}`,
+                    role: rows[0].role,
+                    isAdmin: rows[0].isAdmin,
+                  });
+                }
               });
+            } else {
+              return res
+                .status(400)
+                .json({ status: 400, message: 'Password Incorrect' });
             }
-          });
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
         } else {
           return res
-            .status(400)
-            .json({ status: 'error', message: 'Password Incorrect' });
+            .status(404)
+            .json({ status: 404, message: 'User Not Found' });
         }
-        return false;
-      });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
+    } else {
+      return errorHandler.validationError(res, result);
     }
+    return false;
   }
 
   static currentProfile(req, res) {
     if (req.user) {
-      return res.status(200).json({ status: 'success', data: req.user });
+      return res.status(200).json({ status: 200, data: req.user });
     }
     return false;
   }

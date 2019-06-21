@@ -7,7 +7,7 @@ router.get('/test', userController.testdbconnection);
 router.post('/signUp', userController.signUp);
 router.post('/signIn', userController.signIn);
 router.get(
-  '/getProfile',
+  '/',
   passport.authenticate('jwt', { session: false }),
   userController.currentProfile,
 );

@@ -11,7 +11,7 @@ describe('Testing the car advert placement route', () => {
   before(async () => {
     const res = await chai
       .request(server)
-      .post('/api/v1/auth/signIn')
+      .post('/api/v2/auth/signIn')
       .send(testData.signInUser());
     const { token } = res.body;
     auth = token;
@@ -20,7 +20,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if image name already exist', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v1/car')
+        .post('/api/v2/car')
         .set('Authorization', auth)
         .send({ imageName: 'my_redcar.png' });
       expect(res).to.have.status(400);
@@ -30,7 +30,7 @@ describe('Testing the car advert placement route', () => {
     it('should return a validation error', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v1/car')
+        .post('/api/v2/car')
         .set('Authorization', auth)
         .send(testData.errorCarAdvert());
       expect(res).to.have.status(400);
@@ -39,7 +39,7 @@ describe('Testing the car advert placement route', () => {
     // it('should create an advert successfully', async () => {
     //   const res = await chai
     //     .request(server)
-    //     .post('/api/v1/car')
+    //     .post('/api/v2/car')
     //     .type('form')
     //     .send(testData.carAdvert());
     //   expect(res).to.have.status(201);
@@ -52,7 +52,7 @@ describe('Testing the car advert placement route', () => {
     it('should mark an order as sold', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v1/car/4444/sold')
+        .put('/api/v2/car/4444/sold')
         .set('Authorization', auth);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
@@ -62,7 +62,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if an order doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v1/car/111111/sold')
+        .put('/api/v2/car/111111/sold')
         .set('Authorization', auth);
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
@@ -73,7 +73,7 @@ describe('Testing the car advert placement route', () => {
     it('should update the price of an order successfully', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v1/car/4444/1000000')
+        .put('/api/v2/car/4444/1000000')
         .set('Authorization', auth);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
@@ -83,7 +83,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v1/car/4411144/1000000')
+        .put('/api/v2/car/4411144/1000000')
         .set('Authorization', auth);
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
@@ -92,13 +92,13 @@ describe('Testing the car advert placement route', () => {
   });
   describe('should get details of a specific car', () => {
     it('should mark an order as sold', async () => {
-      const res = await chai.request(server).get('/api/v1/car/4444');
+      const res = await chai.request(server).get('/api/v2/car/4444');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
     });
     it('should return an error if it doesnt exist', async () => {
-      const res = await chai.request(server).get('/api/v1/car/4411144');
+      const res = await chai.request(server).get('/api/v2/car/4411144');
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
@@ -108,7 +108,7 @@ describe('Testing the car advert placement route', () => {
     it('should get all cars that has status of available', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/view?status=available');
+        .get('/api/v2/car/view?status=available');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
@@ -116,7 +116,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/view?status=availablessss');
+        .get('/api/v2/car/view?status=availablessss');
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
@@ -126,7 +126,7 @@ describe('Testing the car advert placement route', () => {
     it('should get all cars that has status of available within a range', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car?status=available&min=1000000&max=1500000');
+        .get('/api/v2/car?status=available&min=1000000&max=1500000');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
@@ -134,7 +134,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car?status=available&min=10&max=150');
+        .get('/api/v2/car?status=available&min=10&max=150');
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
@@ -144,7 +144,7 @@ describe('Testing the car advert placement route', () => {
     it('should delete a particular advert if authencticated as an admin and user', async () => {
       const res = await chai
         .request(server)
-        .delete('/api/v1/car/deleteAdvert/4444')
+        .delete('/api/v2/car/deleteAdvert/4444')
         .set('Authorization', auth);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
@@ -153,7 +153,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/deleteAdvert/4')
+        .get('/api/v2/car/deleteAdvert/4')
         .set('Authorization', auth);
       expect(res).to.have.status(404);
     });
@@ -162,14 +162,14 @@ describe('Testing the car advert placement route', () => {
     it('view all adverts succesfully', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/viewAllAdverts')
+        .get('/api/v2/car/viewAllAdverts')
         .set('Authorization', auth);
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
     });
     it('should return an error if not authorized', async () => {
-      const res = await chai.request(server).get('/api/v1/car/viewAllAdverts');
+      const res = await chai.request(server).get('/api/v2/car/viewAllAdverts');
       expect(res).to.have.status(401);
     });
   });
@@ -177,7 +177,7 @@ describe('Testing the car advert placement route', () => {
     it('should get all cars from a particular manufacturer successfully', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/viewUnsoldCarsWithMake/Toyota');
+        .get('/api/v2/car/viewUnsoldCarsWithMake/Toyota');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
@@ -185,31 +185,31 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/viewUnsoldCarsWithMake/Toy');
+        .get('/api/v2/car/viewUnsoldCarsWithMake/Toy');
       expect(res).to.have.status(404);
     });
   });
   describe('should get all new unsold cars', () => {
     it('should get all new unsold cars successfully', async () => {
-      const res = await chai.request(server).get('/api/v1/car/new');
+      const res = await chai.request(server).get('/api/v2/car/new');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
     });
     it('should return an error if it doesnt exist', async () => {
-      const res = await chai.request(server).get('/api/v1/car/newz');
+      const res = await chai.request(server).get('/api/v2/car/newz');
       expect(res).to.have.status(404);
     });
   });
   describe('should get all new used cars', () => {
     it('should get all new used cars successfully', async () => {
-      const res = await chai.request(server).get('/api/v1/car/used');
+      const res = await chai.request(server).get('/api/v2/car/used');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
     });
     it('should return an error if it doesnt exist', async () => {
-      const res = await chai.request(server).get('/api/v1/car/usedz');
+      const res = await chai.request(server).get('/api/v2/car/usedz');
       expect(res).to.have.status(404);
     });
   });
@@ -217,7 +217,7 @@ describe('Testing the car advert placement route', () => {
     it('should get all cars from a particular body type successfully', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/viewAllWithSpecificBodyType/Sedan');
+        .get('/api/v2/car/viewAllWithSpecificBodyType/Sedan');
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('data');
@@ -225,7 +225,7 @@ describe('Testing the car advert placement route', () => {
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .get('/api/v1/car/viewAllWithSpecificBodyType/Sedanzzz');
+        .get('/api/v2/car/viewAllWithSpecificBodyType/Sedanzzz');
       expect(res).to.have.status(404);
     });
   });
