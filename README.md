@@ -4,7 +4,7 @@
 ![Build Status](https://travis-ci.org/judeokafor/AutoMart.svg?branch=Develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1ad7219a7366249e0b59/maintainability)](https://codeclimate.com/github/judeokafor/AutoMart/maintainability)
 
-Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With
+Auto Mart is an online marketplace for automobiles of diverse makes, model or body type.
 Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers.
 
 ## Table of Contents
