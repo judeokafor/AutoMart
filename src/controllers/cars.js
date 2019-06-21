@@ -137,23 +137,42 @@ export default class carController {
     return errorHandler.validationError(res, result);
   }
 
-  static updateOrderPrice(req, res) {
-    const { id, price } = req.params;
-    const relatedOrder = carStore.find(
-      order => parseInt(order.id, 10) === parseInt(id, 10),
-    );
-    if (relatedOrder) {
-      relatedOrder.price = parseInt(price, 10);
-      return res.status(200).json({
-        status: 'success',
-        message: 'Order Price Updated Succesfully',
-        data: relatedOrder,
-      });
+  static async updateOrderPrice(req, res) {
+    const { id } = req.params;
+    const { price } = req.body;
+
+    const data = {
+      id: parseInt(id, 10),
+      price: parseInt(price, 10),
+    };
+    const result = Joi.validate(data, Car.updateOrderPrice, { convert: false });
+    if (result.error === null) {
+      const args = [data.id];
+      const { rowCount } = await db.Query(Queries.searchForCarAdById, args);
+      try {
+        if (rowCount === 1) {
+          const args2 = [parseInt(price, 10), data.id];
+          const { rows } = await db.Query(Queries.updateCarAsSold, args2);
+          try {
+            if (rows.length === 1) {
+              return res.status(200).json({
+                status: 200,
+                message: 'Order Price Updated Succesfully',
+              });
+            }
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
+        }
+        return res.status(404).json({
+          status: 404,
+          message: 'Order not found',
+        });
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
     }
-    return res.status(404).json({
-      status: 'error',
-      message: 'Order not found',
-    });
+    return errorHandler.validationError(res, result);
   }
 
   static viewSpecificCar(req, res) {

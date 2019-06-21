@@ -19,9 +19,10 @@ router.patch(
   isSeller,
   carController.markAsSold,
 );
-router.put(
-  '/:id/:price',
+router.patch(
+  '/:id/price',
   passport.authenticate('jwt', { session: false }),
+  isSeller,
   carController.updateOrderPrice,
 );
 

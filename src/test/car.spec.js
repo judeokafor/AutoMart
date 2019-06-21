@@ -77,18 +77,28 @@ describe('Testing the car advert placement route', () => {
     it('should update the price of an order successfully', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v2/car/4444/1000000')
-        .set('Authorization', auth);
+        .patch(`${base2}/1/price`)
+        .set('Authorization', auth)
+        .send({ price: 10000000 });
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
-      expect(res.body).to.have.property('data');
+    });
+    it('should return a validation error', async () => {
+      const res = await chai
+        .request(server)
+        .patch(`${base2}/1/price`)
+        .set('Authorization', auth)
+        .send({ price: 'a' });
+      expect(res).to.have.status(400);
+      expect(res.body).to.have.property('status');
     });
     it('should return an error if it doesnt exist', async () => {
       const res = await chai
         .request(server)
-        .put('/api/v2/car/4411144/1000000')
-        .set('Authorization', auth);
+        .patch(`${base2}/4411144/price`)
+        .set('Authorization', auth)
+        .send({ price: 10000000 });
       expect(res).to.have.status(404);
       expect(res.body).to.have.property('status');
       expect(res.body).to.have.property('message');
