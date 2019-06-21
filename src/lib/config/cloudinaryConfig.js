@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 cloudinary.config({
-  cloud_name: 'okaforjude',
-  api_key: 996355845829939,
-  api_secret: 'THgg-bLXivyGxo-uHGz4WG8Ootc',
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 const uploads = file => new Promise((resolve) => {
   cloudinary.uploader.upload(

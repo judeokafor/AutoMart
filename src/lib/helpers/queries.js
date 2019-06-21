@@ -52,4 +52,18 @@ export default class Queries {
   static get allFlags() {
     return 'SELECT * FROM flags';
   }
+
+  static get searchForImageUrl() {
+    return 'SELECT * FROM cars WHERE image_url = $1';
+  }
+
+  static get insertCars() {
+    return `INSERT into cars (model, manufacturer, image_url, image_name, transmission, year, fuel_type, body_type, state, price, status, description, ownerid) 
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING carid, state, price, status`;
+  }
+
+  static get searchForCarAdById() {
+    return `SELECT * FROM cars 
+    INNER JOIN users ON ownerid = userid WHERE carid = $1`;
+  }
 }

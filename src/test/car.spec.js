@@ -4,6 +4,10 @@ import server from '../server';
 import testData from '../dataStore/testData';
 
 let auth;
+let adminauth;
+const url = '/api/v2';
+const base = `${url}/auth`;
+const base2 = `${url}/car`;
 const { expect } = chai;
 chai.use(chaiHttp);
 
@@ -11,26 +15,16 @@ describe('Testing the car advert placement route', () => {
   before(async () => {
     const res = await chai
       .request(server)
-      .post('/api/v2/auth/signIn')
-      .send(testData.signInUser());
+      .post(`${base}/signIn`)
+      .send(testData.signInSeller());
     const { token } = res.body;
     auth = token;
   });
   describe('should upload image to cloudinary and create a post', () => {
-    it('should return an error if image name already exist', async () => {
-      const res = await chai
-        .request(server)
-        .post('/api/v2/car')
-        .set('Authorization', auth)
-        .send({ imageName: 'my_redcar.png' });
-      expect(res).to.have.status(400);
-      expect(res.body).to.have.property('status');
-      expect(res.body).to.have.property('message');
-    });
     it('should return a validation error', async () => {
       const res = await chai
         .request(server)
-        .post('/api/v2/car')
+        .post(`${base2}`)
         .set('Authorization', auth)
         .send(testData.errorCarAdvert());
       expect(res).to.have.status(400);

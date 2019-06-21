@@ -1,68 +1,101 @@
 import Joi from 'joi';
+import decode from 'jwt-decode';
 import Car from '../models/Car';
 import carStore from '../dataStore/car';
 import cloud from '../lib/config/cloudinaryConfig';
+import Queries from '../lib/helpers/queries';
+import db from '../lib/helpers/dbHelpers';
+import errorHandler from '../lib/helpers/errorHandler';
 
 export default class carController {
-  static postCarAd(req, res) {
-    const carAdData = req.body;
-    const results = Joi.validate(carAdData, Car.carSchema, { convert: false });
-    if (results.error === null) {
-      console.log('continue with app');
-    } else {
-      console.log(results.error.details[0].message);
-    }
-
-    try {
-      const verifiedImage = carStore.find(
-        oldcar => oldcar.imageName === carAdData.imageName,
-      );
-      if (verifiedImage) {
-        return res.status(400).json({
-          status: 'error',
-          message: 'File Already Exist',
-        });
-      }
-      cloud(req.files[0].path)
-        .then((result) => {
-          const imageValues = {
-            imageName: req.body.imageName,
-            cloudImage: result.url,
-            imageId: result.id,
-          };
-          console.log('the image values from cloudinary', result);
-          const car = new Car(
-            (carAdData.id = Math.ceil(
-              Math.random() * 100000 * (carStore.length + 1),
-            )),
-            carAdData.owner,
-            carAdData.model,
-            carAdData.manufacturer,
-            carAdData.imageName,
-            (carAdData.imageUrl = imageValues.cloudImage),
-            carAdData.transmission,
-            carAdData.year,
-            carAdData.fuelType,
-            carAdData.bodyType,
-            carAdData.state,
-            carAdData.price,
-            carAdData.status,
-            carAdData.description,
-            (carAdData.createdOn = Date.now()),
-          );
-          // save in array
-          carStore.push(car);
-          return res.status(201).json({
-            status: 'success',
-            message: 'Advert Post Created Succesfully',
-            data: car,
+  static async postCarAd(req, res) {
+    const {
+      price,
+      year,
+      model,
+      manufacturer,
+      transmission,
+      imageUrl,
+      fuelType,
+      bodyType,
+      state,
+      status,
+      description,
+    } = req.body;
+    const { userid } = req.user;
+    const dataToValidate = {
+      owner: parseInt(userid, 10),
+      price: parseInt(price, 10),
+      year: parseInt(year, 10),
+      model,
+      manufacturer,
+      transmission,
+      fuelType,
+      bodyType,
+      state,
+      status,
+      description,
+    };
+    const result = Joi.validate(dataToValidate, Car.carSchema, {
+      convert: false,
+    });
+    if (result.error === null) {
+      const args = [imageUrl];
+      const { rowCount } = await db.Query(Queries.searchForImageUrl, args);
+      try {
+        if (rowCount === 0) {
+          const rslt = await cloud(req.files[0].path);
+          try {
+            const imageValues = {
+              imageName: req.files[0].originalname,
+              cloudImage: rslt.url,
+              imageId: rslt.id,
+            };
+            const args2 = [
+              model,
+              manufacturer,
+              imageValues.cloudImage,
+              imageValues.imageId,
+              transmission,
+              year,
+              fuelType,
+              bodyType,
+              state,
+              price,
+              'avaliable',
+              description,
+              parseInt(userid, 10),
+            ];
+            const { rows } = await db.Query(Queries.insertCars, args2);
+            try {
+              if (rows.length === 1) {
+                return res.status(201).json({
+                  status: 201,
+                  message: 'Advert Post Created Succesfully',
+                  data: rows[0],
+                });
+              }
+              return res.status(409).json({
+                status: 409,
+                message: 'Something went wrong while storing at the db',
+              });
+            } catch (error) {
+              errorHandler.tryCatchError(res, error);
+            }
+          } catch (error) {
+            errorHandler.tryCatchError(res, error);
+          }
+        } else {
+          return res.status(400).json({
+            status: 400,
+            message: 'File Already Exist',
           });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (exceptions) {
-      console.log(exceptions);
+        }
+      } catch (error) {
+        errorHandler.tryCatchError(res, error);
+      }
+    } else {
+      return errorHandler.validationError(res, result);
     }
     return false;
   }

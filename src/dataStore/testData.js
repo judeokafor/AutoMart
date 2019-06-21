@@ -168,20 +168,16 @@ export default class testData {
 
   static errorCarAdvert() {
     return {
-      owner: '5550',
-      model: 'RAV 4',
-      manufacturer: 'Toyota',
+      model: '',
+      manufacturer: '',
       imageUrl: 'My Image url from cloudinary',
-      imageName: 'my_redcar.png',
       transmission: 'Automatic',
       year: 2011,
       fuelType: 'Fuel',
-      bodyType: 'Suv',
-      state: 'new',
-      price: '4700000',
-      status: 'sold',
-      description: 'car ac still intact, alloy rims',
-      createdOn: new Date(),
+      bodyType: '',
+      state: '',
+      price: null,
+      description: '',
     };
   }
 }
