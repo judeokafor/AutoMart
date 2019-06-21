@@ -17,8 +17,8 @@ export default class userController {
   }
 
   static async testdbconnection(req, res) {
-    const { rowCount, rows } = await db.Query(Queries.testTable);
     try {
+      const { rowCount, rows } = await db.Query(Queries.testTable);
       if (rowCount > 0) {
         return res.json({
           data: rows,
@@ -31,27 +31,29 @@ export default class userController {
   }
 
   static async signUp(req, res) {
-    const {
-      firstName,
-      lastName,
-      phoneNumber,
-      address,
-      gender,
-      email,
-      password,
-      role,
-    } = req.body;
-    const result = Joi.validate(req.body, User.userSchema, { convert: false });
-    if (result.error === null) {
-      const salt = bcrypt.genSaltSync(10);
-      const hash = bcrypt.hashSync(password, salt);
-      const avatar = gravatar.url(email, {
-        s: '200',
-        r: 'pg',
-        d: 'mm',
+    try {
+      const {
+        firstName,
+        lastName,
+        phoneNumber,
+        address,
+        gender,
+        email,
+        password,
+        role,
+      } = req.body;
+      const result = Joi.validate(req.body, User.userSchema, {
+        convert: false,
       });
-      const args = [email];
-      try {
+      if (result.error === null) {
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+        const avatar = gravatar.url(email, {
+          s: '200',
+          r: 'pg',
+          d: 'mm',
+        });
+        const args = [email];
         const { rowCount } = await db.Query(Queries.searchForEmail, args);
         if (rowCount === 0) {
           const args2 = [
@@ -67,82 +69,77 @@ export default class userController {
             role,
           ];
           const { rows } = await db.Query(Queries.insertUsers, args2);
-          try {
-            const payload = {
-              userid: rows[0].userid,
-              email,
-              role,
-            };
-            const token = jwt.sign(payload, process.env.SECRET_KEY);
-            return res
-              .status(201)
-              .json({ status: 201, token: `Bearer ${token}`, data: payload });
-          } catch (error) {
-            errorHandler.tryCatchError(res, error);
-          }
+          const payload = {
+            userid: rows[0].userid,
+            email,
+            role,
+          };
+          const token = jwt.sign(payload, process.env.SECRET_KEY);
+          return res
+            .status(201)
+            .json({ status: 201, token: `Bearer ${token}`, data: payload });
         }
         return res.status(400).json({
           status: 400,
           message: 'Email Already Exist',
         });
-      } catch (error) {
-        errorHandler.tryCatchError(res, error);
       }
+      return errorHandler.validationError(res, result);
+    } catch (error) {
+      errorHandler.tryCatchError(res, error);
     }
-    return errorHandler.validationError(res, result);
+    return false;
   }
 
   static async signIn(req, res) {
-    const { email, password } = req.body;
-    const result = Joi.validate(req.body, User.signInUser, { convert: false });
-    if (result.error === null) {
-      const args = [email];
-      const { rowCount, rows } = await db.Query(Queries.searchForEmail, args);
-      try {
+    try {
+      const { email, password } = req.body;
+      const result = Joi.validate(req.body, User.signInUser, {
+        convert: false,
+      });
+      if (result.error === null) {
+        const args = [email];
+        const { rowCount, rows } = await db.Query(Queries.searchForEmail, args);
         if (rowCount === 1) {
           const validPassword = await bcrypt.compare(
             password,
             rows[0].password,
           );
-          try {
-            if (validPassword) {
-              const payload = {
-                id: rows[0].userid,
-                email: rows[0].email,
-                isAdmin: rows[0].isAdmin,
-                role: rows[0].role,
-              };
-              jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
-                if (err) {
-                  throw err;
-                } else {
-                  return res.status(201).json({
-                    status: 201,
-                    message: 'Login Succesful',
-                    token: `Bearer ${token}`,
-                    role: rows[0].role,
-                    isAdmin: rows[0].isAdmin,
-                  });
-                }
-              });
-            } else {
-              return res
-                .status(400)
-                .json({ status: 400, message: 'Password Incorrect' });
-            }
-          } catch (error) {
-            errorHandler.tryCatchError(res, error);
+          if (validPassword) {
+            const payload = {
+              id: rows[0].userid,
+              email: rows[0].email,
+              isAdmin: rows[0].isAdmin,
+              role: rows[0].role,
+            };
+            jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
+              if (err) {
+                throw err;
+              } else {
+                return res.status(201).json({
+                  status: 201,
+                  message: 'Login Succesful',
+                  token: `Bearer ${token}`,
+                  role: rows[0].role,
+                  isAdmin: rows[0].isAdmin,
+                });
+              }
+            });
+          } else {
+            return res
+              .status(400)
+              .json({ status: 400, message: 'Password Incorrect' });
           }
         } else {
           return res
             .status(404)
             .json({ status: 404, message: 'User Not Found' });
         }
-      } catch (error) {
-        errorHandler.tryCatchError(res, error);
+      } else {
+        return errorHandler.validationError(res, result);
       }
-    } else {
-      return errorHandler.validationError(res, result);
+    } catch (error) {
+      errorHandler.tryCatchError(res, error);
     }
     return false;
   }

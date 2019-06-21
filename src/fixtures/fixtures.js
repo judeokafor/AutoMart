@@ -96,10 +96,16 @@ export default class testData {
     };
   }
 
+  static resetFailValidation() {
+    return {
+      password: '123',
+      cnfPassword: '1234',
+    };
+  }
+
   static sampleExistingReport() {
     return {
-      id: 3345,
-      carId: 4444,
+      carId: 2,
       reason: 'Weird demands',
       description: 'The seller was asking for too much',
       createdOn: 20171236,

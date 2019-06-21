@@ -1,6 +1,5 @@
 const multer = require('multer');
 
-// multer.diskStorage() creates a storage space for storing files.
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {

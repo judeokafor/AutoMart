@@ -14,6 +14,16 @@ router.post(
   upload.any(),
   carController.postCarAd,
 );
+router.get('/', carController.cars);
+
+router.get('/:id', carController.viewSpecificCar);
+
+router.delete(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  isAdmin,
+  carController.deleteAdvert,
+);
 router.patch(
   '/:id/status',
   passport.authenticate('jwt', { session: false }),
@@ -25,15 +35,5 @@ router.patch(
   passport.authenticate('jwt', { session: false }),
   isSeller,
   carController.updateOrderPrice,
-);
-router.get('/', carController.cars);
-
-router.get('/:id', carController.viewSpecificCar);
-
-router.delete(
-  '/:id',
-  passport.authenticate('jwt', { session: false }),
-  isAdmin,
-  carController.deleteAdvert,
 );
 export default router;
